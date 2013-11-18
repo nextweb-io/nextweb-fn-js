@@ -98,9 +98,6 @@ public class WrapperCollection {
 
 	}
 
-	// public final native static JavaScriptObject getJsObj(Object o)/*-{
-	// return o;
-	// }-*/;
 
 	public Object convertValueObjectForJs(final Object gwtNode) {
 
