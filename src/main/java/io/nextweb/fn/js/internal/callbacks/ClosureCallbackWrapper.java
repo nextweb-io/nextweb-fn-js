@@ -1,7 +1,6 @@
 package io.nextweb.fn.js.internal.callbacks;
 
 import io.nextweb.fn.Closure;
-import io.nextweb.fn.js.wrapping.WrapperCollection;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
