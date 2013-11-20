@@ -59,5 +59,17 @@ public class FnJs {
 	    triggerCallbackJs(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap
 	            .toJsoArray(params, wrappers))));
 	}
+	
+	public static interface NoParamCallback {
+		public void call();
+	};
 
+	
+	
+	public static native final JavaScriptObject createJsCallback(NoParamCallback callback)/*-{
+	     return function() {
+	        
+	     };
+	 }-*/;
+	
 }
