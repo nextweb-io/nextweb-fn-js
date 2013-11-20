@@ -20,8 +20,8 @@ public class EmptyCallbackWrapper {
 													
 													return function() {
 													var self = this;
-													var callbackFn = $entry(function(val) {
-													self.@io.nextweb.fn.js.internal.callbacks.callCallback()();
+													var callbackFn = $entry(function() {
+													self.@io.nextweb.fn.js.internal.callbacks.EmptyCallbackWrapper::callCallback()();
 													});
 													};
 													return callbackFn;
