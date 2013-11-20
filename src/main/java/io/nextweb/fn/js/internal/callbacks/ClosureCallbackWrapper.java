@@ -21,7 +21,7 @@ public class ClosureCallbackWrapper {
 													return function() {
 													var self = this;
 													var callbackFn = $entry(function(param) {
-													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(Ljava.lang.String)(param);
+													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(Ljava/lang/Object;)(param);
 													});
 													};
 													return callbackFn;
