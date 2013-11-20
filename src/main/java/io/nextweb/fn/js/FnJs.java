@@ -60,16 +60,6 @@ public class FnJs {
 	            .toJsoArray(params, wrappers))));
 	}
 	
-	public static interface NoParamCallback {
-		public void call();
-	};
-
 	
-	
-	public static native final JavaScriptObject createJsCallback(NoParamCallback callback)/*-{
-	     return function() {
-	        
-	     };
-	 }-*/;
 	
 }
