@@ -13,7 +13,7 @@ public class ClosureCallbackWrapper {
 		return createCallback();
 	}
 
-	private void callCallback(String param) {
+	private void callCallback(Object param) {
 		closure.apply(param);
 	}
 
