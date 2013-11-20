@@ -2,6 +2,8 @@ package io.nextweb.fn.js;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
+import io.nextweb.fn.js.callbacks.EmptyCallback;
+import io.nextweb.fn.js.internal.callbacks.EmptyCallbackWrapper;
 import io.nextweb.fn.js.types.JsArray;
 import io.nextweb.fn.js.wrapping.JsWrap;
 import io.nextweb.fn.js.wrapping.WrapperCollection;
@@ -60,6 +62,10 @@ public class FnJs {
 	            .toJsoArray(params, wrappers))));
 	}
 	
-	
+	public static final JavaScriptObject exportCallback(EmptyCallback callback) {
+		EmptyCallbackWrapper wrapper = new EmptyCallbackWrapper(callback);
+		return wrapper.getJavaScriptCallback();
+		
+	}
 	
 }
