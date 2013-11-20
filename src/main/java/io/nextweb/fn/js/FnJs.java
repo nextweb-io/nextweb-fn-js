@@ -1,12 +1,14 @@
 package io.nextweb.fn.js;
 
-import org.timepedia.exporter.client.ExporterUtil;
-
+import io.nextweb.fn.Closure;
 import io.nextweb.fn.js.callbacks.EmptyCallback;
+import io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper;
 import io.nextweb.fn.js.internal.callbacks.EmptyCallbackWrapper;
 import io.nextweb.fn.js.types.JsArray;
 import io.nextweb.fn.js.wrapping.JsWrap;
 import io.nextweb.fn.js.wrapping.WrapperCollection;
+
+import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -66,6 +68,11 @@ public class FnJs {
 		EmptyCallbackWrapper wrapper = new EmptyCallbackWrapper(callback);
 		return wrapper.getJavaScriptCallback();
 		
+	}
+	
+	public static final JavaScriptObject exportCallback(Closure<Object> closure) {
+		ClosureCallbackWrapper wrapper = new ClosureCallbackWrapper(closure);
+		return wrapper.getJavaScriptCallback();
 	}
 	
 }
