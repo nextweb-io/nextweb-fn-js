@@ -8,32 +8,31 @@ import com.google.gwt.core.client.JavaScriptObject;
 public class ClosureCallbackWrapper {
 
 	private final Closure<Object> closure;
-	private final WrapperCollection wrappers;
+	
 
 	public JavaScriptObject getJavaScriptCallback() {
-		return null;
+		return createCallback();
 	}
 
 	private void callCallback(Object param) {
-
+		closure.apply(param);
 	}
 
 	private native JavaScriptObject createCallback()/*-{ 
 													return function() {
 													var self = this;
 													var callbackFn = $entry(function(param) {
-													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(*)(param);
+													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(Ljava.lang.Object)(param);
 													});
 													};
 													return callbackFn;
 													};
 													}-*/;
 
-	public ClosureCallbackWrapper(Closure<Object> closure,
-			WrapperCollection wrappers) {
+	public ClosureCallbackWrapper(Closure<Object> closure) {
 		super();
 		this.closure = closure;
-		this.wrappers = wrappers;
+		
 	}
 
 }
