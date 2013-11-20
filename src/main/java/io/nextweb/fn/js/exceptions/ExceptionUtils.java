@@ -7,6 +7,14 @@ import com.google.gwt.event.shared.UmbrellaException;
 
 public class ExceptionUtils {
 
+	public static final Throwable convertJavaScriptException(Object exception) {
+		if (exception instanceof Throwable) {
+			return (Throwable) exception;
+		}
+		
+		return new Exception("JavaScriptException: '"+exception.toString()+"' of class '"+exception.getClass()+"'");
+	}
+	
     public static final void triggerExceptionCallback(
             final JavaScriptObject callback, final ExceptionResult r) {
         triggerFailureCallbackJs(callback, r.origin().getClass().toString(),
