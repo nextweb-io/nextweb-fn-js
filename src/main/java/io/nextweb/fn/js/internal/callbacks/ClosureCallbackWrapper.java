@@ -18,12 +18,13 @@ public class ClosureCallbackWrapper {
 	}
 
 	private native JavaScriptObject createCallback()/*-{ 
-													return function() {
+													
 													var self = this;
+													
 													var callbackFn = $entry(function(param) {
 													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(Ljava/lang/Object;)(param);
 													});
-													};
+													
 													
 													return callbackFn;
 													
