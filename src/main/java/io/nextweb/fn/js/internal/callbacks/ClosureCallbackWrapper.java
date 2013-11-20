@@ -24,8 +24,9 @@ public class ClosureCallbackWrapper {
 													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback(Ljava/lang/Object;)(param);
 													});
 													};
+													
 													return callbackFn;
-													};
+													
 													}-*/;
 
 	public ClosureCallbackWrapper(Closure<Object> closure) {
