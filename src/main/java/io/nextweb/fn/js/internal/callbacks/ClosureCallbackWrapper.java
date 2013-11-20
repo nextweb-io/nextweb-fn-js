@@ -9,15 +9,25 @@ public class ClosureCallbackWrapper {
 
 	private final Closure<Object> closure;
 	private final WrapperCollection wrappers;
-	
-	
+
 	public JavaScriptObject getJavaScriptCallback() {
 		return null;
 	}
-	
+
 	private void callCallback(Object param) {
-		
+
 	}
+
+	private native JavaScriptObject createCallback()/*-{ 
+													return function() {
+													var self = this;
+													var callbackFn = $entry(function() {
+													self.@io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper::callCallback()();
+													});
+													};
+													return callbackFn;
+													};
+													}-*/;
 
 	public ClosureCallbackWrapper(Closure<Object> closure,
 			WrapperCollection wrappers) {
@@ -25,7 +35,5 @@ public class ClosureCallbackWrapper {
 		this.closure = closure;
 		this.wrappers = wrappers;
 	}
-	
-	
-	
+
 }
