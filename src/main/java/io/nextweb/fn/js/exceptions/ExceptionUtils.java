@@ -31,10 +31,10 @@ public class ExceptionUtils {
     }
 
    public static final String getStacktrace(final Throwable r) {
-        String stacktrace = unwrap(r).toString() + "<br />";
+        String stacktrace = unwrap(r).toString() + "<br />\n";
 
         for (final StackTraceElement element : unwrap(r).getStackTrace()) {
-            stacktrace += element + "<br/>";
+            stacktrace += element + "<br/>\n";
         }
 
         stacktrace += getCauseTrace(r);
@@ -56,10 +56,10 @@ public class ExceptionUtils {
             return "-end of stack trace";
         }
 
-        String res = "Caused By: " + unwrap(t.getCause()).toString() + "<br/>";
+        String res = "Caused By: " + unwrap(t.getCause()).toString() + "<br/>\n";
         for (final StackTraceElement element : unwrap(t.getCause())
                 .getStackTrace()) {
-            res += element + "<br/>";
+            res += element + "<br/>\n";
         }
 
         return res;
