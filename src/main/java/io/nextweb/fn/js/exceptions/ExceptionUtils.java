@@ -30,7 +30,7 @@ public class ExceptionUtils {
                 getStacktrace(r.exception())));
     }
 
-    private static final String getStacktrace(final Throwable r) {
+   public static final String getStacktrace(final Throwable r) {
         String stacktrace = unwrap(r).toString() + "<br />";
 
         for (final StackTraceElement element : unwrap(r).getStackTrace()) {
