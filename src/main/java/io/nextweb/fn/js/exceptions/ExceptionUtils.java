@@ -2,6 +2,7 @@ package io.nextweb.fn.js.exceptions;
 
 import io.nextweb.fn.exceptions.ExceptionResult;
 
+import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
 
@@ -31,9 +32,18 @@ public class ExceptionUtils {
     }
 
    public static final String getStacktrace(final Throwable r) {
-        String stacktrace = unwrap(r).toString() + "<br />\n";
+        Throwable unwrapped = unwrap(r);
+		String stacktrace = unwrapped.toString() + "<br />\n";
+        
+        if (unwrapped instanceof JavaScriptException) {
+			JavaScriptException jsException = (JavaScriptException) unwrapped;
+			if (jsException.getException() != null) {
+				stacktrace += "JavaScriptException:<br/>\n"+getJavaScriptExceptionStackTrace(jsException.getException())+"<br/>\n";
+			}
+        	
+        }
 
-        for (final StackTraceElement element : unwrap(r).getStackTrace()) {
+        for (final StackTraceElement element : unwrapped.getStackTrace()) {
             stacktrace += element + "<br/>\n";
         }
 
@@ -41,6 +51,14 @@ public class ExceptionUtils {
         return stacktrace;
     }
 
+   
+   private static native final String getJavaScriptExceptionStackTrace(JavaScriptObject ex)/*-{
+   		if (!ex.stack) {
+   			return "JavaScriptException stack trace not available for this browser";
+   		}
+   		return ex.stack;
+   }-*/;
+   
     private static final Throwable unwrap(final Throwable e) {
         if (e instanceof UmbrellaException) {
             final UmbrellaException ue = (UmbrellaException) e;
