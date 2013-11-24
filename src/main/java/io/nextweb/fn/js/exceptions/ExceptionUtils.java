@@ -42,7 +42,7 @@ public class ExceptionUtils {
 				stacktrace += "JavaScriptException:<br/>\n"
 						+ getJavaScriptExceptionStackTrace(
 								jsException.getException()).replaceAll("\n",
-								"<br/>\n") + "<br/>\n";
+								"<br/>\n") + "<br/>\n-- End of JavaScriptException";
 			}
 
 		}
