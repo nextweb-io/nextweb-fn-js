@@ -63,6 +63,15 @@ public class ExceptionUtils {
 								return ex.stack;
 								}-*/;
 
+	private static final String getOriginTrace() {
+		try {
+			throw new Exception("Origin");
+		} catch (Throwable t) {
+			return getStacktrace(t);
+		}
+	
+	}
+	
 	private static final Throwable unwrap(final Throwable e) {
 		if (e instanceof UmbrellaException) {
 			final UmbrellaException ue = (UmbrellaException) e;
