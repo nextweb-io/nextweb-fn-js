@@ -108,6 +108,7 @@ public class ExceptionUtils {
 								});
 								}-*/;
 
+	
 	private static final native JavaScriptObject wrapExceptionResult(
 			String origin, String exceptionMessage, String stacktrace, String originTrace)/*-{
 																		return {
