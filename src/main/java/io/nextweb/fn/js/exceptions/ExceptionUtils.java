@@ -21,7 +21,7 @@ public class ExceptionUtils {
 			final JavaScriptObject callback, final ExceptionResult r) {
 		triggerFailureCallbackJs(callback, r.origin().getClass().toString(),
 				unwrap(r.exception()).getMessage(),
-				getStacktrace(r.exception()));
+				getStacktrace(r.exception()), getOriginTrace());
 	}
 
 	public static final JavaScriptObject wrapExceptionResult(
@@ -99,19 +99,21 @@ public class ExceptionUtils {
 
 	private static final native JavaScriptObject triggerFailureCallbackJs(
 			JavaScriptObject callback, String origin, String exceptionMessage,
-			String stacktrace)/*-{
+			String stacktrace, String originTrace)/*-{
 								callback({
 								exception: exceptionMessage,
 								origin: origin,
+								origintrace: originTrace,
 								stacktrace: stacktrace
 								});
 								}-*/;
 
 	private static final native JavaScriptObject wrapExceptionResult(
-			String origin, String exceptionMessage, String stacktrace)/*-{
+			String origin, String exceptionMessage, String stacktrace, String originTrace)/*-{
 																		return {
 																		exception: exceptionMessage,
 																		origin: origin,
+																		origintrace: originTrace,
 																		stacktrace: stacktrace
 																		}
 																		}-*/;
