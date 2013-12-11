@@ -51,7 +51,7 @@ public class ExceptionUtils {
 			stacktrace += element + "<br/>\n";
 		}
 
-		stacktrace += getCauseTrace(r);
+		stacktrace += getCauseTrace(unwrap(r));
 		return stacktrace;
 	}
 
