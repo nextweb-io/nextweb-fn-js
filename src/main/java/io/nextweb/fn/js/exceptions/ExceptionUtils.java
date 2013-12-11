@@ -29,7 +29,7 @@ public class ExceptionUtils {
 
 		return (ExceptionUtils.wrapExceptionResult(r.origin().getClass()
 				.toString(), unwrap(r.exception()).getMessage(),
-				getStacktrace(r.exception())));
+				getStacktrace(r.exception()), getOriginTrace()));
 	}
 
 	public static final String getStacktrace(final Throwable r) {
