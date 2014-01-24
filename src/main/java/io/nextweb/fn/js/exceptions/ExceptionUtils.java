@@ -34,7 +34,14 @@ public class ExceptionUtils {
 
 	public static final String getStacktrace(final Throwable r) {
 		Throwable unwrapped = unwrap(r);
-		String stacktrace = unwrapped.toString() + "<br />\n";
+		String stacktrace;
+		try {
+			stacktrace = unwrapped.toString() + "<br />\n";
+		} catch (Throwable t) {
+			stacktrace = "Error creating stacktrace for " + r.getMessage()
+					+ ".\n  Exception reported: " + t.getMessage();
+
+		}
 
 		if (unwrapped instanceof JavaScriptException) {
 			JavaScriptException jsException = (JavaScriptException) unwrapped;
@@ -42,7 +49,8 @@ public class ExceptionUtils {
 				stacktrace += "JavaScriptException:<br/>\n"
 						+ getJavaScriptExceptionStackTrace(
 								jsException.getException()).replaceAll("\n",
-								"<br/>\n") + "<br/>\n-- End of JavaScriptException";
+								"<br/>\n")
+						+ "<br/>\n-- End of JavaScriptException";
 			}
 
 		}
@@ -69,9 +77,9 @@ public class ExceptionUtils {
 		} catch (Throwable t) {
 			return getStacktrace(t);
 		}
-	
+
 	}
-	
+
 	private static final Throwable unwrap(final Throwable e) {
 		if (e instanceof UmbrellaException) {
 			final UmbrellaException ue = (UmbrellaException) e;
@@ -100,23 +108,23 @@ public class ExceptionUtils {
 	private static final native JavaScriptObject triggerFailureCallbackJs(
 			JavaScriptObject callback, String origin, String exceptionMessage,
 			String stacktrace, String originTrace)/*-{
-								callback({
+													callback({
+													exception: exceptionMessage,
+													origin: origin,
+													origintrace: originTrace,
+													stacktrace: stacktrace
+													});
+													}-*/;
+
+	private static final native JavaScriptObject wrapExceptionResult(
+			String origin, String exceptionMessage, String stacktrace,
+			String originTrace)/*-{
+								return {
 								exception: exceptionMessage,
 								origin: origin,
 								origintrace: originTrace,
 								stacktrace: stacktrace
-								});
+								}
 								}-*/;
-
-	
-	private static final native JavaScriptObject wrapExceptionResult(
-			String origin, String exceptionMessage, String stacktrace, String originTrace)/*-{
-																		return {
-																		exception: exceptionMessage,
-																		origin: origin,
-																		origintrace: originTrace,
-																		stacktrace: stacktrace
-																		}
-																		}-*/;
 
 }
