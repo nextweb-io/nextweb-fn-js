@@ -21,7 +21,7 @@ public class ExceptionUtils {
 			final JavaScriptObject callback, final ExceptionResult r) {
 		triggerFailureCallbackJs(callback, r.origin().getClass().toString(),
 				unwrap(r.exception()).getMessage(),
-				getStacktrace(r.exception()), getOriginTrace());
+				getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception()));
 	}
 
 	public static final JavaScriptObject wrapExceptionResult(
@@ -29,9 +29,20 @@ public class ExceptionUtils {
 
 		return (ExceptionUtils.wrapExceptionResult(r.origin().getClass()
 				.toString(), unwrap(r.exception()).getMessage(),
-				getStacktrace(r.exception()), getOriginTrace()));
+				getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception())));
 	}
 
+	private final static JavaScriptObject getJsException(Throwable ex) {
+		Throwable uw = unwrap(ex);
+		if (!(uw instanceof JavaScriptException)) {
+			return null;
+		}
+		
+		return ((JavaScriptException) uw).getException();
+		
+		
+	}
+	
 	public static final String getStacktrace(final Throwable r) {
 		Throwable unwrapped = unwrap(r);
 		String stacktrace;
@@ -107,23 +118,25 @@ public class ExceptionUtils {
 
 	private static final native JavaScriptObject triggerFailureCallbackJs(
 			JavaScriptObject callback, String origin, String exceptionMessage,
-			String stacktrace, String originTrace)/*-{
+			String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
 													callback({
 													exception: exceptionMessage,
 													origin: origin,
 													origintrace: originTrace,
-													stacktrace: stacktrace
+													stacktrace: stacktrace,
+													jsException: jsException
 													});
 													}-*/;
 
 	private static final native JavaScriptObject wrapExceptionResult(
 			String origin, String exceptionMessage, String stacktrace,
-			String originTrace)/*-{
+			String originTrace, JavaScriptObject jsException)/*-{
 								return {
 								exception: exceptionMessage,
 								origin: origin,
 								origintrace: originTrace,
-								stacktrace: stacktrace
+								stacktrace: stacktrace,
+								jsException: jsException
 								}
 								}-*/;
 
