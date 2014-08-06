@@ -1,7 +1,6 @@
 package io.nextweb.fn.js;
 
 import io.nextweb.fn.BasicResult;
-import io.nextweb.fn.Closure;
 import io.nextweb.fn.js.exceptions.JsExceptionManager;
 import io.nextweb.fn.js.wrapping.JsWrap;
 import io.nextweb.fn.js.wrapping.WrapperCollection;
@@ -12,6 +11,8 @@ import org.timepedia.exporter.client.ExporterUtil;
 import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
+
+import de.mxro.fn.Closure;
 
 /**
  * 

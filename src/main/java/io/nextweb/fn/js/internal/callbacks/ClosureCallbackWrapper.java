@@ -1,8 +1,8 @@
 package io.nextweb.fn.js.internal.callbacks;
 
-import io.nextweb.fn.Closure;
-
 import com.google.gwt.core.client.JavaScriptObject;
+
+import de.mxro.fn.Closure;
 
 public class ClosureCallbackWrapper {
 

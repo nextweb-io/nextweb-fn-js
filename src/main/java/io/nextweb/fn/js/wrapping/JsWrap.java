@@ -1,17 +1,17 @@
 package io.nextweb.fn.js.wrapping;
 
 
-import io.nextweb.fn.Closure;
 import io.nextweb.fn.js.FnJs;
 import io.nextweb.fn.js.JsClosure;
 import io.nextweb.fn.js.types.JsBasicType;
-
 
 import java.util.Date;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
+
+import de.mxro.fn.Closure;
 
 public class JsWrap {
 
