@@ -1,6 +1,6 @@
 package io.nextweb.promise.js;
 
-import io.nextweb.promise.BasicResult;
+import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -24,7 +24,7 @@ import de.mxro.fn.Closure;
  *            The type of the wrapped result
  */
 @Export
-public class JsResult<T, R extends BasicResult<T>> implements Exportable,
+public class JsResult<T, R extends BasicPromise<T>> implements Exportable,
         JsBaseResult<JsResult<T, R>>, JsWrapper<R> {
 
     R result;
@@ -140,7 +140,7 @@ public class JsResult<T, R extends BasicResult<T>> implements Exportable,
     }
 
     @NoExport
-    public static <T, R extends BasicResult<T>> JsResult<T, R> wrap(
+    public static <T, R extends BasicPromise<T>> JsResult<T, R> wrap(
             final R result, final WrapperCollection wrappers) {
         final JsResult<T, R> jsResult = new JsResult<T, R>();
         jsResult.setOriginal(result);
