@@ -24,8 +24,8 @@ import de.mxro.fn.Closure;
  *            The type of the wrapped result
  */
 @Export
-public class JsResult<T, R extends BasicPromise<T>> implements Exportable,
-        JsBaseResult<JsResult<T, R>>, JsWrapper<R> {
+public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
+        JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
@@ -50,7 +50,7 @@ public class JsResult<T, R extends BasicPromise<T>> implements Exportable,
 
     @Export
     @Override
-    public JsResult<T, R> catchExceptions(final JsClosure exceptionListener) {
+    public JsNextwebPromise<T, R> catchExceptions(final JsClosure exceptionListener) {
         exceptionManager().catchExceptions(exceptionListener);
         return this;
     }
@@ -62,21 +62,21 @@ public class JsResult<T, R extends BasicPromise<T>> implements Exportable,
 
     @Export
     @Override
-    public JsResult<T, R> catchUndefined(final JsClosure undefinedListener) {
+    public JsNextwebPromise<T, R> catchUndefined(final JsClosure undefinedListener) {
         exceptionManager().catchUndefined(undefinedListener);
         return this;
     }
 
     @Export
     @Override
-    public JsResult<T, R> catchUnauthorized(final JsClosure unauthorizedListener) {
+    public JsNextwebPromise<T, R> catchUnauthorized(final JsClosure unauthorizedListener) {
         exceptionManager().catchUnauthorized(unauthorizedListener);
         return this;
     }
 
     @Export
     @Override
-    public JsResult<T, R> catchImpossible(final JsClosure impossibleListener) {
+    public JsNextwebPromise<T, R> catchImpossible(final JsClosure impossibleListener) {
         exceptionManager().catchImpossible(impossibleListener);
         return this;
     }
@@ -135,14 +135,14 @@ public class JsResult<T, R extends BasicPromise<T>> implements Exportable,
         this.wrappers = wrappers;
     }
 
-    public JsResult() {
+    public JsNextwebPromise() {
         super();
     }
 
     @NoExport
-    public static <T, R extends BasicPromise<T>> JsResult<T, R> wrap(
+    public static <T, R extends BasicPromise<T>> JsNextwebPromise<T, R> wrap(
             final R result, final WrapperCollection wrappers) {
-        final JsResult<T, R> jsResult = new JsResult<T, R>();
+        final JsNextwebPromise<T, R> jsResult = new JsNextwebPromise<T, R>();
         jsResult.setOriginal(result);
         jsResult.setWrappers(wrappers);
         return jsResult;

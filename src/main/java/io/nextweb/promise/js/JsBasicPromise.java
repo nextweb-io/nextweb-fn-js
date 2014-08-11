@@ -12,7 +12,7 @@ import org.timepedia.exporter.client.Exportable;
  * @param <JsResultType>
  * @param <ResultType>
  */
-public interface JsBaseResult<JsResultType extends JsBaseResult<?>> extends
+public interface JsBasicPromise<JsResultType extends JsBasicPromise<?>> extends
 		JsExceptionListeners<JsResultType>, Exportable {
 
 	public Object get(final Object... params);
