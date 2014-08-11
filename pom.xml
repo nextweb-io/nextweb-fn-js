@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<groupId>io.nextweb.fn.js</groupId>
-	<artifactId>nextweb-fn-js</artifactId>
+	<groupId>io.nextweb.promise.js</groupId>
+	<artifactId>nextweb-promise-js</artifactId>
 	<version>0.1.1-SNAPSHOT</version>
-	<description>JS Wrapper for nextweb-fn.</description>
-	<url>http://nextweb.io</url>
+	<description>Promise implementation for Nextweb JavaScript API.</description>
+	<url>https://github.com/nextweb-io/nextweb-promise-js</url>
 	<properties>
 
 		<gwtVersion>2.5.1</gwtVersion>
