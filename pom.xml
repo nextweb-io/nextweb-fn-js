@@ -233,8 +233,8 @@
 				</executions>
 			</plugin>
 
-			
-<plugin>
+
+			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
 				<artifactId>findbugs-maven-plugin</artifactId>
 				<version>3.0.0</version>
@@ -452,14 +452,15 @@
 				<role>developer</role>
 			</roles>
 			<timezone>+12</timezone>
-			<!-- <properties> <picUrl>http://tinyurl.com/prv4t</picUrl> </properties> -->
+			<organization>pureleap</organization>
+			<organizationUrl>http://pureleap.com</organizationUrl>
 		</developer>
 	</developers>
 
 	<scm>
-		<connection>scm:git:git@github.com:appjangle/nextweb-fn-js.git</connection>
-		<url>https://github.com/appjangle/nextweb-fn-js</url>
-		<developerConnection>scm:git:git@github.com:appjangle/nextweb-fn-js.git
+		<connection>scm:git:git@github.com:appjangle/nextweb-promise-js.git</connection>
+		<url>https://github.com/appjangle/nextweb-promise-js</url>
+		<developerConnection>scm:git:git@github.com:appjangle/nextweb-promise-js.git
 		</developerConnection>
 
 	</scm>
