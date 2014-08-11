@@ -1,6 +1,6 @@
 package io.nextweb.fn.js.exceptions;
 
-import io.nextweb.fn.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.ExceptionResult;
 
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;

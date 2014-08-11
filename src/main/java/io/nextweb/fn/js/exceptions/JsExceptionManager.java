@@ -1,17 +1,17 @@
 package io.nextweb.fn.js.exceptions;
 
-import io.nextweb.fn.Fn;
-import io.nextweb.fn.exceptions.ExceptionListener;
-import io.nextweb.fn.exceptions.ExceptionManager;
-import io.nextweb.fn.exceptions.ExceptionResult;
-import io.nextweb.fn.exceptions.ImpossibleListener;
-import io.nextweb.fn.exceptions.ImpossibleResult;
-import io.nextweb.fn.exceptions.UnauthorizedListener;
-import io.nextweb.fn.exceptions.UnauthorizedResult;
-import io.nextweb.fn.exceptions.UndefinedListener;
-import io.nextweb.fn.exceptions.UndefinedResult;
 import io.nextweb.fn.js.JsClosure;
 import io.nextweb.fn.js.JsWrapper;
+import io.nextweb.promise.Fn;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.exceptions.ImpossibleListener;
+import io.nextweb.promise.exceptions.ImpossibleResult;
+import io.nextweb.promise.exceptions.UnauthorizedListener;
+import io.nextweb.promise.exceptions.UnauthorizedResult;
+import io.nextweb.promise.exceptions.UndefinedListener;
+import io.nextweb.promise.exceptions.UndefinedResult;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;

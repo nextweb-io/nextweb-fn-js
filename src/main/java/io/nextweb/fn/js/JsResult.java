@@ -1,9 +1,9 @@
 package io.nextweb.fn.js;
 
-import io.nextweb.fn.BasicResult;
 import io.nextweb.fn.js.exceptions.JsExceptionManager;
 import io.nextweb.fn.js.wrapping.JsWrap;
 import io.nextweb.fn.js.wrapping.WrapperCollection;
+import io.nextweb.promise.BasicResult;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
