@@ -1,4 +1,4 @@
-package io.nextweb.fn.js.exceptions;
+package io.nextweb.promise.js.exceptions;
 
 import io.nextweb.promise.exceptions.ExceptionResult;
 

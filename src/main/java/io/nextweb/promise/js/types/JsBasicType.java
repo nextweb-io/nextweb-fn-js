@@ -1,6 +1,6 @@
-package io.nextweb.fn.js.types;
+package io.nextweb.promise.js.types;
 
-import io.nextweb.fn.js.FnJs;
+import io.nextweb.promise.js.FnJs;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;

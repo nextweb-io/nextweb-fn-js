@@ -1,9 +1,9 @@
-package io.nextweb.fn.js.wrapping;
+package io.nextweb.promise.js.wrapping;
 
 
-import io.nextweb.fn.js.FnJs;
-import io.nextweb.fn.js.JsClosure;
-import io.nextweb.fn.js.types.JsBasicType;
+import io.nextweb.promise.js.FnJs;
+import io.nextweb.promise.js.JsClosure;
+import io.nextweb.promise.js.types.JsBasicType;
 
 import java.util.Date;
 

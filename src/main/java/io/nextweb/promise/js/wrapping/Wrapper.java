@@ -1,4 +1,4 @@
-package io.nextweb.fn.js.wrapping;
+package io.nextweb.promise.js.wrapping;
 
 public interface Wrapper {
 

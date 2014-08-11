@@ -1,7 +1,5 @@
-package io.nextweb.fn.js.exceptions;
+package io.nextweb.promise.js.exceptions;
 
-import io.nextweb.fn.js.JsClosure;
-import io.nextweb.fn.js.JsWrapper;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionManager;
@@ -12,6 +10,8 @@ import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
+import io.nextweb.promise.js.JsClosure;
+import io.nextweb.promise.js.JsWrapper;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;

@@ -1,4 +1,4 @@
-package io.nextweb.fn.js;
+package io.nextweb.promise.js;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;

@@ -1,4 +1,4 @@
-package io.nextweb.fn.js.internal.callbacks;
+package io.nextweb.promise.js.internal.callbacks;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

@@ -1,6 +1,6 @@
-package io.nextweb.fn.js.internal.callbacks;
+package io.nextweb.promise.js.internal.callbacks;
 
-import io.nextweb.fn.js.callbacks.EmptyCallback;
+import io.nextweb.promise.js.callbacks.EmptyCallback;
 
 import com.google.gwt.core.client.JavaScriptObject;
 

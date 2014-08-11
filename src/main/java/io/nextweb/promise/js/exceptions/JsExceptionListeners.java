@@ -1,6 +1,6 @@
-package io.nextweb.fn.js.exceptions;
+package io.nextweb.promise.js.exceptions;
 
-import io.nextweb.fn.js.JsClosure;
+import io.nextweb.promise.js.JsClosure;
 
 import org.timepedia.exporter.client.Exportable;
 

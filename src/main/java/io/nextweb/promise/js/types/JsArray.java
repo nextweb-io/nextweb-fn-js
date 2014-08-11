@@ -1,4 +1,4 @@
-package io.nextweb.fn.js.types;
+package io.nextweb.promise.js.types;
 
 import java.util.ArrayList;
 import java.util.Arrays;

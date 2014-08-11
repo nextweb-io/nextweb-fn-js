@@ -1,11 +1,11 @@
-package io.nextweb.fn.js;
+package io.nextweb.promise.js;
 
-import io.nextweb.fn.js.callbacks.EmptyCallback;
-import io.nextweb.fn.js.internal.callbacks.ClosureCallbackWrapper;
-import io.nextweb.fn.js.internal.callbacks.EmptyCallbackWrapper;
-import io.nextweb.fn.js.types.JsArray;
-import io.nextweb.fn.js.wrapping.JsWrap;
-import io.nextweb.fn.js.wrapping.WrapperCollection;
+import io.nextweb.promise.js.callbacks.EmptyCallback;
+import io.nextweb.promise.js.internal.callbacks.ClosureCallbackWrapper;
+import io.nextweb.promise.js.internal.callbacks.EmptyCallbackWrapper;
+import io.nextweb.promise.js.types.JsArray;
+import io.nextweb.promise.js.wrapping.JsWrap;
+import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 import org.timepedia.exporter.client.ExporterUtil;
 

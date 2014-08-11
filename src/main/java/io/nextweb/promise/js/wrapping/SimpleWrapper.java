@@ -1,6 +1,6 @@
-package io.nextweb.fn.js.wrapping;
+package io.nextweb.promise.js.wrapping;
 
-import io.nextweb.fn.js.JsWrapper;
+import io.nextweb.promise.js.JsWrapper;
 
 
 public abstract class SimpleWrapper implements Wrapper {

@@ -1,6 +1,6 @@
-package io.nextweb.fn.js.wrapping;
+package io.nextweb.promise.js.wrapping;
 
-import io.nextweb.fn.js.types.JsAtomicTypeWrapper;
+import io.nextweb.promise.js.types.JsAtomicTypeWrapper;
 
 import java.util.ArrayList;
 import java.util.Date;
