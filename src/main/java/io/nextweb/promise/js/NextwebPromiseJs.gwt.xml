@@ -5,7 +5,7 @@
 	<inherits name='org.timepedia.exporter.Exporter' />
 	<set-property name="export" value="yes" />
 
-	<entry-point class='io.nextweb.fn.js.internal.DummyEntryPoint' />
+	<entry-point class='io.nextweb.promise.js.internal.DummyEntryPoint' />
 
 	<source path=''>
 
