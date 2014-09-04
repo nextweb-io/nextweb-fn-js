@@ -10,6 +10,5 @@
 	<source path=''>
 
 		<exclude name="**/jre/**" />
-
 	</source>
 </module>
