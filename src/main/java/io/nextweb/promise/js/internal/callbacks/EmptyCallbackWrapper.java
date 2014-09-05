@@ -6,31 +6,31 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 public class EmptyCallbackWrapper {
 
-	private final EmptyCallback callback;
+    private final EmptyCallback callback;
 
-	private void callCallback() {
-		callback.call();
-	};
-	
-	public JavaScriptObject getJavaScriptCallback() {
-		return createCallback();
-	}
+    private void callCallback() {
+        callback.call();
+    };
 
-	private native JavaScriptObject createCallback()/*-{ 
-													
-													return function() {
-													var self = this;
-													var callbackFn = $entry(function() {
-													self.@io.nextweb.fn.js.internal.callbacks.EmptyCallbackWrapper::callCallback()();
-													});
-													};
-													return callbackFn;
-													}-*/;
+    public JavaScriptObject getJavaScriptCallback() {
+        return createCallback();
+    }
 
-	public EmptyCallbackWrapper(EmptyCallback callback) {
-		super();
-		assert callback != null;
-		this.callback = callback;
-	}
+    private native JavaScriptObject createCallback()/*-{ 
+                                                    
+                                                    return function() {
+                                                    var self = this;
+                                                    var callbackFn = $entry(function() {
+                                                    self.@io.nextweb.promise.js.internal.callbacks.EmptyCallbackWrapper::callCallback()();
+                                                    });
+                                                    };
+                                                    return callbackFn;
+                                                    }-*/;
+
+    public EmptyCallbackWrapper(final EmptyCallback callback) {
+        super();
+        assert callback != null;
+        this.callback = callback;
+    }
 
 }
