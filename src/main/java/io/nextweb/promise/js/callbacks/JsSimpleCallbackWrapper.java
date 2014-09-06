@@ -14,6 +14,11 @@ public class JsSimpleCallbackWrapper {
     @NoExport
     SimpleCallback wrapped;
 
+    @NoExport
+    public final static JavaScriptObject wrap(final SimpleCallback callback) {
+        return ExporterUtil.wrap(new JsSimpleCallbackWrapper(callback));
+    }
+
     public JsSimpleCallbackWrapper() {
         super();
     }
