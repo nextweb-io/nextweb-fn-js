@@ -19,6 +19,13 @@ public class JsStringValueCallbackWrapper {
         wrapped.onSuccess(value);
     }
 
+    @NoExport
+    public static final JavaScriptObject wrap(final ValueCallback<String> callback) {
+        final JsStringValueCallbackWrapper wrapper = new JsStringValueCallbackWrapper();
+        wrapper.wrapped = callback;
+        return ExporterUtil.wrap(wrapper);
+    }
+
     @Export
     public void onFailure(final JavaScriptObject t) {
         final Object gwtInstance = ExporterUtil.gwtInstance(t);
