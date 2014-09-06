@@ -53,6 +53,7 @@ public class FnJs {
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
         triggerCallbackJs(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
+
     }
 
 }
