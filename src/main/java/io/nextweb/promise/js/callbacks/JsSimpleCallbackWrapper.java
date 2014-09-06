@@ -16,7 +16,9 @@ public class JsSimpleCallbackWrapper {
 
     @NoExport
     public final static JavaScriptObject wrap(final SimpleCallback callback) {
-        return ExporterUtil.wrap(new JsSimpleCallbackWrapper(callback));
+        final JsSimpleCallbackWrapper wrapper = new JsSimpleCallbackWrapper();
+        wrapper.wrapped = callback;
+        return ExporterUtil.wrap(wrapper);
     }
 
     public JsSimpleCallbackWrapper() {
