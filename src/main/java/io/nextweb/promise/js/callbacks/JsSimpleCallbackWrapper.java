@@ -34,6 +34,11 @@ public class JsSimpleCallbackWrapper {
             return;
         }
 
+        if (gwtInstance instanceof String) {
+            wrapped.onFailure(new Exception((String) gwtInstance));
+            return;
+        }
+
         wrapped.onFailure(new Exception("Failure while processing native JavaScript function."));
     }
 
