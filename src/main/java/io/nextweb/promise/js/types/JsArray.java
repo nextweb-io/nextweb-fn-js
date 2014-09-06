@@ -12,33 +12,33 @@ import com.google.gwt.core.client.JavaScriptObject;
 @Export
 public class JsArray implements Exportable {
 
-	List<JavaScriptObject> arrayList;
+    List<JavaScriptObject> arrayList;
 
-	@Export
-	public void append(final JavaScriptObject obj) {
-		this.arrayList.add(obj);
-	}
+    @Export
+    public void append(final JavaScriptObject obj) {
+        this.arrayList.add(obj);
+    }
 
-	@Export
-	public void setArray(final JavaScriptObject[] ar) {
-		this.arrayList = Arrays.asList(ar);
-	}
+    @Export
+    public void setArray(final JavaScriptObject[] ar) {
+        this.arrayList = Arrays.asList(ar);
+    }
 
-	@Export
-	public JavaScriptObject[] getArray() {
-		return this.arrayList.toArray(new JavaScriptObject[this.arrayList
-				.size()]);
-	}
+    @Export
+    public JavaScriptObject[] getArray() {
+        return this.arrayList.toArray(new JavaScriptObject[this.arrayList.size()]);
+    }
 
-	public static JsArray wrap(final JavaScriptObject[] array) {
-		final JsArray jsArray = new JsArray();
-		jsArray.setArray(array);
-		return jsArray;
-	}
+    public static JsArray wrap(final JavaScriptObject[] array) {
+        final JsArray jsArray = new JsArray();
+        jsArray.setArray(array);
+        return jsArray;
+    }
 
-	public JsArray() {
-		super();
-		this.arrayList = new ArrayList<JavaScriptObject>(0);
-	}
+    public JsArray() {
+        super();
+        this.arrayList = new ArrayList<JavaScriptObject>(0);
+
+    }
 
 }
