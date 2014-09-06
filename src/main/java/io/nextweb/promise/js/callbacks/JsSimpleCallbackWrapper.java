@@ -1,6 +1,7 @@
 package io.nextweb.promise.js.callbacks;
 
 import org.timepedia.exporter.client.Export;
+import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
 import org.timepedia.exporter.client.NoExport;
 
@@ -9,7 +10,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import de.mxro.async.callbacks.SimpleCallback;
 
 @Export
-public class JsSimpleCallbackWrapper {
+public class JsSimpleCallbackWrapper implements Exportable {
 
     @NoExport
     SimpleCallback wrapped;
