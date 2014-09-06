@@ -8,14 +8,14 @@ import com.google.gwt.core.client.JavaScriptObject;
 import de.mxro.async.callbacks.ValueCallback;
 
 @Export
-public class JsValueCallbackWrapper {
+public class JsStringValueCallbackWrapper {
 
     @NoExport
-    ValueCallback<Object> wrapped;
+    ValueCallback<String> wrapped;
 
     @Export
-    public void onSuccess(final JavaScriptObject value) {
-
+    public void onSuccess(final String value) {
+        wrapped.onSuccess(value);
     }
 
     @Export
@@ -23,7 +23,7 @@ public class JsValueCallbackWrapper {
 
     }
 
-    public JsValueCallbackWrapper() {
+    public JsStringValueCallbackWrapper() {
         super();
 
     }
