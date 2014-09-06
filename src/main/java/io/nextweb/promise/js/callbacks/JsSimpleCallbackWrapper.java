@@ -21,10 +21,6 @@ public class JsSimpleCallbackWrapper {
         return ExporterUtil.wrap(wrapper);
     }
 
-    public JsSimpleCallbackWrapper() {
-        super();
-    }
-
     @Export
     public void onFailure(final JavaScriptObject t) {
         final Object gwtInstance = ExporterUtil.gwtInstance(t);
@@ -45,6 +41,10 @@ public class JsSimpleCallbackWrapper {
     @Export
     public void onSuccess() {
         wrapped.onSuccess();
+    }
+
+    public JsSimpleCallbackWrapper() {
+        super();
     }
 
 }
