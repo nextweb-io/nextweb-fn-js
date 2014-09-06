@@ -1,6 +1,5 @@
 package io.nextweb.promise.js;
 
-import io.nextweb.promise.js.internal.callbacks.ClosureCallbackWrapper;
 import io.nextweb.promise.js.types.JsArray;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -8,8 +7,6 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
-
-import de.mxro.fn.Closure;
 
 public class FnJs {
 
@@ -56,11 +53,6 @@ public class FnJs {
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
         triggerCallbackJs(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
-    }
-
-    public static final JavaScriptObject exportCallback(final Closure<Object> closure) {
-        final ClosureCallbackWrapper wrapper = new ClosureCallbackWrapper(closure);
-        return wrapper.getJavaScriptCallback();
     }
 
 }
