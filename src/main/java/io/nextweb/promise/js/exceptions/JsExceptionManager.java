@@ -20,14 +20,14 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 @Export
-public class JsExceptionManager implements Exportable,
-        JsWrapper<ExceptionManager>, JsExceptionListeners<JsExceptionManager> {
+public class JsExceptionManager implements Exportable, JsWrapper<ExceptionManager>,
+        JsExceptionListeners<JsExceptionManager> {
 
+    @NoExport
     private ExceptionManager em;
 
     @Export
-    public void onFailure(final JavaScriptObject origin,
-            final String errorMessage) {
+    public void onFailure(final JavaScriptObject origin, final String errorMessage) {
         em.onFailure(Fn.exception(origin, new Exception(errorMessage)));
     }
 
@@ -54,8 +54,7 @@ public class JsExceptionManager implements Exportable,
 
             @Override
             public void onUndefined(final UndefinedResult r) {
-                undefinedListener.apply(wrapUndefinedResult(r.origin()
-                        .getClass().toString(), r.message()));
+                undefinedListener.apply(wrapUndefinedResult(r.origin().getClass().toString(), r.message()));
             }
         });
         return this;
@@ -63,15 +62,13 @@ public class JsExceptionManager implements Exportable,
 
     @Export
     @Override
-    public JsExceptionManager catchUnauthorized(
-            final JsClosure unauthorizedListener) {
+    public JsExceptionManager catchUnauthorized(final JsClosure unauthorizedListener) {
         em.catchUnauthorized(new UnauthorizedListener() {
 
             @Override
             public void onUnauthorized(final UnauthorizedResult r) {
-                unauthorizedListener.apply(wrapUnauthorizedResult(r.origin()
-                        .getClass().toString(), r.getMessage(), r.getType()
-                        .getClass().toString()));
+                unauthorizedListener.apply(wrapUnauthorizedResult(r.origin().getClass().toString(), r.getMessage(), r
+                        .getType().getClass().toString()));
             }
         });
         return this;
@@ -84,9 +81,8 @@ public class JsExceptionManager implements Exportable,
 
             @Override
             public void onImpossible(final ImpossibleResult ir) {
-                impossibleListener.apply(wrapImpossibleResult(ir.origin()
-                        .getClass().toString(), ir.message(), ir.cause()
-                        .getClass().toString()));
+                impossibleListener.apply(wrapImpossibleResult(ir.origin().getClass().toString(), ir.message(), ir
+                        .cause().getClass().toString()));
             }
         });
         return this;
@@ -109,33 +105,30 @@ public class JsExceptionManager implements Exportable,
     }
 
     @NoExport
-    public static final native JavaScriptObject wrapUndefinedResult(
-            String origin, String message)/*-{
-                                          return {
-                                          message: message,
-                                          origin: origin
-                                          }
-                                          }-*/;
+    public static final native JavaScriptObject wrapUndefinedResult(String origin, String message)/*-{
+                                                                                                  return {
+                                                                                                  message: message,
+                                                                                                  origin: origin
+                                                                                                  }
+                                                                                                  }-*/;
 
     @NoExport
-    public static final native JavaScriptObject wrapUnauthorizedResult(
-            String origin, String message, String type)/*-{
-                                                       return {
-                                                       message: message,
-                                                       origin: origin,
-                                                       type: type
-                                                       }
-                                                       }-*/;
+    public static final native JavaScriptObject wrapUnauthorizedResult(String origin, String message, String type)/*-{
+                                                                                                                  return {
+                                                                                                                  message: message,
+                                                                                                                  origin: origin,
+                                                                                                                  type: type
+                                                                                                                  }
+                                                                                                                  }-*/;
 
     @NoExport
-    public static final native JavaScriptObject wrapImpossibleResult(
-            String origin, String message, String cause)/*-{
-                                                        return {
-                                                        message: message,
-                                                        origin: origin,
-                                                        cause: cause
-                                                        }
-                                                        }-*/;
+    public static final native JavaScriptObject wrapImpossibleResult(String origin, String message, String cause)/*-{
+                                                                                                                 return {
+                                                                                                                 message: message,
+                                                                                                                 origin: origin,
+                                                                                                                 cause: cause
+                                                                                                                 }
+                                                                                                                 }-*/;
 
     @NoExport
     public static JsExceptionManager wrap(final ExceptionManager em) {
