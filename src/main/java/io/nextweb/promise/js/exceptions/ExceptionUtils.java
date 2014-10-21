@@ -41,7 +41,9 @@ public class ExceptionUtils {
 
     public static final String getStacktrace(final Throwable r) {
         if (r == null) {
-            throw new IllegalArgumentException("Cannot create stacktrace for null.");
+            return "null";
+            // throw new
+            // IllegalArgumentException("Cannot create stacktrace for null.");
         }
         final Throwable unwrapped = unwrap(r);
         String stacktrace;
