@@ -26,6 +26,7 @@ public class AsyncJsCallbackWrapper implements ValueCallback<Object> {
             return;
         }
         callCallback(callback, null, ExporterUtil.wrap(value));
+
     }
 
     private final native void callCallback(JavaScriptObject cb, JavaScriptObject ex, Object value)/*-{
