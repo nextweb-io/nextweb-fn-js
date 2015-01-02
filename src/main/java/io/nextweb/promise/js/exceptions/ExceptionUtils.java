@@ -2,6 +2,8 @@ package io.nextweb.promise.js.exceptions;
 
 import io.nextweb.promise.exceptions.ExceptionResult;
 
+import org.timepedia.exporter.client.ExporterUtil;
+
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
@@ -15,6 +17,14 @@ public class ExceptionUtils {
 
         return new Exception("JavaScriptException: '" + exception.toString() + "' of class '" + exception.getClass()
                 + "'");
+    }
+
+    public static final Throwable convertToJavaException(final JavaScriptObject exception) {
+        final Object obj = ExporterUtil.gwtInstance(exception);
+
+        if (obj instanceof Throwable) {
+            return (Throwable) obj;
+        }
     }
 
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
