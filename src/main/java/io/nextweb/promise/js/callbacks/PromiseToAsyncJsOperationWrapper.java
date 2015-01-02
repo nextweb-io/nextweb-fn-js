@@ -30,10 +30,10 @@ public class PromiseToAsyncJsOperationWrapper {
                     }
                 });
 
-                promise.get(new Closure<V>() {
+                promise.getOriginal().get(new Closure<T>() {
 
                     @Override
-                    public void apply(final V o) {
+                    public void apply(final T o) {
                         callback.onSuccess(o);
                     }
                 });
