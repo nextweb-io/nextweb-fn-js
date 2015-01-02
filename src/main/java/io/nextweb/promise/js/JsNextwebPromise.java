@@ -27,7 +27,7 @@ import de.mxro.fn.Closure;
  */
 @Export
 public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
-        JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
@@ -41,7 +41,8 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportabl
         }
 
         if (params.length > 1) {
-            throw new IllegalArgumentException("Only one argument of type JsClosure is supported.");
+            throw new IllegalArgumentException(
+                    "Only either no argument or one argument of type JsClosure is supported.");
         }
 
         performGet(FnJs.asJsClosure((JavaScriptObject) params[0], wrappers));
