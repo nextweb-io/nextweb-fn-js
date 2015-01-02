@@ -1,5 +1,7 @@
 package io.nextweb.promise.js.callbacks;
 
+import io.nextweb.promise.js.exceptions.ExceptionUtils;
+
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -24,19 +26,8 @@ public class JsSimpleCallbackWrapper implements Exportable {
 
     @Export
     public void onFailure(final JavaScriptObject t) {
-        final Object gwtInstance = ExporterUtil.gwtInstance(t);
 
-        if (gwtInstance instanceof Throwable) {
-            wrapped.onFailure((Throwable) gwtInstance);
-            return;
-        }
-
-        if (gwtInstance instanceof String) {
-            wrapped.onFailure(new Exception((String) gwtInstance));
-            return;
-        }
-
-        wrapped.onFailure(new Exception("onFailure called with invalid argument: " + gwtInstance));
+        wrapped.onFailure(ExceptionUtils.convertToJavaException(t));
     }
 
     @Export
