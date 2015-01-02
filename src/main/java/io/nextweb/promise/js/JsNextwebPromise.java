@@ -27,7 +27,7 @@ import de.mxro.fn.Closure;
  */
 @Export
 public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
-JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+        JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
