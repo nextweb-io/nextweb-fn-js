@@ -32,17 +32,21 @@ public class ExceptionUtils {
 
         final String message = attemptToGetMessage(exception);
 
+        if (message != null) {
+            return new Exception("Unsupported JavaScriptException encountered with message: [" + message + "]");
+        }
+
         return new Exception("Cannot convert reported exception result to Java Exception.\n"
                 + "  Exception Result Type: " + obj.getClass() + "\n" + "  Exception Result toString: "
                 + obj.toString());
     }
 
     private static native final String attemptToGetMessage(JavaScriptObject exception)/*-{ 
-                                                                                      
+
                                                                                       if (exception.message) {
                                                                                       return exception.message;
                                                                                       }
-                                                                                      
+
                                                                                       return null;
                                                                                       }-*/;
 
