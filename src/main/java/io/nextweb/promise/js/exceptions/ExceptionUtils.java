@@ -33,7 +33,6 @@ public class ExceptionUtils {
         return new Exception("Cannot convert reported exception result to Java Exception.\n"
                 + "  Exception Result Type: " + obj.getClass() + "\n" + "  Exception Result toString: "
                 + obj.toString());
-
     }
 
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
