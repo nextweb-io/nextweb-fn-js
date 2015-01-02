@@ -25,6 +25,18 @@ public class ExceptionUtils {
         if (obj instanceof Throwable) {
             return (Throwable) obj;
         }
+
+        if (obj instanceof String) {
+            return new Exception((String) obj);
+        }
+
+        if (obj instanceof JavaScriptException) {
+            final JavaScriptException jsException = (JavaScriptException) obj;
+
+            jsException.
+
+        }
+
     }
 
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
