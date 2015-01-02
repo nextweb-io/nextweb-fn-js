@@ -9,6 +9,17 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 import de.mxro.async.callbacks.ValueCallback;
 
+/**
+ * <p>
+ * Used to call callbacks as required by async.js such as:
+ * 
+ * <pre>
+ * function(ex, value) { ... }
+ * </pre>
+ * 
+ * @author <a href="http://www.mxro.de">Max Rohde</a>
+ *
+ */
 public class AsyncJsCallbackWrapper implements ValueCallback<Object> {
 
     private final JavaScriptObject callback;
