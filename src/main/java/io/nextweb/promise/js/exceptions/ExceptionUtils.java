@@ -30,12 +30,9 @@ public class ExceptionUtils {
             return new Exception((String) obj);
         }
 
-        if (obj instanceof JavaScriptException) {
-            final JavaScriptException jsException = (JavaScriptException) obj;
-
-            jsException.
-
-        }
+        return new Exception("Cannot convert reported exception result to Java Exception.\n"
+                + "  Exception Result Type: " + obj.getClass() + "\n" + "  Exception Result toString: "
+                + obj.toString());
 
     }
 
