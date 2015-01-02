@@ -30,10 +30,21 @@ public class ExceptionUtils {
             return new Exception((String) obj);
         }
 
+        final String message = attemptToGetMessage(exception);
+
         return new Exception("Cannot convert reported exception result to Java Exception.\n"
                 + "  Exception Result Type: " + obj.getClass() + "\n" + "  Exception Result toString: "
                 + obj.toString());
     }
+
+    private static native final String attemptToGetMessage(JavaScriptObject exception)/*-{ 
+                                                                                      
+                                                                                      if (exception.message) {
+                                                                                      return exception.message;
+                                                                                      }
+                                                                                      
+                                                                                      return null;
+                                                                                      }-*/;
 
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
         triggerFailureCallbackJs(callback, r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
