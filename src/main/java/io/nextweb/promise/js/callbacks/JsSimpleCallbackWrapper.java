@@ -36,7 +36,7 @@ public class JsSimpleCallbackWrapper implements Exportable {
             return;
         }
 
-        wrapped.onFailure(new Exception("Failure while processing native JavaScript function."));
+        wrapped.onFailure(new Exception("onFailure called with invalid argument: " + gwtInstance));
     }
 
     @Export
