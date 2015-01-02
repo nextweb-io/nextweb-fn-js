@@ -11,7 +11,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 import de.mxro.fn.Closure;
 
-public class JavaToAsyncJsOperationWrapper {
+public class PromiseToAsyncJsOperationWrapper {
 
     public static <V> JavaScriptObject wrap(final NextwebPromise<V> promise) {
         final JavaScriptObject operation = ExporterUtil.wrap(new JsClosure() {
