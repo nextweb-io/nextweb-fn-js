@@ -1,5 +1,6 @@
 package io.nextweb.promise.js.callbacks;
 
+import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.js.JsClosure;
@@ -13,7 +14,7 @@ import de.mxro.fn.Closure;
 
 public class PromiseToAsyncJsOperationWrapper {
 
-    public static <T, R> JavaScriptObject wrap(final JsNextwebPromise<T, R> promise) {
+    public static <T, R extends BasicPromise<T>> JavaScriptObject wrap(final JsNextwebPromise<T, R> promise) {
         final JavaScriptObject operation = ExporterUtil.wrap(new JsClosure() {
 
             @Override
@@ -21,7 +22,7 @@ public class PromiseToAsyncJsOperationWrapper {
                 final AsyncJsToJavaCallbackWrapper callback = new AsyncJsToJavaCallbackWrapper(ExporterUtil
                         .wrap(result));
 
-                promise.catchExceptions(new ExceptionListener() {
+                promise.javaExceptionManager().catchExceptions(new ExceptionListener() {
 
                     @Override
                     public void onFailure(final ExceptionResult r) {
