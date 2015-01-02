@@ -1,8 +1,8 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.js.JsBasicPromise;
 import io.nextweb.promise.js.JsClosure;
 
 import org.timepedia.exporter.client.ExporterUtil;
@@ -13,7 +13,7 @@ import de.mxro.fn.Closure;
 
 public class PromiseToAsyncJsOperationWrapper {
 
-    public static <V> JavaScriptObject wrap(final NextwebPromise<V> promise) {
+    public static <V extends JsResultType> JavaScriptObject wrap(final JsBasicPromise<V> promise) {
         final JavaScriptObject operation = ExporterUtil.wrap(new JsClosure() {
 
             @Override
