@@ -27,7 +27,7 @@ import de.mxro.fn.Closure;
  */
 @Export
 public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
-        JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
@@ -50,6 +50,7 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportabl
         return ExporterUtil.wrap(this);
     }
 
+    @Export
     @Override
     public JavaScriptObject asFunction() {
         return PromiseToAsyncJsOperationWrapper.wrap(this);
