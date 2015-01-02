@@ -2,7 +2,6 @@ package io.nextweb.promise.js;
 
 import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.ExceptionManager;
-import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -27,7 +26,7 @@ import de.mxro.fn.Closure;
  */
 @Export
 public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
-        JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
@@ -48,12 +47,6 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportabl
         performGet(FnJs.asJsClosure((JavaScriptObject) params[0], wrappers));
 
         return ExporterUtil.wrap(this);
-    }
-
-    @Export
-    @Override
-    public JavaScriptObject asFunction() {
-        return PromiseToAsyncJsOperationWrapper.wrap(this);
     }
 
     @Export
