@@ -2,7 +2,7 @@ package io.nextweb.promise.js.exceptions;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.ImpossibleResult;
@@ -20,11 +20,11 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 @Export
-public class JsExceptionManager implements Exportable, JsWrapper<ExceptionManager>,
+public class JsExceptionManager implements Exportable, JsWrapper<NextwebExceptionManager>,
         JsExceptionListeners<JsExceptionManager> {
 
     @NoExport
-    private ExceptionManager em;
+    private NextwebExceptionManager em;
 
     @Export
     public void onFailure(final JavaScriptObject origin, final String errorMessage) {
@@ -94,13 +94,13 @@ public class JsExceptionManager implements Exportable, JsWrapper<ExceptionManage
 
     @NoExport
     @Override
-    public ExceptionManager getOriginal() {
+    public NextwebExceptionManager getOriginal() {
         return this.em;
     }
 
     @NoExport
     @Override
-    public void setOriginal(final ExceptionManager original) {
+    public void setOriginal(final NextwebExceptionManager original) {
         this.em = original;
     }
 
@@ -131,7 +131,7 @@ public class JsExceptionManager implements Exportable, JsWrapper<ExceptionManage
                                                                                                                  }-*/;
 
     @NoExport
-    public static JsExceptionManager wrap(final ExceptionManager em) {
+    public static JsExceptionManager wrap(final NextwebExceptionManager em) {
         final JsExceptionManager jsem = new JsExceptionManager();
         jsem.setOriginal(em);
         return jsem;

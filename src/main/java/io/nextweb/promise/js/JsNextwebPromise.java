@@ -1,7 +1,7 @@
 package io.nextweb.promise.js;
 
 import io.nextweb.promise.BasicPromise;
-import io.nextweb.promise.exceptions.ExceptionManager;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -62,7 +62,7 @@ JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
     }
 
     @NoExport
-    public final ExceptionManager javaExceptionManager() {
+    public final NextwebExceptionManager javaExceptionManager() {
         return result.getExceptionManager();
     }
 
