@@ -44,7 +44,7 @@ public class PromiseToAsyncJsOperationWrapper {
 
     private native static final JavaScriptObject createCb(JavaScriptObject operation)/*-{
                                                                                      return function(cb) {
-                                                                                     operation.apply(cb);
+                                                                                     operation(cb);
                                                                                      };
                                                                                      }-*/;
 
