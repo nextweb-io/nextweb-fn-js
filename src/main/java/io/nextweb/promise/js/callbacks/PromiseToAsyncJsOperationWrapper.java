@@ -1,25 +1,25 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.js.JsClosure;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+import de.mxro.async.Operation;
 import de.mxro.async.callbacks.ValueCallback;
 
 public class PromiseToAsyncJsOperationWrapper {
 
-    public static <T> JavaScriptObject wrap(final NextwebPromise<T> promise) {
-        final JavaScriptObject operation = ExporterUtil.wrap(new JsClosure() {
+    public static <T> JavaScriptObject wrap(final Operation<T> operation) {
+        final JavaScriptObject jsOperation = ExporterUtil.wrap(new JsClosure() {
 
             @Override
             public void apply(final Object result) {
                 final AsyncJsToJavaCallbackWrapper callback = new AsyncJsToJavaCallbackWrapper(ExporterUtil
                         .wrap(result));
 
-                promise.apply(new ValueCallback<T>() {
+                operation.apply(new ValueCallback<T>() {
 
                     @Override
                     public void onFailure(final Throwable t) {
@@ -35,7 +35,7 @@ public class PromiseToAsyncJsOperationWrapper {
             }
         });
 
-        return createCb(operation);
+        return createCb(jsOperation);
     }
 
     private native static final JavaScriptObject createCb(JavaScriptObject operation)/*-{
