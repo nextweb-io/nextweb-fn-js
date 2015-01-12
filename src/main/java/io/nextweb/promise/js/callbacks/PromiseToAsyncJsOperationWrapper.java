@@ -23,8 +23,7 @@ public class PromiseToAsyncJsOperationWrapper {
 
                     @Override
                     public void onFailure(final Throwable t) {
-                        // TODO Auto-generated method stub
-
+                        callback.onFailure(t);
                     }
 
                     @Override
