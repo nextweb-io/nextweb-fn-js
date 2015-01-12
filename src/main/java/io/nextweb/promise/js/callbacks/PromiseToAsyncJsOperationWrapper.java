@@ -38,7 +38,7 @@ public class PromiseToAsyncJsOperationWrapper {
 
             }
         });
-
+        Console.log(jsOperation);
         return createCb(jsOperation);
     }
 

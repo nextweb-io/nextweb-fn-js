@@ -17,8 +17,15 @@ public final class Console {
         logNative(message);
     }
 
+    /**
+     * <p>
+     * Logs an object to the browser console if its available.
+     * 
+     * @param object
+     *            The object to be logged to the console.
+     */
     public static final void log(final JavaScriptObject object) {
-        logNativeObject(message);
+        logNative(object);
     }
 
     private static final native void logNative(String message)/*-{
@@ -29,5 +36,14 @@ public final class Console {
                                                               }
 
                                                               }-*/;
+
+    private static final native void logNative(JavaScriptObject message)/*-{
+                                                                        if (window.console) { 
+
+                                                                        window.console.log(message);
+                                                                        return;
+                                                                        }
+
+                                                                        }-*/;
 
 }
