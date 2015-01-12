@@ -20,7 +20,7 @@ import de.mxro.async.callbacks.ValueCallback;
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
  */
-public class AsyncJsToJavaCallbackWrapper implements ValueCallback<Object> {
+public class JavaScriptCallbackWrapper implements ValueCallback<Object> {
 
     private final JavaScriptObject callback;
 
@@ -44,7 +44,7 @@ public class AsyncJsToJavaCallbackWrapper implements ValueCallback<Object> {
                                                                                                   cb(ex, value);
                                                                                                   }-*/;
 
-    public AsyncJsToJavaCallbackWrapper(final JavaScriptObject callback) {
+    public JavaScriptCallbackWrapper(final JavaScriptObject callback) {
         super();
         this.callback = callback;
     }

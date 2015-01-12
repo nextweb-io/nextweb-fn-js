@@ -16,8 +16,8 @@ public class PromiseToAsyncJsOperationWrapper {
 
             @Override
             public void apply(final Object result) {
-                final AsyncJsToJavaCallbackWrapper callback = new AsyncJsToJavaCallbackWrapper(ExporterUtil
-                        .wrap(result));
+
+                final JavaScriptCallbackWrapper callback = new JavaScriptCallbackWrapper(ExporterUtil.wrap(result));
 
                 operation.apply(new ValueCallback<T>() {
 
