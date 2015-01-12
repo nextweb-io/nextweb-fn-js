@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.js.Console;
-
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
@@ -18,8 +16,6 @@ public class PromiseToAsyncJsOperationWrapper {
             @Override
             public void apply(final Object result) {
 
-                Console.log("Applying ...");
-
                 final JavaScriptCallbackWrapper callback = new JavaScriptCallbackWrapper(ExporterUtil.wrap(result));
 
                 operation.apply(new ValueCallback<T>() {
@@ -31,14 +27,13 @@ public class PromiseToAsyncJsOperationWrapper {
 
                     @Override
                     public void onSuccess(final T value) {
-                        Console.log("rceived success");
                         callback.onSuccess(value);
                     }
                 });
 
             }
         }));
-        Console.log(jsOperation);
+
         return createCb(jsOperation);
     }
 
