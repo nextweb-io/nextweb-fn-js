@@ -4,7 +4,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 /**
  * <p>
- * A wrapper to provide access to <code>window.console</code>
+ * A wrapper to provide access to <code>window.console</code>.
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
