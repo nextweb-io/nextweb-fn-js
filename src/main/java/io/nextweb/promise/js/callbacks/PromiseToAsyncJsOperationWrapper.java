@@ -1,20 +1,17 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.BasicPromise;
-import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.ExceptionResult;
+import io.nextweb.promise.NextwebPromise;
 import io.nextweb.promise.js.JsClosure;
-import io.nextweb.promise.js.JsNextwebPromise;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.fn.Closure;
+import de.mxro.async.callbacks.ValueCallback;
 
 public class PromiseToAsyncJsOperationWrapper {
 
-    public static <T, R extends BasicPromise<T>> JavaScriptObject wrap(final JsNextwebPromise<T, R> promise) {
+    public static <T> JavaScriptObject wrap(final NextwebPromise<T> promise) {
         final JavaScriptObject operation = ExporterUtil.wrap(new JsClosure() {
 
             @Override
@@ -22,19 +19,17 @@ public class PromiseToAsyncJsOperationWrapper {
                 final AsyncJsToJavaCallbackWrapper callback = new AsyncJsToJavaCallbackWrapper(ExporterUtil
                         .wrap(result));
 
-                promise.javaExceptionManager().catchExceptions(new ExceptionListener() {
+                promise.apply(new ValueCallback<T>() {
 
                     @Override
-                    public void onFailure(final ExceptionResult r) {
-                        callback.onFailure(r.exception());
+                    public void onFailure(final Throwable t) {
+                        // TODO Auto-generated method stub
+
                     }
-                });
-
-                promise.getOriginal().get(new Closure<T>() {
 
                     @Override
-                    public void apply(final T o) {
-                        callback.onSuccess(o);
+                    public void onSuccess(final T value) {
+                        callback.onSuccess(value);
                     }
                 });
 
