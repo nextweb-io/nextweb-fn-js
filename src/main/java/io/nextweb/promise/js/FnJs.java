@@ -8,6 +8,8 @@ import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+import de.mxro.fn.Success;
+
 public class FnJs {
 
     public static final boolean isJsString(final Object value) {
@@ -53,7 +55,10 @@ public class FnJs {
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
         triggerCallbackJs(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
+    }
 
+    public static final Success success() {
+        return Success.INSTANCE;
     }
 
 }
