@@ -22,9 +22,8 @@ import de.mxro.async.callbacks.ValueCallback;
  */
 public class JavaScriptCallbackWrapper implements ValueCallback<Object> {
 
+    private final WrapperCollection wrappers;
     private final JavaScriptObject callback;
-
-    final WrapperCollection wrappers;
 
     @Override
     public void onFailure(final Throwable t) {
@@ -46,8 +45,9 @@ public class JavaScriptCallbackWrapper implements ValueCallback<Object> {
                                                                                                   cb(ex, value);
                                                                                                   }-*/;
 
-    public JavaScriptCallbackWrapper(final JavaScriptObject callback) {
+    public JavaScriptCallbackWrapper(final WrapperCollection wrappers, final JavaScriptObject callback) {
         super();
+        this.wrappers = wrappers;
         this.callback = callback;
     }
 
