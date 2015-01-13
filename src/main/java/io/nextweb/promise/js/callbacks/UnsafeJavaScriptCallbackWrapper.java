@@ -8,7 +8,10 @@ import com.google.gwt.core.client.JavaScriptObject;
 import de.mxro.async.callbacks.ValueCallback;
 
 /**
+ * <p>
  * Trigger JS callbacks without converting object to their exported form.
+ * <p>
+ * Faster than {@link JavaScriptCallbackWrapper}
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
