@@ -2,8 +2,8 @@ package io.nextweb.promise.js.callbacks;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.js.exceptions.ExceptionUtils;
-
-import org.timepedia.exporter.client.ExporterUtil;
+import io.nextweb.promise.js.wrapping.JsWrap;
+import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
@@ -24,6 +24,8 @@ public class JavaScriptCallbackWrapper implements ValueCallback<Object> {
 
     private final JavaScriptObject callback;
 
+    final WrapperCollection wrappers;
+
     @Override
     public void onFailure(final Throwable t) {
         callCallback(callback, ExceptionUtils.wrapExceptionResult(Fn.exception(this, t)), null);
@@ -36,7 +38,7 @@ public class JavaScriptCallbackWrapper implements ValueCallback<Object> {
             callCallback(callback, null, null);
             return;
         }
-        callCallback(callback, null, ExporterUtil.wrap(value));
+        callCallback(callback, null, JsWrap.forcewrapAnyObjectForJavaScript(value, wrappers));
 
     }
 
