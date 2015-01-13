@@ -126,7 +126,7 @@ public class JsWrap {
                 result[i] = ExporterUtil.wrap(rawWrapped);
             }
 
-            Console.log("Resolved into " + result[i].getClass());
+            Console.log(array[i] + " Resolved into " + result[i].getClass());
 
         }
         return result;
@@ -139,11 +139,11 @@ public class JsWrap {
      * @return
      */
     public final static native Object unwrapBasicType(Object value)/*-{
-                                                                   
+
                                                                    var result = value;
-                                                                   
+
                                                                    if (result.isJsBasicType && typeof result.isJsBasicType === 'function') {
-                                                                   
+
                                                                    if (result.isInt() == 1) {
                                                                    return result.intValue();
                                                                    }
@@ -157,14 +157,14 @@ public class JsWrap {
                                                                    return result.booleanValue().value;
                                                                    }
                                                                    }
-                                                                   
+
                                                                    return result;
-                                                                   
+
                                                                    }-*/;
 
     public final static native JavaScriptObject unwrapBasicTypes(JavaScriptObject jsArray)/*-{
                                                                                           var values = jsArray.getArray();
-                                                                                          
+
                                                                                           for ( var i = 0; i <= values.length - 1; i++) {
                                                                                           var value = values[i];
                                                                                           if (value.isJsBasicType
@@ -173,22 +173,22 @@ public class JsWrap {
                                                                                           if (value.isString() != 0) {
                                                                                           rpl = value.stringValue();
                                                                                           }
-                                                                                          
+
                                                                                           if (value.isInt() != 0) {
                                                                                           rpl = value.intValue();
                                                                                           }
-                                                                                          
+
                                                                                           if (value.isDouble() != 0) {
                                                                                           rpl = value.doubleValue();
                                                                                           }
-                                                                                          
+
                                                                                           if (value.isBoolean() != 0) {
                                                                                           rpl = value.booleanValue().value;
                                                                                           }
                                                                                           values[i] = rpl;
                                                                                           }
                                                                                           }
-                                                                                          
+
                                                                                           return values;
                                                                                           }-*/;
 
