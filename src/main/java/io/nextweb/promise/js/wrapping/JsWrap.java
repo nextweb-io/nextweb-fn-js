@@ -1,6 +1,5 @@
 package io.nextweb.promise.js.wrapping;
 
-import io.nextweb.promise.js.Console;
 import io.nextweb.promise.js.FnJs;
 import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.types.JsBasicType;
@@ -125,8 +124,6 @@ public class JsWrap {
             } else {
                 result[i] = ExporterUtil.wrap(rawWrapped);
             }
-
-            Console.log(array[i] + " Resolved into " + result[i].getClass());
 
         }
         return result;
