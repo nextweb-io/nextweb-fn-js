@@ -50,10 +50,22 @@ public class ExceptionUtils {
                                                                                       return null;
                                                                                       }-*/;
 
+    // TODO does not seem to trigger clear exceptions!!!
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
         triggerFailureCallbackJs(callback, r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
                 getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception()));
     }
+
+    private static final native JavaScriptObject triggerFailureCallbackJs(JavaScriptObject callback, String origin,
+            String exceptionMessage, String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
+                                                                                                         callback({
+                                                                                                         exception: exceptionMessage,
+                                                                                                         origin: origin,
+                                                                                                         origintrace: originTrace,
+                                                                                                         stacktrace: stacktrace,
+                                                                                                         jsException: jsException
+                                                                                                         });
+                                                                                                         }-*/;
 
     public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
 
@@ -144,17 +156,6 @@ public class ExceptionUtils {
 
         return res;
     }
-
-    private static final native JavaScriptObject triggerFailureCallbackJs(JavaScriptObject callback, String origin,
-            String exceptionMessage, String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
-                                                                                                         callback({
-                                                                                                         exception: exceptionMessage,
-                                                                                                         origin: origin,
-                                                                                                         origintrace: originTrace,
-                                                                                                         stacktrace: stacktrace,
-                                                                                                         jsException: jsException
-                                                                                                         });
-                                                                                                         }-*/;
 
     private static final native JavaScriptObject wrapExceptionResult(String origin, String exceptionMessage,
             String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
