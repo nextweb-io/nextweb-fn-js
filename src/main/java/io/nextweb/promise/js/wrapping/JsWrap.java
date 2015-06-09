@@ -1,5 +1,6 @@
 package io.nextweb.promise.js.wrapping;
 
+import io.nextweb.promise.js.Console;
 import io.nextweb.promise.js.FnJs;
 import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.types.JsBasicType;
@@ -64,6 +65,8 @@ public class JsWrap {
     public static final JavaScriptObject forcewrapAnyObjectForJavaScript(final Object node,
             final WrapperCollection wrappers) {
 
+        Console.log(node.toString());
+
         if (node instanceof JavaScriptObject) {
             return (JavaScriptObject) node;
         }
@@ -73,6 +76,7 @@ public class JsWrap {
         }
 
         final Object convertValueObjectForJs = wrappers.convertValueObjectForJs(node);
+        Console.log(convertValueObjectForJs.toString());
         if (convertValueObjectForJs instanceof JavaScriptObject) {
             return (JavaScriptObject) convertValueObjectForJs;
         }
