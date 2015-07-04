@@ -7,7 +7,7 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.async.callbacks.ValueCallback;
+import delight.async.callbacks.ValueCallback;
 
 /**
  * <p>

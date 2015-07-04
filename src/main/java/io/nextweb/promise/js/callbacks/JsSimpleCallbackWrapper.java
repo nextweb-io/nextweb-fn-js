@@ -9,7 +9,7 @@ import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.async.callbacks.SimpleCallback;
+import delight.async.callbacks.SimpleCallback;
 
 @Export
 public class JsSimpleCallbackWrapper implements Exportable {
