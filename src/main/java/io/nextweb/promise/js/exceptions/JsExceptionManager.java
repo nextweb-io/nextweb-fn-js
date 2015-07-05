@@ -1,23 +1,23 @@
 package io.nextweb.promise.js.exceptions;
 
+import org.timepedia.exporter.client.Export;
+import org.timepedia.exporter.client.Exportable;
+import org.timepedia.exporter.client.NoExport;
+
+import com.google.gwt.core.client.JavaScriptObject;
+
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.ImpossibleResult;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
 import io.nextweb.promise.exceptions.UndefinedResult;
 import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.JsWrapper;
-
-import org.timepedia.exporter.client.Export;
-import org.timepedia.exporter.client.Exportable;
-import org.timepedia.exporter.client.NoExport;
-
-import com.google.gwt.core.client.JavaScriptObject;
 
 @Export
 public class JsExceptionManager implements Exportable, JsWrapper<NextwebExceptionManager>,

@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.wrapping;
 
-import io.nextweb.promise.js.types.JsAtomicTypeWrapper;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,6 +7,8 @@ import java.util.List;
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
+
+import io.nextweb.promise.js.types.JsAtomicTypeWrapper;
 
 public class WrapperCollection {
 

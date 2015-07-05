@@ -1,14 +1,13 @@
 package io.nextweb.promise.js;
 
-import io.nextweb.promise.js.types.JsArray;
-import io.nextweb.promise.js.wrapping.JsWrap;
-import io.nextweb.promise.js.wrapping.WrapperCollection;
-
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.fn.Success;
+import delight.functional.Success;
+import io.nextweb.promise.js.types.JsArray;
+import io.nextweb.promise.js.wrapping.JsWrap;
+import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 public class FnJs {
 

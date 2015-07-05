@@ -1,11 +1,11 @@
 package io.nextweb.promise.js.types;
 
-import io.nextweb.promise.js.FnJs;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 
 import com.google.gwt.core.client.JavaScriptObject;
+
+import io.nextweb.promise.js.FnJs;
 
 @Export
 public class JsBasicType implements Exportable {

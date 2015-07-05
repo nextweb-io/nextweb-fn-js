@@ -1,16 +1,15 @@
 package io.nextweb.promise.js.wrapping;
 
-import io.nextweb.promise.js.FnJs;
-import io.nextweb.promise.js.JsClosure;
-import io.nextweb.promise.js.types.JsBasicType;
-
 import java.util.Date;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.fn.Closure;
+import delight.functional.Closure;
+import io.nextweb.promise.js.FnJs;
+import io.nextweb.promise.js.JsClosure;
+import io.nextweb.promise.js.types.JsBasicType;
 
 public class JsWrap {
 

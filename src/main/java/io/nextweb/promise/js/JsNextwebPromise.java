@@ -1,11 +1,5 @@
 package io.nextweb.promise.js;
 
-import io.nextweb.promise.BasicPromise;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
-import io.nextweb.promise.js.exceptions.JsExceptionManager;
-import io.nextweb.promise.js.wrapping.JsWrap;
-import io.nextweb.promise.js.wrapping.WrapperCollection;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -13,7 +7,12 @@ import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import de.mxro.fn.Closure;
+import delight.functional.Closure;
+import io.nextweb.promise.BasicPromise;
+import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.js.exceptions.JsExceptionManager;
+import io.nextweb.promise.js.wrapping.JsWrap;
+import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 /**
  * 

@@ -1,8 +1,8 @@
 package io.nextweb.promise.js.exceptions;
 
-import io.nextweb.promise.js.JsClosure;
-
 import org.timepedia.exporter.client.Exportable;
+
+import io.nextweb.promise.js.JsClosure;
 
 public interface JsExceptionListeners<ReturnType extends Exportable> {
 	public ReturnType catchExceptions(final JsClosure exceptionListener);

@@ -1,12 +1,12 @@
 package io.nextweb.promise.js.exceptions;
 
-import io.nextweb.promise.exceptions.ExceptionResult;
-
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
+
+import io.nextweb.promise.exceptions.ExceptionResult;
 
 public class ExceptionUtils {
 

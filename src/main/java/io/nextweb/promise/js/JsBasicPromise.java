@@ -1,8 +1,8 @@
 package io.nextweb.promise.js;
 
-import io.nextweb.promise.js.exceptions.JsExceptionListeners;
-
 import org.timepedia.exporter.client.Exportable;
+
+import io.nextweb.promise.js.exceptions.JsExceptionListeners;
 
 /**
  * Basic interface for all Js Result types.

@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.js.exceptions.ExceptionUtils;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -10,6 +8,7 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import delight.async.callbacks.SimpleCallback;
+import io.nextweb.promise.js.exceptions.ExceptionUtils;
 
 @Export
 public class JsSimpleCallbackWrapper implements Exportable {

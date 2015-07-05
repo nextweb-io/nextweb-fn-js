@@ -1,13 +1,12 @@
 package io.nextweb.promise.js.callbacks;
 
+import com.google.gwt.core.client.JavaScriptObject;
+
+import delight.async.callbacks.ValueCallback;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.js.exceptions.ExceptionUtils;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
-
-import com.google.gwt.core.client.JavaScriptObject;
-
-import delight.async.callbacks.ValueCallback;
 
 /**
  * <p>

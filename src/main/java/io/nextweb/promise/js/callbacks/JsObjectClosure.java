@@ -1,12 +1,11 @@
 package io.nextweb.promise.js.callbacks;
 
-import io.nextweb.promise.js.JsClosure;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
 
-import de.mxro.fn.Closure;
+import delight.functional.Closure;
+import io.nextweb.promise.js.JsClosure;
 
 /**
  * <p>
