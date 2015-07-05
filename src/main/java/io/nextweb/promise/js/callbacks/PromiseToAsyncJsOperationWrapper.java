@@ -1,12 +1,13 @@
 package io.nextweb.promise.js.callbacks;
 
+import delight.async.Operation;
+import delight.async.callbacks.ValueCallback;
+import delight.functional.Closure;
+
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import delight.async.Operation;
-import delight.async.callbacks.ValueCallback;
-import delight.functional.Closure;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 public class PromiseToAsyncJsOperationWrapper {

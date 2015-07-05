@@ -1,5 +1,7 @@
 package io.nextweb.promise.js;
 
+import delight.functional.Closure;
+
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -7,7 +9,6 @@ import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import delight.functional.Closure;
 import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;

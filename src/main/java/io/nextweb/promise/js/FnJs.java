@@ -1,10 +1,11 @@
 package io.nextweb.promise.js;
 
+import delight.functional.Success;
+
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import delight.functional.Success;
 import io.nextweb.promise.js.types.JsArray;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;

@@ -1,12 +1,13 @@
 package io.nextweb.promise.js.wrapping;
 
+import delight.functional.Closure;
+
 import java.util.Date;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
-import delight.functional.Closure;
 import io.nextweb.promise.js.FnJs;
 import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.types.JsBasicType;
