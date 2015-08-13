@@ -41,7 +41,11 @@
 			<version>[0.0.1,)</version>
 		</dependency>
 
-		<!-- only for gwt maven plugin!!! -->
+		<dependency>
+			<groupId>org.javadelight</groupId>
+			<artifactId>delight-gwt-console</artifactId>
+			<version>[0.0.1,)</version>
+		</dependency>
 
 
 
