@@ -25,8 +25,8 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
  *            The type of the wrapped result
  */
 @Export
-public class JsNextwebPromise<T, R extends BasicPromise<T>> implements Exportable,
-JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+public class JsNextwebPromise<T, R extends BasicPromise<T>>
+        implements Exportable, JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
     R result;
     WrapperCollection wrappers;
@@ -150,6 +150,11 @@ JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
         jsResult.setOriginal(result);
         jsResult.setWrappers(wrappers);
         return jsResult;
+    }
+
+    @NoExport
+    public static <T, R extends BasicPromise<T>> JsNextwebPromise<T, R> wrap(final R result) {
+
     }
 
 }
