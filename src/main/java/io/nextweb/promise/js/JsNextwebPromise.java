@@ -152,10 +152,4 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
         return jsResult;
     }
 
-    @NoExport
-    public static <T, R extends BasicPromise<T>> JsNextwebPromise<T, R> wrap(final R result,
-            final AppjangleClientEngine engine) {
-
-    }
-
 }
