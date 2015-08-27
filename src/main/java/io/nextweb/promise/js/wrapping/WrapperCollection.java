@@ -12,153 +12,153 @@ import io.nextweb.promise.js.types.JsAtomicTypeWrapper;
 
 public class WrapperCollection {
 
-	private final List<Wrapper> registeredWrappers;
+    private final List<Wrapper> registeredWrappers;
 
-	public void addWrapper(final Wrapper wrapper) {
-		registeredWrappers.add(wrapper);
-	}
+    public void addWrapper(final Wrapper wrapper) {
+        registeredWrappers.add(wrapper);
+    }
 
-	public Object unwrapValueObjectForJava(final Object jsNode) {
+    public boolean hasWrapper(final Wrapper wrapper) {
+        return registeredWrappers.contains(wrapper);
+    }
 
-		if (jsNode instanceof String) {
-			return jsNode;
-		}
+    public Object unwrapValueObjectForJava(final Object jsNode) {
 
-		if (jsNode instanceof Integer) {
-			return jsNode;
-		}
+        if (jsNode instanceof String) {
+            return jsNode;
+        }
 
-		if (jsNode instanceof Boolean) {
-			return jsNode;
-		}
+        if (jsNode instanceof Integer) {
+            return jsNode;
+        }
 
-		if (jsNode instanceof Short) {
-			return ((Short) jsNode).intValue();
-		}
+        if (jsNode instanceof Boolean) {
+            return jsNode;
+        }
 
-		if (jsNode instanceof Long) {
-			return (int) ((Long) jsNode).longValue();
-		}
+        if (jsNode instanceof Short) {
+            return ((Short) jsNode).intValue();
+        }
 
-		if (jsNode instanceof Byte) {
-			return ((Byte) jsNode).intValue();
-		}
+        if (jsNode instanceof Long) {
+            return (int) ((Long) jsNode).longValue();
+        }
 
-		if (jsNode instanceof Character) {
-			return jsNode;
-		}
+        if (jsNode instanceof Byte) {
+            return ((Byte) jsNode).intValue();
+        }
 
-		if (jsNode instanceof Double) {
-			if (Math.round(((Double) jsNode).floatValue()) == ((Double) jsNode)
-					.floatValue()) {
-				return new Long(Math.round(((Double) jsNode).doubleValue()));
-			}
-			return jsNode;
-		}
+        if (jsNode instanceof Character) {
+            return jsNode;
+        }
 
-		if (jsNode instanceof Float) {
-			if (Math.round(((Float) jsNode).floatValue()) == ((Float) jsNode)
-					.floatValue()) {
-				return new Integer(Math.round(((Float) jsNode).floatValue()));
-			}
-			return jsNode;
-		}
+        if (jsNode instanceof Double) {
+            if (Math.round(((Double) jsNode).floatValue()) == ((Double) jsNode).floatValue()) {
+                return new Long(Math.round(((Double) jsNode).doubleValue()));
+            }
+            return jsNode;
+        }
 
-		if (jsNode instanceof Date) {
-			return jsNode;
-		}
+        if (jsNode instanceof Float) {
+            if (Math.round(((Float) jsNode).floatValue()) == ((Float) jsNode).floatValue()) {
+                return new Integer(Math.round(((Float) jsNode).floatValue()));
+            }
+            return jsNode;
+        }
 
-		final Object obj = ExporterUtil.gwtInstance(jsNode);
+        if (jsNode instanceof Date) {
+            return jsNode;
+        }
 
-		if (obj instanceof JavaScriptObject) {
-			final JavaScriptObject jsobj = (JavaScriptObject) obj;
-			if (JsWrap.isDate(jsobj)) {
+        final Object obj = ExporterUtil.gwtInstance(jsNode);
 
-				return JsWrap.dateFromJsDate(jsobj);
-			}
+        if (obj instanceof JavaScriptObject) {
+            final JavaScriptObject jsobj = (JavaScriptObject) obj;
+            if (JsWrap.isDate(jsobj)) {
 
-			final JsAtomicTypeWrapper wrapper = (jsobj).cast();
+                return JsWrap.dateFromJsDate(jsobj);
+            }
 
-			if (wrapper.isWrapper()) {
-				return wrapper.getValue();
-			}
+            final JsAtomicTypeWrapper wrapper = (jsobj).cast();
 
-		}
+            if (wrapper.isWrapper()) {
+                return wrapper.getValue();
+            }
 
-		for (final Wrapper wrapper : registeredWrappers) {
-			if (wrapper.canUnwrap(obj)) {
-				final Object unwrapped = wrapper.unwrap(obj);
+        }
 
-				return unwrapped;
-			}
-		}
-		// TODO replace!!!
+        for (final Wrapper wrapper : registeredWrappers) {
+            if (wrapper.canUnwrap(obj)) {
+                final Object unwrapped = wrapper.unwrap(obj);
 
-		return obj;
+                return unwrapped;
+            }
+        }
+        // TODO replace!!!
 
-	}
+        return obj;
 
+    }
 
-	public Object convertValueObjectForJs(final Object gwtNode) {
+    public Object convertValueObjectForJs(final Object gwtNode) {
 
-		if (gwtNode instanceof String) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof String) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Integer) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Integer) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Short) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Short) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Long) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Long) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Byte) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Byte) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Character) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Character) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Double) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Double) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Float) {
+        if (gwtNode instanceof Float) {
 
-			return gwtNode;
-		}
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Boolean) {
-			return gwtNode;
-		}
+        if (gwtNode instanceof Boolean) {
+            return gwtNode;
+        }
 
-		if (gwtNode instanceof Date) {
-			return JsWrap.jsDateFromDate(((Date) gwtNode).getTime());
-		}
+        if (gwtNode instanceof Date) {
+            return JsWrap.jsDateFromDate(((Date) gwtNode).getTime());
+        }
 
-		for (final Wrapper wrapper : registeredWrappers) {
-			if (wrapper.canWrap(gwtNode)) {
-				Object wrapped = wrapper.wrap(gwtNode);
-				if (!(wrapped instanceof JavaScriptObject)) {
-					wrapped = ExporterUtil.wrap(wrapped);
-				}
-				return wrapped;
-			}
-		}
+        for (final Wrapper wrapper : registeredWrappers) {
+            if (wrapper.canWrap(gwtNode)) {
+                Object wrapped = wrapper.wrap(gwtNode);
+                if (!(wrapped instanceof JavaScriptObject)) {
+                    wrapped = ExporterUtil.wrap(wrapped);
+                }
+                return wrapped;
+            }
+        }
 
-		return ExporterUtil.wrap(gwtNode);
-	}
+        return ExporterUtil.wrap(gwtNode);
+    }
 
-	public WrapperCollection(
-			List<Wrapper> wrappers) {
-		super();
-		this.registeredWrappers = new ArrayList<Wrapper>(wrappers);
+    public WrapperCollection(final List<Wrapper> wrappers) {
+        super();
+        this.registeredWrappers = new ArrayList<Wrapper>(wrappers);
 
-	}
+    }
 }
