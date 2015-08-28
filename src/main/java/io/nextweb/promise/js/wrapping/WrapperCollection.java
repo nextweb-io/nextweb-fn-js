@@ -154,6 +154,8 @@ public class WrapperCollection {
                 count++;
             }
 
+            return ExporterUtil.wrap(result);
+
         }
 
         for (final Wrapper wrapper : registeredWrappers) {
