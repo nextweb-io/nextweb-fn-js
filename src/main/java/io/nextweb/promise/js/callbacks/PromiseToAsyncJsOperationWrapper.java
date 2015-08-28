@@ -12,7 +12,7 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 public class PromiseToAsyncJsOperationWrapper {
 
-    public static <T> JavaScriptObject wrap(final WrapperCollection wrappers, final Operation<T> operation) {
+    public static <T> JavaScriptObject wrapSafe(final WrapperCollection wrappers, final Operation<T> operation) {
         final JavaScriptObject jsOperation = ExporterUtil.wrap(JsObjectClosure.wrap(new Closure<Object>() {
 
             @Override
