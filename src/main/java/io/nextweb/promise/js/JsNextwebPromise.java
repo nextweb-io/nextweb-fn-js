@@ -90,7 +90,7 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
 
     @Export
     public Object func() {
-        return PromiseToAsyncJsOperationWrapper.wrapSafe(JH.jsFactory(original).getWrappers(), original);
+        return PromiseToAsyncJsOperationWrapper.wrap(original);
     }
 
     @NoExport
