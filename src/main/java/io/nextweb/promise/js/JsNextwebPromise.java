@@ -11,6 +11,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -85,6 +86,11 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
     public JsNextwebPromise<T, R> catchImpossible(final JsClosure impossibleListener) {
         exceptionManager().catchImpossible(impossibleListener);
         return this;
+    }
+
+    @Export
+    public Object func() {
+        return PromiseToAsyncJsOperationWrapper.wrapSafe(JH.jsFactory(original).getWrappers(), original);
     }
 
     @NoExport

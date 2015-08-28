@@ -20,7 +20,7 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
  */
-public final class JavaScriptCallbackWrapper implements ValueCallback<Object> {
+public final class SafeJavaScriptCallbackWrapper implements ValueCallback<Object> {
 
     private final WrapperCollection wrappers;
     private final JavaScriptObject callback;
@@ -45,7 +45,7 @@ public final class JavaScriptCallbackWrapper implements ValueCallback<Object> {
                                                                                                   cb(ex, value);
                                                                                                   }-*/;
 
-    public JavaScriptCallbackWrapper(final WrapperCollection wrappers, final JavaScriptObject callback) {
+    public SafeJavaScriptCallbackWrapper(final WrapperCollection wrappers, final JavaScriptObject callback) {
         super();
         this.wrappers = wrappers;
         this.callback = callback;

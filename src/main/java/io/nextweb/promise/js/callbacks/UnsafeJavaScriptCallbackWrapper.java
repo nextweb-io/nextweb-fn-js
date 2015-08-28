@@ -11,7 +11,7 @@ import io.nextweb.promise.js.exceptions.ExceptionUtils;
  * <p>
  * Trigger JS callbacks without converting object to their exported form.
  * <p>
- * Faster than {@link JavaScriptCallbackWrapper}
+ * Faster than {@link SafeJavaScriptCallbackWrapper}
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
