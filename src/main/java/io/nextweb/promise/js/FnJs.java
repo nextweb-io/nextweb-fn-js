@@ -45,7 +45,7 @@ public class FnJs {
             public void apply(final Object result) {
 
                 assert result instanceof JavaScriptObject;
-                Console.log("trigger callback with " + result);
+                Console.log("trigger callback with " + result + " " + result.getClass());
                 triggerCallback(fn, wrappers, new Object[] { result });
 
             }
