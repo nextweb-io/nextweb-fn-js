@@ -2,12 +2,12 @@ package io.nextweb.promise.js.callbacks;
 
 import delight.async.callbacks.ValueCallback;
 
+import org.timepedia.exporter.client.ExporterUtil;
+
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.js.exceptions.ExceptionUtils;
-import io.nextweb.promise.js.wrapping.JsWrap;
-import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 /**
  * <p>
@@ -20,9 +20,8 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
  */
-public final class JavaScriptCallbackWrapper implements ValueCallback<Object> {
+public final class SimpleJavaScriptCallbackWrapper implements ValueCallback<Object> {
 
-    private final WrapperCollection wrappers;
     private final JavaScriptObject callback;
 
     @Override
@@ -37,7 +36,7 @@ public final class JavaScriptCallbackWrapper implements ValueCallback<Object> {
             callCallback(callback, null, null);
             return;
         }
-        callCallback(callback, null, JsWrap.forcewrapAnyObjectForJavaScript(value, wrappers));
+        callCallback(callback, null, ExporterUtil.wrap(value));
 
     }
 
@@ -45,9 +44,8 @@ public final class JavaScriptCallbackWrapper implements ValueCallback<Object> {
                                                                                                   cb(ex, value);
                                                                                                   }-*/;
 
-    public JavaScriptCallbackWrapper(final WrapperCollection wrappers, final JavaScriptObject callback) {
+    public SimpleJavaScriptCallbackWrapper(final JavaScriptObject callback) {
         super();
-        this.wrappers = wrappers;
         this.callback = callback;
     }
 
