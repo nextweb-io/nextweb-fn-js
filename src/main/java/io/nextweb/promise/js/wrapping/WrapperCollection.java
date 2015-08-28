@@ -146,6 +146,14 @@ public class WrapperCollection {
         if (gwtNode instanceof List<?>) {
             final List<?> list = (List<?>) gwtNode;
 
+            final JavaScriptObject[] result = new JavaScriptObject[list.size()];
+            int count = 0;
+            for (final Object o : list) {
+
+                result[count] = ExporterUtil.wrap(convertValueObjectForJs(o));
+                count++;
+            }
+
         }
 
         for (final Wrapper wrapper : registeredWrappers) {
