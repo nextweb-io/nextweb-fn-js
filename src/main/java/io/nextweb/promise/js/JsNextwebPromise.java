@@ -29,8 +29,8 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
 public class JsNextwebPromise<T, R extends BasicPromise<T>>
         implements Exportable, JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
 
-    R result;
-    WrapperCollection wrappers;
+    protected R result;
+    protected WrapperCollection wrappers;
 
     @Override
     @Export
@@ -94,7 +94,7 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
     }
 
     @NoExport
-    private final Object performGet() {
+    protected final Object performGet() {
         Object node = result.get();
 
         if (node != null) {
@@ -105,7 +105,7 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
     }
 
     @NoExport
-    private final void performGet(final JsClosure onSuccess) {
+    protected final void performGet(final JsClosure onSuccess) {
         result.get(new Closure<T>() {
 
             @Override
