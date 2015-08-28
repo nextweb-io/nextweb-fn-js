@@ -143,6 +143,11 @@ public class WrapperCollection {
             return JsWrap.jsDateFromDate(((Date) gwtNode).getTime());
         }
 
+        if (gwtNode instanceof List<?>) {
+            final List<?> list = (List<?>) gwtNode;
+
+        }
+
         for (final Wrapper wrapper : registeredWrappers) {
             if (wrapper.canWrap(gwtNode)) {
                 Object wrapped = wrapper.wrap(gwtNode);
