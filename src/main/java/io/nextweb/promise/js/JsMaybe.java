@@ -24,7 +24,7 @@ public class JsMaybe implements Exportable {
     }
 
     @NoExport
-    public JsMaybe fromValue(final Object value) {
+    public static JsMaybe fromValue(final Object value) {
         final JsMaybe maybe = new JsMaybe();
 
         maybe.value = value;
