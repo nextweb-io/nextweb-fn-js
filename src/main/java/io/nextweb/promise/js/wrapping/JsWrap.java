@@ -117,7 +117,11 @@ public final class JsWrap {
     }
 
     /**
-     * This works for all types but booleans
+     * <p>
+     * MUST be called right before returning the value to JavaScript.
+     * <p>
+     * ExporterUtil.wrap() MUST NOT be called on the result of this method This
+     * works for all types but booleans
      * 
      * @param value
      * @return
