@@ -91,7 +91,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
     @Export
     public Object func() {
-        return PromiseToAsyncJsOperationWrapper.wrapSafe(wrappers, result);
+        return PromiseToAsyncJsOperationWrapper.wrapSafe(wrapper, result);
     }
 
     @NoExport

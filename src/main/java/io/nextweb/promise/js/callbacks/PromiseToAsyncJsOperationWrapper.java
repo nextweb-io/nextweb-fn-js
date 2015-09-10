@@ -3,12 +3,11 @@ package io.nextweb.promise.js.callbacks;
 import delight.async.Operation;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
+import delight.functional.Function;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
-
-import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 public class PromiseToAsyncJsOperationWrapper {
 
@@ -40,13 +39,13 @@ public class PromiseToAsyncJsOperationWrapper {
         return createCb(jsOperation);
     }
 
-    public static <T> JavaScriptObject wrapSafe(final WrapperCollection wrappers, final Operation<T> operation) {
+    public static <T> JavaScriptObject wrapSafe(final Function<Object, Object> wrapper, final Operation<T> operation) {
         final JavaScriptObject jsOperation = ExporterUtil.wrap(JsObjectClosure.wrap(new Closure<Object>() {
 
             @Override
             public void apply(final Object result) {
 
-                final SafeJavaScriptCallbackWrapper callback = new SafeJavaScriptCallbackWrapper(wrappers,
+                final SafeJavaScriptCallbackWrapper callback = new SafeJavaScriptCallbackWrapper(wrapper,
                         ExporterUtil.wrap(result));
 
                 operation.apply(new ValueCallback<T>() {
