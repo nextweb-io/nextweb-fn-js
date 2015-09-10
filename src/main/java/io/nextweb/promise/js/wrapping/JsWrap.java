@@ -96,12 +96,12 @@ public final class JsWrap {
         };
     }
 
-    public static <T> Closure<T> wrapJsNodeClosure(final JsClosure closure, final Function<Object, Object> wrapper) {
+    public static <T> Closure<T> wrapJsClosure(final JsClosure closure, final Function<Object, Object> wrapper) {
         return new Closure<T>() {
 
             @Override
             public void apply(final T o) {
-                closure.apply(unwrapBasicType(forcewrapAnyObjectForJavaScript(o, wrappers)));
+                closure.apply(wrapper.apply(o));
 
             }
         };
