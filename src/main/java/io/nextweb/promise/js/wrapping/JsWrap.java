@@ -118,10 +118,14 @@ public final class JsWrap {
 
     /**
      * <p>
+     * ExporterUtil.wrap() MUST be called on the result of JsBasicType.wrap() if
+     * it's passed as a value to this method.
+     * <p>
      * MUST be called right before returning the value to JavaScript.
      * <p>
      * ExporterUtil.wrap() MUST NOT be called on the result of this method This
      * works for all types but booleans
+     * 
      * 
      * @param value
      * @return
