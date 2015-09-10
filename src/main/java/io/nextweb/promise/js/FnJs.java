@@ -1,6 +1,5 @@
 package io.nextweb.promise.js;
 
-import delight.functional.Function;
 import delight.functional.Success;
 
 import org.timepedia.exporter.client.ExporterUtil;
@@ -41,20 +40,16 @@ public class FnJs {
                                                                                                         fn(param);
                                                                                                         }-*/;
 
-    public static final JsClosure asJsClosure(final JavaScriptObject fn, final Function<Object, Object> wrapper) {
-
-        return new JsClosure() {
-
-            @Override
-            public void apply(final Object result) {
-
-                asJsClosure(fn).apply(wrapper.apply(result));
-
-            }
-        };
-
-    }
-
+    /**
+     * <p>
+     * Triggers the passed JavaScript object as a function.
+     * <p>
+     * The parameter must already be an object passable to JavaScript (e.g.
+     * JavaScriptObject or a basic type).
+     * 
+     * @param fn
+     * @return
+     */
     public static final JsClosure asJsClosure(final JavaScriptObject fn) {
 
         return new JsClosure() {
