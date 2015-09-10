@@ -36,6 +36,8 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     protected R result;
     protected WrapperCollection wrappers;
 
+    protected Function<Object, Object> wrapper;
+
     @Override
     @Export
     public Object get(final Object... params) {
