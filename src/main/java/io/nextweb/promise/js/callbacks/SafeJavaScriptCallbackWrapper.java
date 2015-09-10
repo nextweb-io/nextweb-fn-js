@@ -1,13 +1,12 @@
 package io.nextweb.promise.js.callbacks;
 
 import delight.async.callbacks.ValueCallback;
+import delight.functional.Function;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.js.exceptions.ExceptionUtils;
-import io.nextweb.promise.js.wrapping.JsWrap;
-import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 /**
  * <p>
@@ -22,8 +21,8 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
  */
 public final class SafeJavaScriptCallbackWrapper implements ValueCallback<Object> {
 
-    private final WrapperCollection wrappers;
     private final JavaScriptObject callback;
+    private final Function<Object, Object> wrapper;
 
     @Override
     public void onFailure(final Throwable t) {
@@ -37,7 +36,7 @@ public final class SafeJavaScriptCallbackWrapper implements ValueCallback<Object
             callCallback(callback, null, null);
             return;
         }
-        callCallback(callback, null, JsWrap.forcewrapAnyObjectForJavaScript(value, wrappers));
+        callCallback(callback, null, wrapper.apply(value));
 
     }
 
@@ -45,9 +44,9 @@ public final class SafeJavaScriptCallbackWrapper implements ValueCallback<Object
                                                                                                   cb(ex, value);
                                                                                                   }-*/;
 
-    public SafeJavaScriptCallbackWrapper(final WrapperCollection wrappers, final JavaScriptObject callback) {
+    public SafeJavaScriptCallbackWrapper(final Function<Object, Object> wrapper, final JavaScriptObject callback) {
         super();
-        this.wrappers = wrappers;
+        this.wrapper = wrapper;
         this.callback = callback;
     }
 
