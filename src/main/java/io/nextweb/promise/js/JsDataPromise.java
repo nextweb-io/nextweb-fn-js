@@ -14,8 +14,6 @@ import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
-import io.nextweb.promise.js.wrapping.Wrapper;
-import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 /**
  * 
@@ -48,7 +46,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     "Only either no argument or one argument of type JsClosure is supported.");
         }
 
-        performGet(FnJs.asJsClosure((JavaScriptObject) params[0], wrappers));
+        performGet(FnJs.asJsClosure((JavaScriptObject) params[0]));
 
         return ExporterUtil.wrap(this);
     }
@@ -165,22 +163,22 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     //
     // this.wrappers = new WrapperCollection(singlewrappers);
     // }
-
+    // @NoExport
+    // public static <T, R extends BasicPromise<T>> JsDataPromise<T, R>
+    // wrap(final R result,
+    // final WrapperCollection wrappers) {
+    // final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
+    // jsResult.setOriginal(result);
+    // jsResult.setWrappers(wrappers);
+    // return jsResult;
+    // }
     public JsDataPromise() {
         super();
     }
 
     @NoExport
     public static <T, R extends BasicPromise<T>> JsDataPromise<T, R> wrap(final R result,
-            final WrapperCollection wrappers) {
-        final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
-        jsResult.setOriginal(result);
-        jsResult.setWrappers(wrappers);
-        return jsResult;
-    }
-
-    @NoExport
-    public static <T, R extends BasicPromise<T>> JsDataPromise<T, R> wrap(final R result, final Wrapper wrapper) {
+            final Function<Object, Object> wrapper) {
         final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
         jsResult.setOriginal(result);
         jsResult.setWrapper(wrapper);
