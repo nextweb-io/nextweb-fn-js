@@ -2,6 +2,9 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -14,6 +17,7 @@ import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
+import io.nextweb.promise.js.wrapping.Wrapper;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
 
 /**
@@ -143,6 +147,15 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     @NoExport
     public void setWrappers(final WrapperCollection wrappers) {
         this.wrappers = wrappers;
+    }
+
+    @NoExport
+    public void setWrapper(final Wrapper wrapper) {
+        final List<Wrapper> singlewrappers = new ArrayList<Wrapper>(1);
+
+        wrappers.addWrapper(wrapper);
+
+        this.wrappers = singlewrappers;
     }
 
     public JsDataPromise() {
