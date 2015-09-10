@@ -1,5 +1,6 @@
 package io.nextweb.promise.js;
 
+import delight.functional.Function;
 import delight.functional.Success;
 
 import org.timepedia.exporter.client.ExporterUtil;
@@ -39,6 +40,20 @@ public class FnJs {
     public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param)/*-{
                                                                                                         fn(param);
                                                                                                         }-*/;
+
+    public static final JsClosure asJsClosure(final JavaScriptObject fn, final Function<Object, Object> wrapper) {
+
+        return new JsClosure() {
+
+            @Override
+            public void apply(final Object result) {
+
+                asJsClosure(fn).apply(wrapper.apply(result));
+
+            }
+        };
+
+    }
 
     public static final JsClosure asJsClosure(final JavaScriptObject fn) {
 
