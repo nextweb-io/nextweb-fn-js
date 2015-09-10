@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
-import com.appjangle.api.Node;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.js.FnJs;
@@ -226,14 +225,13 @@ public final class JsWrap {
         };
     }
 
-    public static <Type extends Node> Closure<Type> wrapJsNodeClosure(final JsClosure closure,
-            final WrapperCollection wrappers) {
-        return new Closure<Type>() {
-    
+    public static Closure<Object> wrapJsNodeClosure(final JsClosure closure, final WrapperCollection wrappers) {
+        return new Closure<Object>() {
+
             @Override
-            public void apply(final Type o) {
+            public void apply(final Object o) {
                 closure.apply(unwrapBasicType(forcewrapAnyObjectForJavaScript(o, wrappers)));
-    
+
             }
         };
     }
