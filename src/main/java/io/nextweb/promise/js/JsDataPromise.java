@@ -10,7 +10,7 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.BasicPromise;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 import io.nextweb.promise.js.wrapping.JsWrap;
@@ -63,7 +63,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     }
 
     @NoExport
-    public final NextwebExceptionManager javaExceptionManager() {
+    public final DataExceptionManager javaExceptionManager() {
         return result.getExceptionManager();
     }
 

@@ -11,7 +11,7 @@ import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.ImpossibleResult;
-import io.nextweb.promise.exceptions.NextwebExceptionManager;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
@@ -20,11 +20,11 @@ import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.JsWrapper;
 
 @Export
-public class JsExceptionManager implements Exportable, JsWrapper<NextwebExceptionManager>,
+public class JsExceptionManager implements Exportable, JsWrapper<DataExceptionManager>,
         JsExceptionListeners<JsExceptionManager> {
 
     @NoExport
-    private NextwebExceptionManager em;
+    private DataExceptionManager em;
 
     @Export
     public void onFailure(final JavaScriptObject origin, final String errorMessage) {
@@ -94,13 +94,13 @@ public class JsExceptionManager implements Exportable, JsWrapper<NextwebExceptio
 
     @NoExport
     @Override
-    public NextwebExceptionManager getOriginal() {
+    public DataExceptionManager getOriginal() {
         return this.em;
     }
 
     @NoExport
     @Override
-    public void setOriginal(final NextwebExceptionManager original) {
+    public void setOriginal(final DataExceptionManager original) {
         this.em = original;
     }
 
@@ -131,7 +131,7 @@ public class JsExceptionManager implements Exportable, JsWrapper<NextwebExceptio
                                                                                                                  }-*/;
 
     @NoExport
-    public static JsExceptionManager wrap(final NextwebExceptionManager em) {
+    public static JsExceptionManager wrap(final DataExceptionManager em) {
         final JsExceptionManager jsem = new JsExceptionManager();
         jsem.setOriginal(em);
         return jsem;
