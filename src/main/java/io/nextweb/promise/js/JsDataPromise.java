@@ -26,8 +26,8 @@ import io.nextweb.promise.js.wrapping.WrapperCollection;
  *            The type of the wrapped result
  */
 @Export
-public class JsNextwebPromise<T, R extends BasicPromise<T>>
-        implements Exportable, JsBasicPromise<JsNextwebPromise<T, R>>, JsWrapper<R> {
+public class JsDataPromise<T, R extends BasicPromise<T>>
+        implements Exportable, JsBasicPromise<JsDataPromise<T, R>>, JsWrapper<R> {
 
     protected R result;
     protected WrapperCollection wrappers;
@@ -52,7 +52,7 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
 
     @Export
     @Override
-    public JsNextwebPromise<T, R> catchExceptions(final JsClosure exceptionListener) {
+    public JsDataPromise<T, R> catchExceptions(final JsClosure exceptionListener) {
         exceptionManager().catchExceptions(exceptionListener);
         return this;
     }
@@ -69,21 +69,21 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
 
     @Export
     @Override
-    public JsNextwebPromise<T, R> catchUndefined(final JsClosure undefinedListener) {
+    public JsDataPromise<T, R> catchUndefined(final JsClosure undefinedListener) {
         exceptionManager().catchUndefined(undefinedListener);
         return this;
     }
 
     @Export
     @Override
-    public JsNextwebPromise<T, R> catchUnauthorized(final JsClosure unauthorizedListener) {
+    public JsDataPromise<T, R> catchUnauthorized(final JsClosure unauthorizedListener) {
         exceptionManager().catchUnauthorized(unauthorizedListener);
         return this;
     }
 
     @Export
     @Override
-    public JsNextwebPromise<T, R> catchImpossible(final JsClosure impossibleListener) {
+    public JsDataPromise<T, R> catchImpossible(final JsClosure impossibleListener) {
         exceptionManager().catchImpossible(impossibleListener);
         return this;
     }
@@ -145,14 +145,14 @@ public class JsNextwebPromise<T, R extends BasicPromise<T>>
         this.wrappers = wrappers;
     }
 
-    public JsNextwebPromise() {
+    public JsDataPromise() {
         super();
     }
 
     @NoExport
-    public static <T, R extends BasicPromise<T>> JsNextwebPromise<T, R> wrap(final R result,
+    public static <T, R extends BasicPromise<T>> JsDataPromise<T, R> wrap(final R result,
             final WrapperCollection wrappers) {
-        final JsNextwebPromise<T, R> jsResult = new JsNextwebPromise<T, R>();
+        final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
         jsResult.setOriginal(result);
         jsResult.setWrappers(wrappers);
         return jsResult;
