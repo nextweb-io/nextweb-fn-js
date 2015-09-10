@@ -36,6 +36,10 @@ public class FnJs {
                                                                                                     fn.apply(this, jsArray.getArray());
                                                                                                     }-*/;
 
+    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param)/*-{
+                                                                                                        fn(param);
+                                                                                                        }-*/;
+
     public static final JsClosure asJsClosure(final JavaScriptObject fn, final WrapperCollection wrappers) {
 
         return new JsClosure() {
@@ -45,7 +49,9 @@ public class FnJs {
 
                 assert result instanceof JavaScriptObject;
 
-                triggerCallback(fn, wrappers, new Object[] { result });
+                triggerSimpleCallbackJs(fn, result);
+
+                // triggerCallback(fn, wrappers, new Object[] { result });
 
             }
         };
