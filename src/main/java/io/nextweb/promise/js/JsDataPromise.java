@@ -1,6 +1,7 @@
 package io.nextweb.promise.js;
 
 import delight.functional.Closure;
+import delight.functional.Function;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,6 @@ import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
-import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.Wrapper;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
 
@@ -104,7 +104,9 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         Object node = result.get();
 
         if (node != null) {
-            node = JsWrap.unwrapBasicType(JsWrap.forcewrapAnyObjectForJavaScript(node, wrappers));
+            node = wrapper.apply(node);
+            // JsWrap.unwrapBasicType(JsWrap.forcewrapAnyObjectForJavaScript(node,
+            // wrappers));
         }
 
         return node;
@@ -122,7 +124,9 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     return;
                 }
 
-                onSuccess.apply(JsWrap.unwrapBasicType(JsWrap.forcewrapAnyObjectForJavaScript(o, wrappers)));
+                onSuccess.apply(wrapper.apply(o));
+                // JsWrap.unwrapBasicType(JsWrap.forcewrapAnyObjectForJavaScript(o,
+                // wrappers)));
             }
 
         });
