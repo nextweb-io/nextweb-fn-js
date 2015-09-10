@@ -148,7 +148,7 @@ public class WrapperCollection {
         if (gwtNode instanceof List<?>) {
             final List<?> list = (List<?>) gwtNode;
 
-            final JavaScriptObject[] result = createJsList(list, new Function<Object, JavaScriptObject>() {
+            final JavaScriptObject[] result = JsWrap.createJsList(list, new Function<Object, JavaScriptObject>() {
 
                 @Override
                 public JavaScriptObject apply(final Object input) {
@@ -171,18 +171,6 @@ public class WrapperCollection {
         }
 
         return ExporterUtil.wrap(gwtNode);
-    }
-
-    public static JavaScriptObject[] createJsList(final List<?> list,
-            final Function<Object, JavaScriptObject> wrapper) {
-        final JavaScriptObject[] result = new JavaScriptObject[list.size()];
-        int count = 0;
-        for (final Object o : list) {
-
-            result[count] = wrapper.apply(o);
-            count++;
-        }
-        return result;
     }
 
     public WrapperCollection(final List<Wrapper> wrappers) {

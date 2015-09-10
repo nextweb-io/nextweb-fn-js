@@ -1,8 +1,10 @@
 package io.nextweb.promise.js.wrapping;
 
 import delight.functional.Closure;
+import delight.functional.Function;
 
 import java.util.Date;
+import java.util.List;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
@@ -189,5 +191,16 @@ public class JsWrap {
 
                                                                                           return values;
                                                                                           }-*/;
+
+    public static JavaScriptObject[] createJsList(final List<?> list, final Function<Object, Object> wrapper) {
+        final JavaScriptObject[] result = new JavaScriptObject[list.size()];
+        int count = 0;
+        for (final Object o : list) {
+    
+            result[count] = (JavaScriptObject) wrapper.apply(o);
+            count++;
+        }
+        return result;
+    }
 
 }
