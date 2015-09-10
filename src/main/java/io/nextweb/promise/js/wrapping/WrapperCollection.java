@@ -1,5 +1,7 @@
 package io.nextweb.promise.js.wrapping;
 
+import delight.functional.Function;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -146,7 +148,13 @@ public class WrapperCollection {
         if (gwtNode instanceof List<?>) {
             final List<?> list = (List<?>) gwtNode;
 
-            final JavaScriptObject[] result = extracted(list);
+            final JavaScriptObject[] result = createJsList(list, new Function<Object, JavaScriptObject>() {
+
+                @Override
+                public JavaScriptObject apply(final Object input) {
+                    return ExporterUtil.wrap(convertValueObjectForJs(input));
+                }
+            });
 
             return ExporterUtil.wrap(result);
 
@@ -165,12 +173,13 @@ public class WrapperCollection {
         return ExporterUtil.wrap(gwtNode);
     }
 
-    private JavaScriptObject[] extracted(final List<?> list) {
+    public static JavaScriptObject[] createJsList(final List<?> list,
+            final Function<Object, JavaScriptObject> wrapper) {
         final JavaScriptObject[] result = new JavaScriptObject[list.size()];
         int count = 0;
         for (final Object o : list) {
 
-            result[count] = ExporterUtil.wrap(convertValueObjectForJs(o));
+            result[count] = wrapper.apply(o);
             count++;
         }
         return result;
