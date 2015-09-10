@@ -171,4 +171,12 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return jsResult;
     }
 
+    @NoExport
+    public static <T, R extends BasicPromise<T>> JsDataPromise<T, R> wrap(final R result, final Wrapper wrapper) {
+        final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
+        jsResult.setOriginal(result);
+        jsResult.setWrapper(wrapper);
+        return jsResult;
+    }
+
 }
