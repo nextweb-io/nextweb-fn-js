@@ -84,21 +84,6 @@ public final class JsWrap {
 
     }
 
-    /**
-     * Supports wrapping both of Engine nodes and value nodes.</br>
-     * This function will <b>keep</b> basic types like Integer/Boolean/etc.
-     * 
-     * @param javaNode
-     * @param wrappers
-     * @return
-     */
-    // public static Object wrapAnyObjectForJavaScript(final Object javaNode,
-    // final WrapperCollectionNextweb wrappers) {
-    // return wrappers
-    // .convertValueObjectForJs(createJsEngineWrapperIfPossible(
-    // javaNode, wrappers.getFactory()));
-    // }
-
     public static <Type extends Object> Closure<Type> wrapJsClosure(final JsClosure closure,
             final WrapperCollection wrappers) {
         return new Closure<Type>() {
@@ -106,6 +91,17 @@ public final class JsWrap {
             @Override
             public void apply(final Type o) {
                 closure.apply(JsWrap.unwrapBasicType(forcewrapAnyObjectForJavaScript(o, wrappers)));
+
+            }
+        };
+    }
+
+    public static <T> Closure<T> wrapJsNodeClosure(final JsClosure closure, final Function<Object, Object> wrapper) {
+        return new Closure<T>() {
+
+            @Override
+            public void apply(final T o) {
+                closure.apply(unwrapBasicType(forcewrapAnyObjectForJavaScript(o, wrappers)));
 
             }
         };
@@ -221,17 +217,6 @@ public final class JsWrap {
             public Object apply(final Object input) {
 
                 return ExporterUtil.wrap(input);
-            }
-        };
-    }
-
-    public static <T> Closure<T> wrapJsNodeClosure(final JsClosure closure, final WrapperCollection wrappers) {
-        return new Closure<T>() {
-
-            @Override
-            public void apply(final T o) {
-                closure.apply(unwrapBasicType(forcewrapAnyObjectForJavaScript(o, wrappers)));
-
             }
         };
     }
