@@ -153,9 +153,9 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     public void setWrapper(final Wrapper wrapper) {
         final List<Wrapper> singlewrappers = new ArrayList<Wrapper>(1);
 
-        wrappers.addWrapper(wrapper);
+        singlewrappers.add(wrapper);
 
-        this.wrappers = singlewrappers;
+        this.wrappers = new WrapperCollection(singlewrappers);
     }
 
     public JsDataPromise() {
