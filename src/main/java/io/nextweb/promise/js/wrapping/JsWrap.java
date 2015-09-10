@@ -14,7 +14,7 @@ import io.nextweb.promise.js.FnJs;
 import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.types.JsBasicType;
 
-public class JsWrap {
+public final class JsWrap {
 
     public final native static String timeFromJsDate(final JavaScriptObject d)/*-{
                                                                               return "t" + d.getTime();
@@ -85,8 +85,8 @@ public class JsWrap {
     }
 
     /**
-     * Supports wrapping both of Engine nodes and value nodes.</br> This
-     * function will <b>keep</b> basic types like Integer/Boolean/etc.
+     * Supports wrapping both of Engine nodes and value nodes.</br>
+     * This function will <b>keep</b> basic types like Integer/Boolean/etc.
      * 
      * @param javaNode
      * @param wrappers
@@ -139,11 +139,11 @@ public class JsWrap {
      * @return
      */
     public final static native Object unwrapBasicType(Object value)/*-{
-
+                                                                   
                                                                    var result = value;
-
+                                                                   
                                                                    if (result.isJsBasicType && typeof result.isJsBasicType === 'function') {
-
+                                                                   
                                                                    if (result.isInt() == 1) {
                                                                    return result.intValue();
                                                                    }
@@ -157,14 +157,14 @@ public class JsWrap {
                                                                    return result.booleanValue().value;
                                                                    }
                                                                    }
-
+                                                                   
                                                                    return result;
-
+                                                                   
                                                                    }-*/;
 
     public final static native JavaScriptObject unwrapBasicTypes(JavaScriptObject jsArray)/*-{
                                                                                           var values = jsArray.getArray();
-
+                                                                                          
                                                                                           for ( var i = 0; i <= values.length - 1; i++) {
                                                                                           var value = values[i];
                                                                                           if (value.isJsBasicType
@@ -173,22 +173,22 @@ public class JsWrap {
                                                                                           if (value.isString() != 0) {
                                                                                           rpl = value.stringValue();
                                                                                           }
-
+                                                                                          
                                                                                           if (value.isInt() != 0) {
                                                                                           rpl = value.intValue();
                                                                                           }
-
+                                                                                          
                                                                                           if (value.isDouble() != 0) {
                                                                                           rpl = value.doubleValue();
                                                                                           }
-
+                                                                                          
                                                                                           if (value.isBoolean() != 0) {
                                                                                           rpl = value.booleanValue().value;
                                                                                           }
                                                                                           values[i] = rpl;
                                                                                           }
                                                                                           }
-
+                                                                                          
                                                                                           return values;
                                                                                           }-*/;
 
@@ -196,11 +196,22 @@ public class JsWrap {
         final JavaScriptObject[] result = new JavaScriptObject[list.size()];
         int count = 0;
         for (final Object o : list) {
-    
+
             result[count] = (JavaScriptObject) wrapper.apply(o);
             count++;
         }
         return result;
+    }
+
+    public static Function<Object, Object> noWrapping() {
+        return new Function<Object, Object>() {
+
+            @Override
+            public Object apply(final Object input) {
+
+                return input;
+            }
+        };
     }
 
 }
