@@ -146,13 +146,7 @@ public class WrapperCollection {
         if (gwtNode instanceof List<?>) {
             final List<?> list = (List<?>) gwtNode;
 
-            final JavaScriptObject[] result = new JavaScriptObject[list.size()];
-            int count = 0;
-            for (final Object o : list) {
-
-                result[count] = ExporterUtil.wrap(convertValueObjectForJs(o));
-                count++;
-            }
+            final JavaScriptObject[] result = extracted(list);
 
             return ExporterUtil.wrap(result);
 
@@ -169,6 +163,17 @@ public class WrapperCollection {
         }
 
         return ExporterUtil.wrap(gwtNode);
+    }
+
+    private JavaScriptObject[] extracted(final List<?> list) {
+        final JavaScriptObject[] result = new JavaScriptObject[list.size()];
+        int count = 0;
+        for (final Object o : list) {
+
+            result[count] = ExporterUtil.wrap(convertValueObjectForJs(o));
+            count++;
+        }
+        return result;
     }
 
     public WrapperCollection(final List<Wrapper> wrappers) {
