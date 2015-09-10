@@ -214,4 +214,15 @@ public final class JsWrap {
         };
     }
 
+    public static Function<Object, Object> justExport() {
+        return new Function<Object, Object>() {
+
+            @Override
+            public Object apply(final Object input) {
+
+                return ExporterUtil.wrap(input);
+            }
+        };
+    }
+
 }
