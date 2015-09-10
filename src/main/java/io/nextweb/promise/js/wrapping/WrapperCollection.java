@@ -148,7 +148,7 @@ public class WrapperCollection {
         if (gwtNode instanceof List<?>) {
             final List<?> list = (List<?>) gwtNode;
 
-            final JavaScriptObject[] result = JsWrap.createJsList(list, new Function<Object, JavaScriptObject>() {
+            final JavaScriptObject[] result = JsWrap.createJsList(list, new Function<Object, Object>() {
 
                 @Override
                 public JavaScriptObject apply(final Object input) {

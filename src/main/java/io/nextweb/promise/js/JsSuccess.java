@@ -5,6 +5,7 @@ import delight.functional.Success;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
+import org.timepedia.exporter.client.ExporterUtil;
 import org.timepedia.exporter.client.NoExport;
 
 @Export
@@ -31,7 +32,7 @@ public class JsSuccess implements Exportable {
                             "Result of type Success expected. Instead received: " + input.getClass());
                 }
 
-                return new JsSuccess();
+                return ExporterUtil.wrap(new JsSuccess());
             }
         };
     }
