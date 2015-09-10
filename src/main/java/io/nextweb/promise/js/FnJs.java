@@ -40,7 +40,7 @@ public class FnJs {
                                                                                                         fn(param);
                                                                                                         }-*/;
 
-    public static final JsClosure asJsClosure(final JavaScriptObject fn, final WrapperCollection wrappers) {
+    public static final JsClosure asJsClosure(final JavaScriptObject fn) {
 
         return new JsClosure() {
 
