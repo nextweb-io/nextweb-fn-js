@@ -3,9 +3,6 @@ package io.nextweb.promise.js;
 import delight.functional.Closure;
 import delight.functional.Function;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
@@ -34,7 +31,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         implements Exportable, JsBasicPromise<JsDataPromise<T, R>>, JsWrapper<R> {
 
     protected R result;
-    protected WrapperCollection wrappers;
+    // protected WrapperCollection wrappers;
 
     protected Function<Object, Object> wrapper;
 
@@ -146,23 +143,28 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     }
 
     @NoExport
-    public WrapperCollection getWrappers() {
-        return wrappers;
+    public void setWrapper(final Function<Object, Object> wrapper) {
+        this.wrapper = wrapper;
     }
 
-    @NoExport
-    public void setWrappers(final WrapperCollection wrappers) {
-        this.wrappers = wrappers;
-    }
-
-    @NoExport
-    public void setWrapper(final Wrapper wrapper) {
-        final List<Wrapper> singlewrappers = new ArrayList<Wrapper>(1);
-
-        singlewrappers.add(wrapper);
-
-        this.wrappers = new WrapperCollection(singlewrappers);
-    }
+    // @NoExport
+    // public WrapperCollection getWrappers() {
+    // return wrappers;
+    // }
+    //
+    // @NoExport
+    // public void setWrappers(final WrapperCollection wrappers) {
+    // this.wrappers = wrappers;
+    // }
+    //
+    // @NoExport
+    // public void setWrapper(final Wrapper wrapper) {
+    // final List<Wrapper> singlewrappers = new ArrayList<Wrapper>(1);
+    //
+    // singlewrappers.add(wrapper);
+    //
+    // this.wrappers = new WrapperCollection(singlewrappers);
+    // }
 
     public JsDataPromise() {
         super();
