@@ -85,12 +85,14 @@ public final class JsWrap {
     }
 
     public static <T> Closure<T> wrapJsClosure(final JsClosure closure, final Function<Object, Object> wrapper) {
+        if (closure == null) {
+            throw new NullPointerException("Closure must not be null.");
+        }
         return new Closure<T>() {
 
             @Override
             public void apply(final T o) {
                 closure.apply(wrapper.apply(o));
-
             }
         };
     }
