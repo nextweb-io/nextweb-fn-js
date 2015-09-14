@@ -1,5 +1,6 @@
 package io.nextweb.promise.js;
 
+import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Function;
 
@@ -128,7 +129,21 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     }
 
     @NoExport
-    public final void performGet(final Closure<Object> onSuccess) {
+    public final void apply(final ValueCallback<Object> callback) {
+        result.apply(new ValueCallback<Object>() {
+
+            @Override
+            public void onFailure(final Throwable t) {
+                callback.onFailure(t);
+            }
+
+            @Override
+            public void onSuccess(final Object value) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
         result.get(new Closure<T>() {
 
             @Override
