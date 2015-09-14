@@ -1,5 +1,6 @@
 package io.nextweb.promise.js;
 
+import delight.functional.Closure2;
 import delight.functional.Success;
 
 import org.timepedia.exporter.client.ExporterUtil;
@@ -32,6 +33,15 @@ public class FnJs {
                                                                          return typeof(obj) === 'function';
                                                                          
                                                                          }-*/;
+
+    public static final JavaScriptObject asJsClosure(final Closure2 closure) {
+
+    }
+
+    private final static native JavaScriptObject createFunction(Object param1,
+            Object param2)/*-{
+                          
+                          }-*/;
 
     public static final boolean isBasicJsType(final Object node) {
         return isJsString(node) || isJsInteger(node) || isJsDouble(node) || isJsBoolean(node);
