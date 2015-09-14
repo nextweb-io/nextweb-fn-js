@@ -29,7 +29,7 @@ public class FnJs {
     }
 
     public static native final boolean isJsFunction(JavaScriptObject obj)/*-{
-                                                                         return typeof obj === 'function';
+                                                                         return typeof(obj) === 'function';
                                                                          
                                                                          }-*/;
 
