@@ -7,6 +7,7 @@ import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+import io.nextweb.promise.js.internal.JsCallback;
 import io.nextweb.promise.js.types.JsArray;
 import io.nextweb.promise.js.wrapping.JsWrap;
 import io.nextweb.promise.js.wrapping.WrapperCollection;
@@ -34,8 +35,8 @@ public class FnJs {
                                                                          
                                                                          }-*/;
 
-    public static final JavaScriptObject asJsCallback(final Closure2 closure) {
-
+    public static final JavaScriptObject asJsCallback(final Closure2<Object, Object> closure) {
+        return createCallback(ExporterUtil.wrap(JsCallback.wrap(closure)));
     }
 
     private final static native JavaScriptObject createCallback(JavaScriptObject callback)/*-{
