@@ -38,10 +38,9 @@ public class FnJs {
 
     }
 
-    private final static native JavaScriptObject createFunction(Object param1,
-            Object param2)/*-{
-                          
-                          }-*/;
+    private final static native JavaScriptObject createFunction(Object param1, Object param2)/*-{
+                                                                                             return function()
+                                                                                             }-*/;
 
     public static final boolean isBasicJsType(final Object node) {
         return isJsString(node) || isJsInteger(node) || isJsDouble(node) || isJsBoolean(node);
