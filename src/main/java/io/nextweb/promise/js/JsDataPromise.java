@@ -100,8 +100,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
         if (node != null) {
             node = wrapper.apply(node);
-            // JsWrap.unwrapBasicType(JsWrap.forcewrapAnyObjectForJavaScript(node,
-            // wrappers));
+
         }
 
         return node;
@@ -126,6 +125,22 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
         });
 
+    }
+
+    @NoExport
+    public final void performGet(final Closure<Object> onSuccess) {
+        result.get(new Closure<T>() {
+
+            @Override
+            public void apply(final T o) {
+                if (o instanceof JavaScriptObject) {
+                    onSuccess.apply(o);
+                    return;
+                }
+
+                onSuccess.apply(wrapper.apply(o));
+            }
+        });
     }
 
     @NoExport
