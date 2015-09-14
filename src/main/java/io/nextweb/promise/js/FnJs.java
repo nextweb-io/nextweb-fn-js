@@ -34,12 +34,14 @@ public class FnJs {
                                                                          
                                                                          }-*/;
 
-    public static final JavaScriptObject asJsClosure(final Closure2 closure) {
+    public static final JavaScriptObject asJsCallback(final Closure2 closure) {
 
     }
 
-    private final static native JavaScriptObject createFunction(Object param1, Object param2)/*-{
-                                                                                             return function()
+    private final static native JavaScriptObject createCallback(JavaScriptObject callback)/*-{
+                                                                                             return function(param1, param2) {
+                                                                                                 callback.perform(param1, param2);
+                                                                                             };
                                                                                              }-*/;
 
     public static final boolean isBasicJsType(final Object node) {
