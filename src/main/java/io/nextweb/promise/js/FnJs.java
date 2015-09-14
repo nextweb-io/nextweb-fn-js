@@ -28,6 +28,11 @@ public class FnJs {
         return value instanceof Boolean;
     }
 
+    public static native final boolean isJsFunction(JavaScriptObject obj)/*-{
+                                                                         return typeof obj === 'function';
+                                                                         
+                                                                         }-*/;
+
     public static final boolean isBasicJsType(final Object node) {
         return isJsString(node) || isJsInteger(node) || isJsDouble(node) || isJsBoolean(node);
     }
