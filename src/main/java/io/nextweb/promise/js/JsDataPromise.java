@@ -130,7 +130,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
     @NoExport
     public final void apply(final ValueCallback<Object> callback) {
-        result.apply(new ValueCallback<Object>() {
+        result.apply(new ValueCallback<T>() {
 
             @Override
             public void onFailure(final Throwable t) {
@@ -138,24 +138,16 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
             }
 
             @Override
-            public void onSuccess(final Object value) {
-                // TODO Auto-generated method stub
-
-            }
-        });
-
-        result.get(new Closure<T>() {
-
-            @Override
-            public void apply(final T o) {
-                if (o instanceof JavaScriptObject) {
-                    onSuccess.apply(o);
+            public void onSuccess(final T value) {
+                if (value instanceof JavaScriptObject) {
+                    callback.onSuccess(value);
                     return;
                 }
 
-                onSuccess.apply(wrapper.apply(o));
+                callback.onSuccess(wrapper.apply(value));
             }
         });
+
     }
 
     @NoExport
