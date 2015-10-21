@@ -53,6 +53,13 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     }
 
     @Export
+    public void apply(final JavaScriptObject callback) {
+        if (!FnJs.isJsFunction(callback)) {
+            throw new IllegalArgumentException("Expected one parameter which is a function.");
+        }
+    }
+
+    @Export
     @Override
     public JsDataPromise<T, R> catchExceptions(final JsClosure exceptionListener) {
         exceptionManager().catchExceptions(exceptionListener);
@@ -167,33 +174,6 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         this.wrapper = wrapper;
     }
 
-    // @NoExport
-    // public WrapperCollection getWrappers() {
-    // return wrappers;
-    // }
-    //
-    // @NoExport
-    // public void setWrappers(final WrapperCollection wrappers) {
-    // this.wrappers = wrappers;
-    // }
-    //
-    // @NoExport
-    // public void setWrapper(final Wrapper wrapper) {
-    // final List<Wrapper> singlewrappers = new ArrayList<Wrapper>(1);
-    //
-    // singlewrappers.add(wrapper);
-    //
-    // this.wrappers = new WrapperCollection(singlewrappers);
-    // }
-    // @NoExport
-    // public static <T, R extends BasicPromise<T>> JsDataPromise<T, R>
-    // wrap(final R result,
-    // final WrapperCollection wrappers) {
-    // final JsDataPromise<T, R> jsResult = new JsDataPromise<T, R>();
-    // jsResult.setOriginal(result);
-    // jsResult.setWrappers(wrappers);
-    // return jsResult;
-    // }
     public JsDataPromise() {
         super();
     }
