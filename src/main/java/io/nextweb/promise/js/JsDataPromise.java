@@ -57,6 +57,21 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         if (!FnJs.isJsFunction(callback)) {
             throw new IllegalArgumentException("Expected one parameter which is a function.");
         }
+
+        apply(new ValueCallback<Object>() {
+
+            @Override
+            public void onFailure(final Throwable t) {
+                FnJs.asJsClosure(callback).apply(ExporterUtil.wrap(t));
+            }
+
+            @Override
+            public void onSuccess(final Object value) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
     }
 
     @Export
