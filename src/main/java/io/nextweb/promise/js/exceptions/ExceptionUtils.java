@@ -15,8 +15,8 @@ public class ExceptionUtils {
             return (Throwable) exception;
         }
 
-        return new Exception("JavaScriptException: '" + exception.toString() + "' of class '" + exception.getClass()
-                + "'");
+        return new Exception(
+                "JavaScriptException: '" + exception.toString() + "' of class '" + exception.getClass() + "'");
     }
 
     public static final Throwable convertToJavaException(final JavaScriptObject exception) {
@@ -36,25 +36,37 @@ public class ExceptionUtils {
             return new Exception("Unsupported JavaScriptException encountered with message: [" + message + "]");
         }
 
-        return new Exception("Cannot convert reported exception result to Java Exception.\n"
-                + "  Exception Result Type: " + obj.getClass() + "\n" + "  Exception Result toString: "
-                + obj.toString());
+        return new Exception(
+                "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
+                        + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
     }
 
-    private static native final String attemptToGetMessage(JavaScriptObject exception)/*-{ 
-
-                                                                                      if (exception.message) {
-                                                                                      return exception.message;
-                                                                                      }
-
-                                                                                      return null;
-                                                                                      }-*/;
+    private static native final String attemptToGetMessage(
+            JavaScriptObject exception)/*-{ 
+                                       
+                                       if (exception.message) {
+                                       return exception.message;
+                                       }
+                                       
+                                       return null;
+                                       }-*/;
 
     // TODO does not seem to trigger clear exceptions!!!
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
         triggerFailureCallbackJs(callback, r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
                 getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception()));
     }
+
+    public static final native JavaScriptObject createExceptionResult(String origin, String exceptionMessage,
+            String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
+                                                                                return {
+                                                                                exception: exceptionMessage,
+                                                                                origin: origin,
+                                                                                origintrace: originTrace,
+                                                                                stacktrace: stacktrace,
+                                                                                jsException: jsException
+                                                                                };
+                                                                                }-*/;
 
     private static final native JavaScriptObject triggerFailureCallbackJs(JavaScriptObject callback, String origin,
             String exceptionMessage, String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
@@ -69,9 +81,8 @@ public class ExceptionUtils {
 
     public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
 
-        return (ExceptionUtils.wrapExceptionResult(r.origin().getClass().toString(),
-                unwrap(r.exception()).getMessage(), getStacktrace(r.exception()), getOriginTrace(),
-                getJsException(r.exception())));
+        return (ExceptionUtils.wrapExceptionResult(r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
+                getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception())));
     }
 
     private final static JavaScriptObject getJsException(final Throwable ex) {
