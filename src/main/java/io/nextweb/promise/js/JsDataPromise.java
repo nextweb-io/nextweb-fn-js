@@ -67,8 +67,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onSuccess(final Object value) {
-                // TODO Auto-generated method stub
-
+                FnJs.asJsClosure(callback).apply(null);
             }
         });
 
