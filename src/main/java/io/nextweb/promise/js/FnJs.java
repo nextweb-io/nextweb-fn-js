@@ -53,10 +53,6 @@ public class FnJs {
                                                                                                     fn.apply(this, jsArray.getArray());
                                                                                                     }-*/;
 
-    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param)/*-{
-                                                                                                        fn(param);
-                                                                                                        }-*/;
-
     /**
      * <p>
      * Triggers the passed JavaScript object as a function.
@@ -84,6 +80,33 @@ public class FnJs {
         };
 
     }
+
+    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param1, Object param2)/*-{
+                                                                                                              fn(param, param2);
+                                                                                                              }-*/;
+
+    public static final Closure2<Object, Object> asClosure2(final JavaScriptObject fn) {
+
+        return new Closure2<Object, Object>() {
+
+            @Override
+            public void apply(final Object param1, final Object param2) {
+
+                assert param1 instanceof JavaScriptObject;
+                assert param12instanceof JavaScriptObject;
+
+                triggerSimpleCallbackJs(fn, param1, param2);
+
+                // triggerCallback(fn, wrappers, new Object[] { result });
+
+            }
+        };
+
+    }
+
+    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param)/*-{
+                                                                                              fn(param);
+                                                                                              }-*/;
 
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
