@@ -62,12 +62,13 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onFailure(final Throwable t) {
-                FnJs.asJsClosure(callback).apply(ExporterUtil.wrap(t));
+                FnJs.asClosure2(callback).apply(ExporterUtil.wrap(t), null);
+
             }
 
             @Override
             public void onSuccess(final Object value) {
-                FnJs.asJsClosure(callback).apply(null);
+                FnJs.asClosure2(callback).apply(null, wrapper.apply(value));
             }
         });
 
