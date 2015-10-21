@@ -93,7 +93,7 @@ public class FnJs {
             public void apply(final Object param1, final Object param2) {
 
                 assert param1 instanceof JavaScriptObject;
-                assert param12instanceof JavaScriptObject;
+                assert param2 instanceof JavaScriptObject;
 
                 triggerSimpleCallbackJs(fn, param1, param2);
 
