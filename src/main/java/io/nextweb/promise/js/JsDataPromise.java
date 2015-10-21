@@ -14,6 +14,7 @@ import com.google.gwt.core.client.JavaScriptObject;
 import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
+import io.nextweb.promise.js.exceptions.ExceptionUtils;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 
 /**
@@ -62,7 +63,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onFailure(final Throwable t) {
-                FnJs.asClosure2(callback).apply(ExporterUtil.wrap(t), null);
+                FnJs.asClosure2(callback).apply(ExceptionUtils.createExceptionResult(this, t), null);
 
             }
 
