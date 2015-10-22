@@ -34,9 +34,12 @@ public class JsExceptionManager
     @Override
     @Export
     public JsExceptionManager catchExceptions(final JsClosure exceptionListener) {
-        if (exceptionListener == null) {
-            throw new NullPointerException("Specified listenered for catchExceptions must not be null.");
-        }
+        // TODO conflicts with Appjangle IDE
+
+        // if (exceptionListener == null) {
+        // throw new NullPointerException("Specified listenered for
+        // catchExceptions must not be null.");
+        // }
         em.catchExceptions(new ExceptionListener() {
 
             @Override
