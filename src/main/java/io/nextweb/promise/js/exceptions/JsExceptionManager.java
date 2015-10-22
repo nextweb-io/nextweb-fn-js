@@ -7,11 +7,11 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.Fn;
+import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.exceptions.ImpossibleListener;
 import io.nextweb.promise.exceptions.ImpossibleResult;
-import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.UnauthorizedListener;
 import io.nextweb.promise.exceptions.UnauthorizedResult;
 import io.nextweb.promise.exceptions.UndefinedListener;
@@ -20,8 +20,8 @@ import io.nextweb.promise.js.JsClosure;
 import io.nextweb.promise.js.JsWrapper;
 
 @Export
-public class JsExceptionManager implements Exportable, JsWrapper<DataExceptionManager>,
-        JsExceptionListeners<JsExceptionManager> {
+public class JsExceptionManager
+        implements Exportable, JsWrapper<DataExceptionManager>, JsExceptionListeners<JsExceptionManager> {
 
     @NoExport
     private DataExceptionManager em;
@@ -34,6 +34,9 @@ public class JsExceptionManager implements Exportable, JsWrapper<DataExceptionMa
     @Override
     @Export
     public JsExceptionManager catchExceptions(final JsClosure exceptionListener) {
+        if (exceptionListener == null) {
+            throw new NullPointerException("Specified listenered for catchExceptions must not be null.");
+        }
         em.catchExceptions(new ExceptionListener() {
 
             @Override
@@ -67,8 +70,8 @@ public class JsExceptionManager implements Exportable, JsWrapper<DataExceptionMa
 
             @Override
             public void onUnauthorized(final UnauthorizedResult r) {
-                unauthorizedListener.apply(wrapUnauthorizedResult(r.origin().getClass().toString(), r.getMessage(), r
-                        .getType().getClass().toString()));
+                unauthorizedListener.apply(wrapUnauthorizedResult(r.origin().getClass().toString(), r.getMessage(),
+                        r.getType().getClass().toString()));
             }
         });
         return this;
@@ -81,8 +84,8 @@ public class JsExceptionManager implements Exportable, JsWrapper<DataExceptionMa
 
             @Override
             public void onImpossible(final ImpossibleResult ir) {
-                impossibleListener.apply(wrapImpossibleResult(ir.origin().getClass().toString(), ir.message(), ir
-                        .cause().getClass().toString()));
+                impossibleListener.apply(wrapImpossibleResult(ir.origin().getClass().toString(), ir.message(),
+                        ir.cause().getClass().toString()));
             }
         });
         return this;
