@@ -59,7 +59,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
             throw new IllegalArgumentException("Expected one parameter which is a function.");
         }
 
-        apply(new ValueCallback<Object>() {
+        result.apply(new ValueCallback<T>() {
 
             @Override
             public void onFailure(final Throwable t) {
@@ -68,7 +68,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
             }
 
             @Override
-            public void onSuccess(final Object value) {
+            public void onSuccess(final T value) {
                 FnJs.asClosure2(callback).apply(null, wrapper.apply(value));
             }
         });
