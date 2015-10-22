@@ -82,7 +82,7 @@ public class FnJs {
     }
 
     public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param1, Object param2)/*-{
-                                                                                                              fn(param, param2);
+                                                                                                              fn(param1, param2);
                                                                                                               }-*/;
 
     public static final Closure2<Object, Object> asClosure2(final JavaScriptObject fn) {
