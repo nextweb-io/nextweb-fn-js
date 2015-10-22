@@ -100,37 +100,42 @@ public class ExceptionUtils {
     }
 
     public static final String getStacktrace(final Throwable r) {
-        if (r == null) {
-            return "null";
-            // throw new
-            // IllegalArgumentException("Cannot create stacktrace for null.");
-        }
-        final Throwable unwrapped = unwrap(r);
-        String stacktrace;
         try {
-            stacktrace = unwrapped.toString() + "<br />\n";
-        } catch (final Throwable t) {
-            stacktrace = "Error creating stacktrace for " + r.getMessage() + ".\n  Exception reported: "
-                    + t.getMessage();
+            if (r == null) {
+                return "null";
+                // throw new
+                // IllegalArgumentException("Cannot create stacktrace for
+                // null.");
+            }
+            final Throwable unwrapped = unwrap(r);
+            String stacktrace;
+            try {
+                stacktrace = unwrapped.toString() + "<br />\n";
+            } catch (final Throwable t) {
+                stacktrace = "Error creating stacktrace for " + r.getMessage() + ".\n  Exception reported: "
+                        + t.getMessage();
 
-        }
-
-        if (unwrapped instanceof JavaScriptException) {
-            final JavaScriptException jsException = (JavaScriptException) unwrapped;
-            if (jsException.getException() != null) {
-                stacktrace += "JavaScriptException:<br/>\n"
-                        + getJavaScriptExceptionStackTrace(jsException.getException()).replaceAll("\n", "<br/>\n")
-                        + "<br/>\n-- End of JavaScriptException";
             }
 
-        }
+            if (unwrapped instanceof JavaScriptException) {
+                final JavaScriptException jsException = (JavaScriptException) unwrapped;
+                if (jsException.getException() != null) {
+                    stacktrace += "JavaScriptException:<br/>\n"
+                            + getJavaScriptExceptionStackTrace(jsException.getException()).replaceAll("\n", "<br/>\n")
+                            + "<br/>\n-- End of JavaScriptException";
+                }
 
-        for (final StackTraceElement element : unwrapped.getStackTrace()) {
-            stacktrace += element + "<br/>\n";
-        }
+            }
 
-        stacktrace += getCauseTrace(unwrap(r));
-        return stacktrace;
+            for (final StackTraceElement element : unwrapped.getStackTrace()) {
+                stacktrace += element + "<br/>\n";
+            }
+
+            stacktrace += getCauseTrace(unwrap(r));
+            return stacktrace;
+        } catch (final Throwable t) {
+            return "Error creating stacktrace: " + t.getMessage();
+        }
     }
 
     private static native final String getJavaScriptExceptionStackTrace(JavaScriptObject ex)/*-{
