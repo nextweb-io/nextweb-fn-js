@@ -68,7 +68,8 @@ public class ExceptionUtils {
                                                                                 origin: origin,
                                                                                 origintrace: originTrace,
                                                                                 stacktrace: stacktrace,
-                                                                                jsException: jsException
+                                                                                jsException: jsException,
+                                                                                toString: function() { return "Exception: "+exceptionMessage; }
                                                                                 };
                                                                                 }-*/;
 
@@ -79,7 +80,8 @@ public class ExceptionUtils {
                                                                                                          origin: origin,
                                                                                                          origintrace: originTrace,
                                                                                                          stacktrace: stacktrace,
-                                                                                                         jsException: jsException
+                                                                                                         jsException: jsException,
+                                                                                                          toString: function() { return "Exception: "+exceptionMessage; }
                                                                                                          });
                                                                                                          }-*/;
 
