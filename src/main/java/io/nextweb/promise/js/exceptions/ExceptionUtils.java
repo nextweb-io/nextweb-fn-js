@@ -63,32 +63,39 @@ public class ExceptionUtils {
 
     private static final native JavaScriptObject createExceptionResult(String origin, String exceptionMessage,
             String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
-                                                                                var res = new Object();
-                                                                                
-                                                                                res.exception =exceptionMessage;
-                                                                                res.origin = origin;
-                                                                                res.origintrace = originTrace;
-                                                                                res.stacktrace = stacktrace;
-                                                                                res.jsException = jsException;
-                                                                                
-                                                                                res.prototype.toString = function() { return "Exception: "+exceptionMessage; };
+                                                                                function Exception() {
+                                                                                                          
+                                                                                                          }
+                                                                                                          
+                                                                                                          Exception.prototype.toString = function() {return "Exception: "+exceptionMessage;  };
+                                                                                                          var res = new Exception();
+                                                                                                                                                
+                                                                                                          res.exception =exceptionMessage;
+                                                                                                          res.origin = origin;
+                                                                                                          res.origintrace = originTrace;
+                                                                                                          res.stacktrace = stacktrace;
+                                                                                                          res.jsException = jsException;
+                                                                                                          return res;
                                                                                 }-*/;
 
     private static final native JavaScriptObject triggerFailureCallbackJs(JavaScriptObject callback, String origin,
-            String exceptionMessage, String stacktrace, String originTrace,
-            JavaScriptObject jsException)/*-{
-                                         
-                                          var res = new Object();
-                                                                                
-                                          res.exception =exceptionMessage;
-                                          res.origin = origin;
-                                          res.origintrace = originTrace;
-                                          res.stacktrace = stacktrace;
-                                          res.jsException = jsException;
-                                                                                
-                                          res.prototype.toString = function() { return "Exception: "+exceptionMessage; };
-                                         callback(res);
-                                         }-*/;
+            String exceptionMessage, String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
+                                                                                                          function Exception() {
+                                                                                                          
+                                                                                                          }
+                                                                                                          
+                                                                                                          Exception.prototype.toString = function() {return "Exception: "+exceptionMessage;  };
+                                                                                                          var res = new Exception();
+                                                                                                                                                
+                                                                                                          res.exception =exceptionMessage;
+                                                                                                          res.origin = origin;
+                                                                                                          res.origintrace = originTrace;
+                                                                                                          res.stacktrace = stacktrace;
+                                                                                                          res.jsException = jsException;
+                                                                                                                                                
+                                                                                                          
+                                                                                                         callback(res);
+                                                                                                         }-*/;
 
     public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
 
