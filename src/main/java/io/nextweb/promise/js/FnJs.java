@@ -2,6 +2,7 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure2;
 import delight.functional.Success;
+import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
@@ -78,8 +79,9 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
+                    Console.log("caught : " + t);
                     listener.onFailure(Fn.exception(this, t));
-                    // Console.log("got " + t);
+
                     // throw new RuntimeException(t);
                 }
                 // triggerCallback(fn, wrappers, new Object[] { result });
