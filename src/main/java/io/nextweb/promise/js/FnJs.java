@@ -2,12 +2,13 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure2;
 import delight.functional.Success;
-import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
 
+import io.nextweb.promise.Fn;
+import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.js.internal.JsCallback;
 import io.nextweb.promise.js.types.JsArray;
 import io.nextweb.promise.js.wrapping.JsWrap;
@@ -64,7 +65,7 @@ public class FnJs {
      * @param fn
      * @return
      */
-    public static final JsClosure asJsClosure(final JavaScriptObject fn) {
+    public static final JsClosure asJsClosure(final JavaScriptObject fn, final ExceptionListener listener) {
 
         return new JsClosure() {
 
@@ -77,9 +78,9 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
-
-                    Console.log("got " + t);
-                    throw new RuntimeException(t);
+                    listener.onFailure(Fn.exception(this, t));
+                    // Console.log("got " + t);
+                    // throw new RuntimeException(t);
                 }
                 // triggerCallback(fn, wrappers, new Object[] { result });
 

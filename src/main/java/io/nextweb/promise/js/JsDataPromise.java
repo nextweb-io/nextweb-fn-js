@@ -48,7 +48,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     "Only either no argument or one argument of type JsClosure is supported.");
         }
 
-        performGet(FnJs.asJsClosure((JavaScriptObject) params[0]));
+        performGet(FnJs.asJsClosure((JavaScriptObject) params[0]), this.exceptionManager());
 
         return ExporterUtil.wrap(this);
     }
