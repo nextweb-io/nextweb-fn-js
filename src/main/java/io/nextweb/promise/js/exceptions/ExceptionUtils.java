@@ -81,12 +81,12 @@ public class ExceptionUtils {
                                           var res = new Object();
                                                                                 
                                           res.exception =exceptionMessage;
-                                                                                res.origin = origin;
-                                                                                res.origintrace = originTrace;
-                                                                                res.stacktrace = stacktrace;
-                                                                                res.jsException = jsException;
+                                          res.origin = origin;
+                                          res.origintrace = originTrace;
+                                          res.stacktrace = stacktrace;
+                                          res.jsException = jsException;
                                                                                 
-                                                                                res.prototype.toString = function() { return "Exception: "+exceptionMessage; };
+                                          res.prototype.toString = function() { return "Exception: "+exceptionMessage; };
                                          callback(res);
                                          }-*/;
 
