@@ -13,6 +13,8 @@ import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.BasicPromise;
 import io.nextweb.promise.exceptions.DataExceptionManager;
+import io.nextweb.promise.exceptions.ExceptionListener;
+import io.nextweb.promise.exceptions.ExceptionResult;
 import io.nextweb.promise.js.callbacks.PromiseToAsyncJsOperationWrapper;
 import io.nextweb.promise.js.exceptions.ExceptionUtils;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
@@ -48,7 +50,13 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     "Only either no argument or one argument of type JsClosure is supported.");
         }
 
-        performGet(FnJs.asJsClosure((JavaScriptObject) params[0]), this.result.getExceptionManager());
+        performGet(FnJs.asJsClosure((JavaScriptObject) params[0], new ExceptionListener() {
+
+            @Override
+            public void onFailure(final ExceptionResult r) {
+                exceptionManager().getOriginal().onFailure(r);
+            }
+        }));
 
         return ExporterUtil.wrap(this);
     }
