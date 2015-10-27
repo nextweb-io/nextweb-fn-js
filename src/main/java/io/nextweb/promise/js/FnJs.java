@@ -77,7 +77,9 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
+
                     Console.log("got " + t);
+                    throw new RuntimeException(t);
                 }
                 // triggerCallback(fn, wrappers, new Object[] { result });
 
