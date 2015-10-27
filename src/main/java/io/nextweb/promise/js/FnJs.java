@@ -2,11 +2,11 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure2;
 import delight.functional.Success;
-import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Timer;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -79,8 +79,15 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
-                    Console.log("caught : " + t);
-                    listener.onFailure(Fn.exception(this, t));
+                    // Console.log("caught : " + t);
+                    final Timer timer = new Timer() {
+                        @Override
+                        public void run() {
+                            listener.onFailure(Fn.exception(this, t));
+                        }
+                    };
+
+                    timer.schedule(1);
 
                     // throw new RuntimeException(t);
                 }
