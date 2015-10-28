@@ -1,5 +1,7 @@
 package io.nextweb.promise.js.exceptions;
 
+import delight.gwt.console.Console;
+
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
@@ -56,6 +58,8 @@ public class JsExceptionManager
 
                         @Override
                         public void execute() {
+                            Console.log("Caught exception in block processing exception: " + t);
+
                             throw new RuntimeException(t);
                         }
                     });
