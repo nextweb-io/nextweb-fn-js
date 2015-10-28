@@ -71,16 +71,9 @@ public class JsExceptionManager
                                     JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
                             Console.log(ExceptionUtils.getStacktrace(t));
 
-                            // throw new RuntimeException(t);
                         }
                     });
-                    // new Timer() {
-                    //
-                    // @Override
-                    // public void run() {
-                    //
-                    // }
-                    // }.schedule(1);
+
                 }
 
             }
