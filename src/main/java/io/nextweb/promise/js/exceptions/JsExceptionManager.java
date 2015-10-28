@@ -54,10 +54,19 @@ public class JsExceptionManager
                 try {
                     exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
                 } catch (final Throwable t) {
+                    // TODO maybe not required deferred here ...
                     Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
                         @Override
                         public void execute() {
+
+                            final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
+
+                            if (parentExceptionManager != null) {
+                                parentExceptionManager.onFailure(r);
+                                return;
+                            }
+
                             Console.log(
                                     JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
                             Console.log(ExceptionUtils.getStacktrace(t));
