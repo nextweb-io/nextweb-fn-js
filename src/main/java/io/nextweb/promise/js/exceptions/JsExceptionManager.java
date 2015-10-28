@@ -7,6 +7,7 @@ import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
+import com.google.gwt.user.client.Timer;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.DataExceptionManager;
@@ -43,6 +44,7 @@ public class JsExceptionManager
         // catchExceptions must not be null.");
         // }
         Console.log("Register listener " + exceptionListener);
+
         em.catchExceptions(new ExceptionListener() {
 
             @Override
@@ -50,7 +52,17 @@ public class JsExceptionManager
 
                 Console.log("Trigger form exception manager " + r.exception());
 
-                exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
+                try {
+                    exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
+                } catch (final Throwable t) {
+                    new Timer() {
+
+                        @Override
+                        public void run() {
+                            throw new RuntimeException(t);
+                        }
+                    }.schedule(1);
+                }
 
             }
         });
