@@ -99,8 +99,8 @@ public class ExceptionUtils {
 
     public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
 
-        return (ExceptionUtils.wrapExceptionResult(r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
-                getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception())));
+        return ExceptionUtils.wrapExceptionResult(r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
+                getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception()));
     }
 
     private final static JavaScriptObject getJsException(final Throwable ex) {
