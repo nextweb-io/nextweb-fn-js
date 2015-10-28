@@ -5,7 +5,8 @@ import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Timer;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.DataExceptionManager;
@@ -51,13 +52,20 @@ public class JsExceptionManager
                 try {
                     exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
                 } catch (final Throwable t) {
-                    new Timer() {
+                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
                         @Override
-                        public void run() {
+                        public void execute() {
                             throw new RuntimeException(t);
                         }
-                    }.schedule(1);
+                    });
+                    // new Timer() {
+                    //
+                    // @Override
+                    // public void run() {
+                    //
+                    // }
+                    // }.schedule(1);
                 }
 
             }
