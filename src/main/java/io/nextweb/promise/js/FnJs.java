@@ -2,7 +2,6 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure2;
 import delight.functional.Success;
-import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
@@ -86,7 +85,7 @@ public class FnJs {
                     final Timer timer = new Timer() {
                         @Override
                         public void run() {
-                            Console.log("caught : " + t);
+                            // Console.log("caught : " + t);
                             listener.onFailure(Fn.exception(this, t));
                         }
                     };
