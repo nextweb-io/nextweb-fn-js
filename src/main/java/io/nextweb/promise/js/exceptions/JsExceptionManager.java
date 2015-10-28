@@ -48,7 +48,7 @@ public class JsExceptionManager
             @Override
             public void onFailure(final ExceptionResult r) {
 
-                Console.log("Trigger form exception manager " + r);
+                Console.log("Trigger form exception manager " + r.exception());
 
                 exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
 
