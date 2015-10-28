@@ -6,9 +6,9 @@ import delight.functional.Success;
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.user.client.Timer;
+import com.google.gwt.core.client.Scheduler;
+import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 
-import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.js.internal.JsCallback;
 import io.nextweb.promise.js.types.JsArray;
@@ -82,15 +82,15 @@ public class FnJs {
                     // IMPORTANT
                     // Somehow JS closures seem to 'eat up' exceptions
 
-                    final Timer timer = new Timer() {
-                        @Override
-                        public void run() {
-                            // Console.log("caught : " + t);
-                            listener.onFailure(Fn.exception(this, t));
-                        }
-                    };
+                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
-                    timer.schedule(1);
+                        @Override
+                        public void execute() {
+
+                            throw new RuntimeException(t);
+                            // listener.onFailure(Fn.exception(this, t));
+                        }
+                    });
 
                 }
 
