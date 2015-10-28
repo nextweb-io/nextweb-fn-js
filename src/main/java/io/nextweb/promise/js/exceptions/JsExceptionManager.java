@@ -1,5 +1,7 @@
 package io.nextweb.promise.js.exceptions;
 
+import delight.gwt.console.Console;
+
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
@@ -40,10 +42,13 @@ public class JsExceptionManager
         // throw new NullPointerException("Specified listenered for
         // catchExceptions must not be null.");
         // }
+        Console.log("Register listener " + exceptionListener);
         em.catchExceptions(new ExceptionListener() {
 
             @Override
             public void onFailure(final ExceptionResult r) {
+
+                Console.log("Trigger form exception manager " + r);
 
                 exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
 
