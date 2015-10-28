@@ -3,7 +3,6 @@ package io.nextweb.promise.js;
 import delight.async.callbacks.ValueCallback;
 import delight.functional.Closure;
 import delight.functional.Function;
-import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
@@ -55,7 +54,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onFailure(final ExceptionResult r) {
-                Console.log(JsDataPromise.class + ": Received failure: " + r);
+
                 exceptionManager().getOriginal().onFailure(r);
             }
         }));
