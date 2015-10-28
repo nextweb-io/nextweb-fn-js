@@ -50,7 +50,7 @@ public class JsExceptionManager
 
             @Override
             public void onFailure(final ExceptionResult r) {
-
+                Console.log(JsExceptionManager.this + ": Trigger on failure for " + r.exception());
                 try {
                     exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
                 } catch (final Throwable t) {
@@ -58,7 +58,8 @@ public class JsExceptionManager
 
                         @Override
                         public void execute() {
-                            Console.log("Caught exception in block processing exception: " + t);
+                            Console.log(
+                                    JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
                             Console.log(ExceptionUtils.getStacktrace(t));
                             // throw new RuntimeException(t);
                         }
