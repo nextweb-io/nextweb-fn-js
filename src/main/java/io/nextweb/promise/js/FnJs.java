@@ -87,8 +87,8 @@ public class FnJs {
                         @Override
                         public void execute() {
 
-                            throw new RuntimeException(t);
-                            // listener.onFailure(Fn.exception(this, t));
+                            // throw new RuntimeException(t);
+                            listener.onFailure(Fn.exception(this, t));
                         }
                     });
 
