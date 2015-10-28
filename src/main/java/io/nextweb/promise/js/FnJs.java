@@ -2,6 +2,7 @@ package io.nextweb.promise.js;
 
 import delight.functional.Closure2;
 import delight.functional.Success;
+import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
@@ -79,19 +80,20 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
-                    // Console.log("caught : " + t);
+                    // IMPORTANT
+                    // Somehow JS closures seem to 'eat up' exceptions
+
                     final Timer timer = new Timer() {
                         @Override
                         public void run() {
+                            Console.log("caught : " + t);
                             listener.onFailure(Fn.exception(this, t));
                         }
                     };
 
                     timer.schedule(1);
 
-                    // throw new RuntimeException(t);
                 }
-                // triggerCallback(fn, wrappers, new Object[] { result });
 
             }
         };
