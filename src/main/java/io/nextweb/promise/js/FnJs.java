@@ -82,6 +82,7 @@ public class FnJs {
                 } catch (final Throwable t) {
                     // IMPORTANT
                     // Somehow JS closures seem to 'eat up' exceptions
+                    // UPDATE: this might not be the case after all..
 
                     Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
