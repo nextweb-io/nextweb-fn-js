@@ -6,8 +6,6 @@ import delight.functional.Success;
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -80,19 +78,9 @@ public class FnJs {
 
                     triggerSimpleCallbackJs(fn, result);
                 } catch (final Throwable t) {
-                    // IMPORTANT
-                    // Somehow JS closures seem to 'eat up' exceptions
-                    // UPDATE: this might not be the case after all..
 
-                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
-
-                        @Override
-                        public void execute() {
-
-                            // throw new RuntimeException(t);
-                            listener.onFailure(Fn.exception(this, t));
-                        }
-                    });
+                    // throw new RuntimeException(t);
+                    listener.onFailure(Fn.exception(this, t));
 
                 }
 

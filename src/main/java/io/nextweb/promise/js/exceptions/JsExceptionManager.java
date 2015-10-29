@@ -7,8 +7,6 @@ import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
 
 import com.google.gwt.core.client.JavaScriptObject;
-import com.google.gwt.core.client.Scheduler;
-import com.google.gwt.core.client.Scheduler.ScheduledCommand;
 
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.DataExceptionManager;
@@ -54,25 +52,16 @@ public class JsExceptionManager
                 try {
                     exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
                 } catch (final Throwable t) {
-                    // TODO maybe not required deferred here ...
-                    Scheduler.get().scheduleDeferred(new ScheduledCommand() {
 
-                        @Override
-                        public void execute() {
+                    final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
 
-                            final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
+                    if (parentExceptionManager != null) {
+                        parentExceptionManager.onFailure(r);
+                        return;
+                    }
 
-                            if (parentExceptionManager != null) {
-                                parentExceptionManager.onFailure(r);
-                                return;
-                            }
-
-                            Console.log(
-                                    JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
-                            Console.log(ExceptionUtils.getStacktrace(t));
-
-                        }
-                    });
+                    Console.log(JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
+                    Console.log(ExceptionUtils.getStacktrace(t));
 
                 }
 
