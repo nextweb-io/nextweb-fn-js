@@ -81,11 +81,12 @@ public class ExceptionUtils {
                                                                                                           
                                                                                                           Exception.prototype.toString = function() {return "Exception: "+exceptionMessage;  };
                                                                                                           var res = new Exception();
-                                                                                                                                                
+                                                                                                          res.message = exceptionMessage;                                      
                                                                                                           res.exception =exceptionMessage;
                                                                                                           res.origin = origin;
                                                                                                           res.origintrace = originTrace;
                                                                                                           res.stacktrace = stacktrace;
+                                                                                                          res.stack = stacktrace;
                                                                                                           res.jsException = jsException;
                                                                                                           return res;
                                                                                 }-*/;
@@ -98,11 +99,13 @@ public class ExceptionUtils {
                                                                                                           
                                                                                                           Exception.prototype.toString = function() {return "Exception: "+exceptionMessage;  };
                                                                                                           var res = new Exception();
-                                                                                                                                                
+                                                                                                                                 
+                                                                                                          res.message = message;                                      
                                                                                                           res.exception =exceptionMessage;
                                                                                                           res.origin = origin;
                                                                                                           res.origintrace = originTrace;
                                                                                                           res.stacktrace = stacktrace;
+                                                                                                          res.stack = stacktrace;
                                                                                                           res.jsException = jsException;
                                                                                                                                                 
                                                                                                           
