@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.exceptions;
 
-import delight.gwt.console.Console;
-
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptException;
@@ -31,7 +29,7 @@ public final class ExceptionUtils {
     }
 
     public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
-        Console.log("Create jsx " + er.exception().getMessage());
+        // Console.log("Create jsx " + er.exception().getMessage());
 
         final JsExportedException jsex = new JsExportedException();
         jsex.origin = er.origin().toString();
@@ -43,9 +41,10 @@ public final class ExceptionUtils {
         jsex.jsException = getJsException(er.exception());
         jsex.original = er;
 
-        Console.log("Created jsx " + jsex.message);
+        // Console.log("Created jsx " + jsex.message);
 
-        return ExporterUtil.wrap(jsex);
+        JavaScriptObject wrap = ExporterUtil.wrap(jsex);
+        return wrap;
     }
 
     private static native final String attemptToGetMessage(
