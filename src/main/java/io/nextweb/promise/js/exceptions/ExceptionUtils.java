@@ -43,9 +43,15 @@ public final class ExceptionUtils {
 
         // Console.log("Created jsx " + jsex.message);
 
-        JavaScriptObject wrap = ExporterUtil.wrap(jsex);
-        return wrap;
+        final JavaScriptObject exception = ExporterUtil.wrap(jsex);
+
+        return exception;
     }
+
+    private static native final void setProperty(JavaScriptObject obj, String prop,
+            String value)/*-{ 
+                         
+                         }-*/;
 
     private static native final String attemptToGetMessage(
             JavaScriptObject exception)/*-{ 
