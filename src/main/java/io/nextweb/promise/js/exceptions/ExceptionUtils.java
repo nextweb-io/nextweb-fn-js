@@ -41,6 +41,7 @@ public final class ExceptionUtils {
         jsex.origintrace = getOriginTrace();
         jsex.stacktrace = getStacktrace(er.exception());
         jsex.jsException = getJsException(er.exception());
+        jsex.original = er;
 
         return ExporterUtil.wrap(jsex);
     }
