@@ -12,6 +12,7 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.BasicPromise;
+import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
 import io.nextweb.promise.exceptions.ExceptionResult;
@@ -72,7 +73,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onFailure(final Throwable t) {
-                FnJs.asClosure2(callback).apply(ExceptionUtils.createExceptionResult(this, t), null);
+                FnJs.asClosure2(callback).apply(ExceptionUtils.convertToJSExceptionResult(Fn.exception(this, t)), null);
 
             }
 
