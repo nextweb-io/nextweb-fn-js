@@ -10,8 +10,8 @@ import io.nextweb.promise.exceptions.ExceptionResult;
 
 public final class ExceptionUtils {
 
-    public static final Throwable convertToJavaException(final JavaScriptObject exception) {
-        final Object obj = ExporterUtil.gwtInstance(exception);
+    public static final Throwable convertToJavaException(final Object jsException) {
+        final Object obj = ExporterUtil.gwtInstance(jsException);
 
         if (obj instanceof JsExportedException) {
 
