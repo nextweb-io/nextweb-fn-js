@@ -1,8 +1,9 @@
 package io.nextweb.promise.js.exceptions;
 
+import delight.gwt.console.Console;
+
 import org.timepedia.exporter.client.ExporterUtil;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
@@ -30,8 +31,7 @@ public final class ExceptionUtils {
     }
 
     public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
-
-        GWT.log("Create jsx " + er.exception().getMessage());
+        Console.log("Create jsx " + er.exception().getMessage());
 
         final JsExportedException jsex = new JsExportedException();
         jsex.origin = er.origin().toString();
@@ -42,7 +42,7 @@ public final class ExceptionUtils {
         jsex.jsException = getJsException(er.exception());
         jsex.original = er;
 
-        GWT.log("Created jsx " + jsex.message);
+        Console.log("Created jsx " + jsex.message);
 
         return ExporterUtil.wrap(jsex);
     }
