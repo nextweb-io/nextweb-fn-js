@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.exceptions;
 
-import delight.gwt.console.Console;
-
 import org.timepedia.exporter.client.ExporterUtil;
 
 import com.google.gwt.core.client.JavaScriptException;
@@ -160,8 +158,8 @@ public final class ExceptionUtils {
     }
 
     private static final Throwable unwrap(final Throwable e) {
-        Console.log("try unwrap " + e);
-        Console.log(ExporterUtil.wrap(e));
+        // Console.log("try unwrap " + e);
+        // Console.log(ExporterUtil.wrap(e));
         if (e instanceof UmbrellaException) {
             final UmbrellaException ue = (UmbrellaException) e;
             if (ue.getCauses().size() == 1) {
