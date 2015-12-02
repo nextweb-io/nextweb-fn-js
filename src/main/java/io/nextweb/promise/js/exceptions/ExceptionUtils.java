@@ -36,7 +36,7 @@ public final class ExceptionUtils {
         jsex.exception = er.exception().getMessage();
         jsex.message = er.exception().getMessage();
         jsex.origintrace = getOriginTrace();
-        jsex.stacktrace = getStacktrace(er.exception());
+        jsex.stacktrace = getStacktraceAsHtml(er.exception());
         jsex.stack = jsex.stacktrace;
         jsex.jsException = getJsException(er.exception());
         jsex.original = er;
@@ -105,7 +105,7 @@ public final class ExceptionUtils {
 
     }
 
-    public static final String getStacktrace(final Throwable r) {
+    public static final String getStacktraceAsHtml(final Throwable r) {
         try {
             if (r == null) {
                 return "null";
@@ -155,7 +155,7 @@ public final class ExceptionUtils {
         try {
             throw new Exception("Origin");
         } catch (final Throwable t) {
-            return getStacktrace(t);
+            return getStacktraceAsHtml(t);
         }
 
     }

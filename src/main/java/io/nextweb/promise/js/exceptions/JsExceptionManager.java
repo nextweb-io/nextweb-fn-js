@@ -61,7 +61,7 @@ public class JsExceptionManager
                     }
 
                     Console.log(JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
-                    Console.log(ExceptionUtils.getStacktrace(t));
+                    Console.log(ExceptionUtils.getStacktraceAsHtml(t));
 
                 }
 
