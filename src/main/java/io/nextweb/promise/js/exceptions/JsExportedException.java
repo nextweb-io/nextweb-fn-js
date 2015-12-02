@@ -42,6 +42,11 @@ public class JsExportedException implements Exportable {
     @Export
     public JavaScriptObject jsException;
 
+    @Export
+    public JavaScriptObject jsException() {
+        return jsException;
+    }
+
     @NoExport
     public ExceptionResult original;
 
