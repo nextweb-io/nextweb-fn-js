@@ -52,18 +52,6 @@ public class ExceptionUtils {
         return createExceptionResult(origin.toString(), t.getMessage(), getStacktrace(t), null, null);
     }
 
-    // private static final native JavaScriptObject wrapExceptionResult(String
-    // origin, String exceptionMessage,
-    // String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
-    // return {
-    // exception: exceptionMessage,
-    // origin: origin,
-    // origintrace: originTrace,
-    // stacktrace: stacktrace,
-    // jsException: jsException
-    // }
-    // }-*/;
-
     private static final native JavaScriptObject createExceptionResult(String origin, String exceptionMessage,
             String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
                                                                                 function Exception() {
