@@ -2,6 +2,7 @@ package io.nextweb.promise.js.exceptions;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
@@ -38,6 +39,8 @@ public final class ExceptionUtils {
         jsex.stacktrace = getStacktrace(er.exception());
         jsex.jsException = getJsException(er.exception());
         jsex.original = er;
+
+        GWT.log("Create jsx " + er.exception().getMessage());
 
         return ExporterUtil.wrap(jsex);
     }
