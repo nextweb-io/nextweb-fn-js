@@ -46,7 +46,6 @@ public final class ExceptionUtils {
                                        return null;
                                        }-*/;
 
-    // TODO does not seem to trigger clear exceptions!!!
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
         triggerFunction(callback, createExceptionResult(r.origin(), r.exception()));
 
@@ -60,8 +59,14 @@ public final class ExceptionUtils {
         return createExceptionResult(origin.toString(), t.getMessage(), getStacktrace(t), null, null);
     }
 
-    private static final native JavaScriptObject createExceptionResult(String origin, String exceptionMessage,
-            String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
+    private static final JavaScriptObject createExceptionResult(final String origin, final String exceptionMessage,
+            final String stacktrace, final String originTrace, final JavaScriptObject jsException) {
+        final JsExportedException jsex = new JsExportedException();
+        jsex.
+        return ExporterUtil.wrap(jsex);
+    }
+
+    /*-{
                                                                                 function Exception() {
                                                                                                           
                                                                                                           }
