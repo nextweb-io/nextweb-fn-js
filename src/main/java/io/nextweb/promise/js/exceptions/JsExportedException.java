@@ -16,7 +16,7 @@ public class JsExportedException implements Exportable {
 
     @Export
     public String message() {
-        return message();
+        return message;
     }
 
     @Export
