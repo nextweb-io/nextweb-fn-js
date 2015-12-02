@@ -51,6 +51,7 @@ public final class ExceptionUtils {
         setProperty(exception, "origintrace", jsex.origintrace);
         setProperty(exception, "stacktrace", jsex.stacktrace);
         setProperty(exception, "stack", jsex.stack);
+        setProperty(exception, "jsException", jsex.jsException);
 
         return exception;
     }
@@ -58,6 +59,10 @@ public final class ExceptionUtils {
     private static native final void setProperty(JavaScriptObject obj, String propName, String value)/*-{ 
                                                                                                      obj[propName] = value;                 
                                                                                                      }-*/;
+
+    private static native final void setProperty(JavaScriptObject obj, String propName, JavaScriptObject value)/*-{ 
+                                                                                                               obj[propName] = value;                 
+                                                                                                               }-*/;
 
     private static native final String attemptToGetMessage(
             JavaScriptObject exception)/*-{ 
