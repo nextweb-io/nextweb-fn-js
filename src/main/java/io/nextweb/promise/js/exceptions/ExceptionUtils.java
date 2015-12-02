@@ -48,9 +48,13 @@ public final class ExceptionUtils {
 
     // TODO does not seem to trigger clear exceptions!!!
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
-        triggerFailureCallbackJs(callback, r.origin().getClass().toString(), unwrap(r.exception()).getMessage(),
-                getStacktrace(r.exception()), getOriginTrace(), getJsException(r.exception()));
+        triggerFunction(callback, createExceptionResult(r.origin(), r.exception()));
+
     }
+
+    private static final native void triggerFunction(JavaScriptObject func, JavaScriptObject arg) /*-{
+                                                                                                  func(arg);
+                                                                                                  }-*/;
 
     public static final JavaScriptObject createExceptionResult(final Object origin, final Throwable t) {
         return createExceptionResult(origin.toString(), t.getMessage(), getStacktrace(t), null, null);
@@ -73,27 +77,6 @@ public final class ExceptionUtils {
                                                                                                           res.jsException = jsException;
                                                                                                           return res;
                                                                                 }-*/;
-
-    private static final native JavaScriptObject triggerFailureCallbackJs(JavaScriptObject callback, String origin,
-            String exceptionMessage, String stacktrace, String originTrace, JavaScriptObject jsException)/*-{
-                                                                                                          function Exception() {
-                                                                                                          
-                                                                                                          }
-                                                                                                          
-                                                                                                          Exception.prototype.toString = function() {return "Exception: "+exceptionMessage;  };
-                                                                                                          var res = new Exception();
-                                                                                                                                 
-                                                                                                          res.message = message;                                      
-                                                                                                          res.exception =exceptionMessage;
-                                                                                                          res.origin = origin;
-                                                                                                          res.origintrace = originTrace;
-                                                                                                          res.stacktrace = stacktrace;
-                                                                                                          res.stack = stacktrace;
-                                                                                                          res.jsException = jsException;
-                                                                                                                                                
-                                                                                                          
-                                                                                                         callback(res);
-                                                                                                         }-*/;
 
     public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
 
