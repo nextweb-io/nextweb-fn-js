@@ -51,7 +51,7 @@ public class FnJs {
         return isJsString(node) || isJsInteger(node) || isJsDouble(node) || isJsBoolean(node);
     }
 
-    public static final native void triggerCallbackJs(JavaScriptObject fn, JavaScriptObject jsArray)/*-{
+    public static final native void callFunctionWithArrayArg(JavaScriptObject fn, JavaScriptObject jsArray)/*-{
                                                                                                     fn.apply(this, jsArray.getArray());
                                                                                                     }-*/;
 
@@ -89,7 +89,7 @@ public class FnJs {
 
     }
 
-    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param1, Object param2)/*-{
+    public static final native void callFunction(JavaScriptObject fn, Object param1, Object param2)/*-{
                                                                                                               fn(param1, param2);
                                                                                                               }-*/;
 
@@ -103,7 +103,7 @@ public class FnJs {
                 assert param1 instanceof JavaScriptObject;
                 assert param2 instanceof JavaScriptObject;
 
-                triggerSimpleCallbackJs(fn, param1, param2);
+                callFunction(fn, param1, param2);
 
                 // triggerCallback(fn, wrappers, new Object[] { result });
 
@@ -118,7 +118,7 @@ public class FnJs {
 
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
-        triggerCallbackJs(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
+        callFunctionWithArrayArg(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
     }
 
     public static final Success success() {
