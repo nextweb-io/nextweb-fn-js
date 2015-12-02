@@ -23,16 +23,6 @@ public final class ExceptionUtils {
             return (Throwable) obj;
         }
 
-        if (obj instanceof String) {
-            return new Exception((String) obj);
-        }
-
-        final String message = attemptToGetMessage(exception);
-
-        if (message != null) {
-            return new WrappedJSException(message, exception);
-        }
-
         return new Exception(
                 "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
                         + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
