@@ -7,7 +7,6 @@ import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
 
 import io.nextweb.promise.exceptions.ExceptionResult;
-import io.nextweb.promise.js.FnJs;
 
 public final class ExceptionUtils {
 
@@ -52,11 +51,6 @@ public final class ExceptionUtils {
                                        
                                        return null;
                                        }-*/;
-
-    public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
-        FnJs.callFunction(callback, convertToJSExceptionResult(r));
-
-    }
 
     private static final native void triggerFunction(JavaScriptObject func, JavaScriptObject arg) /*-{
                                                                                                   func(arg);
