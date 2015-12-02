@@ -33,7 +33,16 @@ public final class ExceptionUtils {
     }
 
     public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
-        return createExceptionResult(er.origin(), er.exception());
+
+        final JsExportedException jsex = new JsExportedException();
+        jsex.origin = er.origin().toString();
+        jsex.exception = er.exception().getMessage();
+        jsex.message = er.exception().getMessage();
+        jsex.origintrace = getOriginTrace();
+        jsex.stacktrace = getStacktrace(er.exception());
+        jsex.jsException = getJsException(er.exception());
+
+        return ExporterUtil.wrap(jsex);
     }
 
     private static native final String attemptToGetMessage(
@@ -47,24 +56,13 @@ public final class ExceptionUtils {
                                        }-*/;
 
     public static final void triggerExceptionCallback(final JavaScriptObject callback, final ExceptionResult r) {
-        triggerFunction(callback, createExceptionResult(r.origin(), r.exception()));
+        triggerFunction(callback, convertToJSExceptionResult(r));
 
     }
 
     private static final native void triggerFunction(JavaScriptObject func, JavaScriptObject arg) /*-{
                                                                                                   func(arg);
                                                                                                   }-*/;
-
-    public static final JavaScriptObject createExceptionResult(final Object origin, final Throwable t) {
-        return createExceptionResult(origin.toString(), t.getMessage(), getStacktrace(t), null, null);
-    }
-
-    private static final JavaScriptObject createExceptionResult(final String origin, final String exceptionMessage,
-            final String stacktrace, final String originTrace, final JavaScriptObject jsException) {
-        final JsExportedException jsex = new JsExportedException();
-        jsex.
-        return ExporterUtil.wrap(jsex);
-    }
 
     /*-{
                                                                                 function Exception() {
@@ -82,13 +80,6 @@ public final class ExceptionUtils {
                                                                                                           res.jsException = jsException;
                                                                                                           return res;
                                                                                 }-*/;
-
-    public static final JavaScriptObject wrapExceptionResult(final ExceptionResult r) {
-
-        return ExceptionUtils.createExceptionResult(r.origin().getClass().toString(),
-                unwrap(r.exception()).getMessage(), getStacktrace(r.exception()), getOriginTrace(),
-                getJsException(r.exception()));
-    }
 
     private final static JavaScriptObject getJsException(final Throwable ex) {
         final Throwable uw = unwrap(ex);
