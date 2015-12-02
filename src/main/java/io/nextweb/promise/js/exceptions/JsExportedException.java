@@ -32,6 +32,11 @@ public class JsExportedException implements Exportable {
     public String stacktrace;
 
     @Export
+    public String stack() {
+        return stack;
+    }
+
+    @Export
     public String stack;
 
     @Export
