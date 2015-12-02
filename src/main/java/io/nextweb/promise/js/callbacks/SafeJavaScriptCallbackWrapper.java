@@ -26,7 +26,7 @@ public final class SafeJavaScriptCallbackWrapper implements ValueCallback<Object
 
     @Override
     public void onFailure(final Throwable t) {
-        callCallback(callback, ExceptionUtils.wrapExceptionResult(Fn.exception(this, t)), null);
+        callCallback(callback, ExceptionUtils.convertToJSExceptionResult(Fn.exception(this, t)), null);
     }
 
     @Override

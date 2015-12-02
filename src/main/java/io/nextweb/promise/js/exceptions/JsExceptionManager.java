@@ -50,7 +50,7 @@ public class JsExceptionManager
             public void onFailure(final ExceptionResult r) {
 
                 try {
-                    exceptionListener.apply(ExceptionUtils.wrapExceptionResult(r));
+                    exceptionListener.apply(ExceptionUtils.convertToJSExceptionResult(r));
                 } catch (final Throwable t) {
 
                     final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
