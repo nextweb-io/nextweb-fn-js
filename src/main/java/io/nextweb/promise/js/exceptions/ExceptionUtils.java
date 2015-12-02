@@ -33,7 +33,7 @@ public class ExceptionUtils {
         final String message = attemptToGetMessage(exception);
 
         if (message != null) {
-            return new Exception("Unsupported JavaScriptException encountered with message: [" + message + "]");
+            return new WrappedJSException(message, exception);
         }
 
         return new Exception(
