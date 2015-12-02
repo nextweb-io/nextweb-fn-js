@@ -8,7 +8,7 @@ import com.google.gwt.event.shared.UmbrellaException;
 
 import io.nextweb.promise.exceptions.ExceptionResult;
 
-public class ExceptionUtils {
+public final class ExceptionUtils {
 
     public static final Throwable convertToJavaException(final JavaScriptObject exception) {
         final Object obj = ExporterUtil.gwtInstance(exception);
@@ -30,6 +30,10 @@ public class ExceptionUtils {
         return new Exception(
                 "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
                         + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
+    }
+
+    public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
+        return createExceptionResult(er.origin(), er.exception());
     }
 
     private static native final String attemptToGetMessage(
