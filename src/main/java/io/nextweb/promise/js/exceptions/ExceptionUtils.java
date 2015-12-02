@@ -42,7 +42,7 @@ public final class ExceptionUtils {
         jsex.jsException = getJsException(er.exception());
         jsex.original = er;
 
-        GWT.log("Created jsx " + er.exception().getMessage());
+        GWT.log("Created jsx " + jsex.message);
 
         return ExporterUtil.wrap(jsex);
     }
