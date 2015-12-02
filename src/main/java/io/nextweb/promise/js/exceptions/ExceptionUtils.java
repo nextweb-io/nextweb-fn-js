@@ -109,9 +109,6 @@ public final class ExceptionUtils {
         try {
             if (r == null) {
                 return "null";
-                // throw new
-                // IllegalArgumentException("Cannot create stacktrace for
-                // null.");
             }
             final Throwable unwrapped = unwrap(r);
             String stacktrace;
