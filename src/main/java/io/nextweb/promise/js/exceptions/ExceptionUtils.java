@@ -45,13 +45,19 @@ public final class ExceptionUtils {
 
         final JavaScriptObject exception = ExporterUtil.wrap(jsex);
 
+        setProperty(exception, "origin", jsex.origin);
+        setProperty(exception, "exception", jsex.exception);
+        setProperty(exception, "message", jsex.message);
+        setProperty(exception, "origintrace", jsex.origintrace);
+        setProperty(exception, "stacktrace", jsex.stacktrace);
+        setProperty(exception, "stack", jsex.stack);
+
         return exception;
     }
 
-    private static native final void setProperty(JavaScriptObject obj, String prop,
-            String value)/*-{ 
-                         
-                         }-*/;
+    private static native final void setProperty(JavaScriptObject obj, String propName, String value)/*-{ 
+                                                                                                     obj[propName] = value;                 
+                                                                                                     }-*/;
 
     private static native final String attemptToGetMessage(
             JavaScriptObject exception)/*-{ 
