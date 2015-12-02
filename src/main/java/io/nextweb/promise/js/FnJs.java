@@ -76,7 +76,7 @@ public class FnJs {
 
                     assert result instanceof JavaScriptObject;
 
-                    triggerSimpleCallbackJs(fn, result);
+                    callFunction(fn, result);
                 } catch (final Throwable t) {
 
                     // throw new RuntimeException(t);
@@ -112,7 +112,7 @@ public class FnJs {
 
     }
 
-    public static final native void triggerSimpleCallbackJs(JavaScriptObject fn, Object param)/*-{
+    public static final native void callFunction(JavaScriptObject fn, Object param)/*-{
                                                                                               fn(param);
                                                                                               }-*/;
 
