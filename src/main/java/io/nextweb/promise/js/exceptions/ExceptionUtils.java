@@ -23,10 +23,21 @@ public final class ExceptionUtils {
             return (Throwable) obj;
         }
 
-        return new Exception(
-                "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
-                        + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
+        try {
+            triggerJsException(jsException);
+            return new Exception(
+                    "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
+                            + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
+        } catch (final Throwable t) {
+            return t;
+        }
     }
+
+    private static native final void triggerJsException(Object jsException)/*-{
+                                                                           if (jsException.message) {
+                                                                           throw jsException;
+                                                                           }
+                                                                           }-*/;
 
     public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
         // Console.log("Create jsx " + er.exception().getMessage());
