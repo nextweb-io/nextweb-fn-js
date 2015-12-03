@@ -134,9 +134,9 @@ public final class ExceptionUtils {
             if (unwrapped instanceof JavaScriptException) {
                 final JavaScriptException jsException = (JavaScriptException) unwrapped;
                 if (jsException.getException() != null) {
-                    stacktrace += "JavaScriptException:<br/>\n"
+                    stacktrace += ""
                             + getJavaScriptExceptionStackTrace(jsException.getException()).replaceAll("\n", "<br/>\n")
-                            + "<br/>\n-- End of JavaScriptException";
+                            + "<br/>\n";
                 }
 
             }
