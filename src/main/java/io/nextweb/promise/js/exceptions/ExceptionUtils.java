@@ -13,6 +13,10 @@ public final class ExceptionUtils {
     public static final Throwable convertToJavaException(final Object jsException) {
         final Object obj = ExporterUtil.gwtInstance(jsException);
 
+        if (jsException == null) {
+            return new Exception("Trying to convert exception null to Java exception.");
+        }
+
         if (obj instanceof JsExportedException) {
 
             final JsExportedException exportedException = (JsExportedException) obj;
