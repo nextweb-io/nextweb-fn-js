@@ -111,6 +111,8 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * result of the operation or <cocde>null</code> when the operation fails.
      * 
      * @param callback
+     *            A callback function with two arguments, <code>ex</code> and
+     *            <code>res</code>
      */
     @Export
     public void apply(final JavaScriptObject callback) {
@@ -141,16 +143,6 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
-    @NoExport
-    private final JsExceptionManager exceptionManager() {
-        return JsExceptionManager.wrap(result.getExceptionManager());
-    }
-
-    @NoExport
-    public final DataExceptionManager javaExceptionManager() {
-        return result.getExceptionManager();
-    }
-
     @Export
     @Override
     public JsDataPromise<T, R> catchUndefined(final JsClosure undefinedListener) {
@@ -172,9 +164,20 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
+    @Deprecated
     @Export
     public Object func() {
         return PromiseToAsyncJsOperationWrapper.wrapSafe(wrapper, result);
+    }
+
+    @NoExport
+    private final JsExceptionManager exceptionManager() {
+        return JsExceptionManager.wrap(result.getExceptionManager());
+    }
+
+    @NoExport
+    public final DataExceptionManager javaExceptionManager() {
+        return result.getExceptionManager();
     }
 
     @NoExport
