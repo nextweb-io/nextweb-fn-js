@@ -91,6 +91,12 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return ExporterUtil.wrap(this);
     }
 
+    /**
+     * <p>
+     * This method will attempt to get the result for this promise.
+     * 
+     * @param callback
+     */
     @Export
     public void apply(final JavaScriptObject callback) {
         if (!FnJs.isJsFunction(callback)) {
