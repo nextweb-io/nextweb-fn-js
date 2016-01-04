@@ -54,10 +54,17 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * If the promise has already been resolved, the last result obtained is
      * returned (e.g. the promise is not resolved anew).
      * <p>
+     * A JavaScript function can be supplied as optional parameter. This
+     * JavaScript function will be called with the result as the only argument
+     * when the operation was successful. If the operation was not successful,
+     * one of the defined exception interceptors will be called.
+     * <p>
      * Note: Calling get() without any argument will ignore all defined
      * exception interceptors to assure termination of the statement.
      * 
-     * @return The result that can be obtained by resolving this promise.
+     * @return The result that can be obtained by resolving this promise (or
+     *         null if a the promise is not yet resolved and/or cannot be
+     *         resolved synchronously).
      */
     @Override
     @Export
