@@ -47,6 +47,18 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
     protected Function<Object, Object> wrapper;
 
+    /**
+     * <p>
+     * This method will attempt to get the result of this promise.
+     * <p>
+     * If the promise has already been resolved, the last result obtained is
+     * returned (e.g. the promise is not resolved anew).
+     * <p>
+     * Note: Calling get() without any argument will ignore all defined
+     * exception interceptors to assure termination of the statement.
+     * 
+     * @return The result that can be obtained by resolving this promise.
+     */
     @Override
     @Export
     public Object get(final Object... params) {
