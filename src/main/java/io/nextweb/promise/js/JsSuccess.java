@@ -8,6 +8,14 @@ import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.ExporterUtil;
 import org.timepedia.exporter.client.NoExport;
 
+/**
+ * <p>
+ * A simple dummy object, which is returned by operations to signify that they
+ * have been successful.
+ * 
+ * @author <a href="http://www.mxro.de">Max Rohde</a>
+ *
+ */
 @Export
 public class JsSuccess implements Exportable {
 
