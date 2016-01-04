@@ -25,6 +25,14 @@ import io.nextweb.promise.js.exceptions.JsExceptionManager;
  * PLEASE USE NAME 'PROMISE' for this object.
  * <p>
  * A promise object that is linked to an asynchronous operation.
+ * <p>
+ * Calling the {@link #get(Object...)} or {{@link #apply(JavaScriptObject)}
+ * methods of this object will trigger the asynchronous operation and return the
+ * result of the operation.
+ * <p>
+ * The operation for the promise is guaranteed to be only performed once. If
+ * {@link #get(Object...)} and {{@link #apply(JavaScriptObject)} are called
+ * again,
  * 
  * 
  * @author Max Rohde
