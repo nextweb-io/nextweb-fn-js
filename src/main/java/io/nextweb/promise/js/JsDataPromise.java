@@ -146,6 +146,10 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * <pre>
      * catchExceptions(function(ex) { ... } );
      * </pre>
+     * <p>
+     * To learn more about managing errors and exceptions, see <a href=
+     * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling'>Exception
+     * Handling</a>.
      * 
      * @param exceptionListener
      *            A function with one argument <code>ex</code>.
@@ -159,7 +163,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
     /**
      * <p>
-     * Like {@link #catchExceptions(JsClosure)}. But this listener is only
+     * Like {@link #catchExceptions(JsClosure)} - but this listener is only
      * called when an error occurs which is caused by an item of data missing.
      */
     @Export
@@ -169,6 +173,12 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
+    /**
+     * <p>
+     * Like {@link #catchExceptions(JsClosure)} - but this listener is only
+     * called when an error occurs which is caused by an insufficient
+     * authorizations for accessing an item of data.
+     */
     @Export
     @Override
     public JsDataPromise<T, R> catchUnauthorized(final JsClosure unauthorizedListener) {
