@@ -98,6 +98,17 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * This method must be supplied with a callback function. This function will
      * be called when the promise has been resolved.
      * <p>
+     * The callback function should be in the format:
+     * 
+     * <pre>
+     * apply(function(ex, res) {
+     * 
+     * });
+     * </pre>
+     * 
+     * Where <code>ex</code> will contain an exception object when the operation
+     * failed, or be <code>null</code> otherwise. <code>res</code> will be the
+     * result of the operation or <cocde>null</code> when the operation fails.
      * 
      * @param callback
      */
