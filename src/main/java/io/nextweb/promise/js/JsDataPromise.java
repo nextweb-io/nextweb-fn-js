@@ -157,6 +157,11 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
+    /**
+     * <p>
+     * Like {@link #catchExceptions(JsClosure)}. But this listener is only
+     * called when an error occurs which is caused by an item of data missing.
+     */
     @Export
     @Override
     public JsDataPromise<T, R> catchUndefined(final JsClosure undefinedListener) {
