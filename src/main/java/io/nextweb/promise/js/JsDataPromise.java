@@ -140,6 +140,15 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * <p>
      * Allow defining a listener function which is called when any error occurs
      * during executing the operation for this promise.
+     * <p>
+     * For instance
+     * 
+     * <pre>
+     * catchExceptions(function(ex) { ... } );
+     * </pre>
+     * 
+     * @param exceptionListener
+     *            A function with one argument <code>ex</code>.
      */
     @Export
     @Override
