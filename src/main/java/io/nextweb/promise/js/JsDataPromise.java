@@ -94,6 +94,10 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     /**
      * <p>
      * This method will attempt to get the result for this promise.
+     * <p>
+     * This method must be supplied with a callback function. This function will
+     * be called when the promise has been resolved.
+     * <p>
      * 
      * @param callback
      */
