@@ -25,9 +25,10 @@ import io.nextweb.promise.js.JsWrapper;
  * <p>
  * A manager for listeners to exceptions.
  * <p>
- * To learn more see <a href=
+ * To learn more about exception management see <a href=
  * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling.html'>Exception
  * Handling</a>.
+ * 
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
