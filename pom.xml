@@ -278,13 +278,12 @@
 							<version>2.9.1</version>
 							<configuration>
 								<links>
-									<link>http://modules.appjangle.com/delight-services/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/delight-promise/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/delight-strings/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/delight-functional/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/async-api/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/factories/latest/apidocs/latest/apidocs/</link>
-									<link>http://modules.appjangle.com/service-api/latest/apidocs/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-async/latest/apidocs</link>
+									<link>http://modules.appjangle.com/delight-services/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-promise/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-strings/latest/apidocs/</link>
+									<link>http://modules.appjangle.com/delight-functional/latest/apidocs/</link>
+									
 									<link>http://modules.appjangle.com/nextweb-promise/latest/apidocs/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/nextweb-promise-js/latest/apidocs/latest/apidocs/</link>
 									<link>http://modules.appjangle.com/java-promise/latest/apidocs/latest/apidocs/</link>

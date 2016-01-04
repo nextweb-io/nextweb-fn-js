@@ -12,6 +12,7 @@ import org.timepedia.exporter.client.NoExport;
 import com.google.gwt.core.client.JavaScriptObject;
 
 import io.nextweb.promise.BasicPromise;
+import io.nextweb.promise.DataPromise;
 import io.nextweb.promise.Fn;
 import io.nextweb.promise.exceptions.DataExceptionManager;
 import io.nextweb.promise.exceptions.ExceptionListener;
@@ -21,6 +22,8 @@ import io.nextweb.promise.js.exceptions.ExceptionUtils;
 import io.nextweb.promise.js.exceptions.JsExceptionManager;
 
 /**
+ * 
+ * see {@link DataPromise}
  * 
  * @author Max Rohde
  * 
