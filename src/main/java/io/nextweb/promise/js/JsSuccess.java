@@ -12,6 +12,8 @@ import org.timepedia.exporter.client.NoExport;
  * <p>
  * A simple dummy object, which is returned by operations to signify that they
  * have been successful.
+ * <p>
+ * This object has no methods or attributes.
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
