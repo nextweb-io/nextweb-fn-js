@@ -186,6 +186,12 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
+    /**
+     * <p>
+     * Like {@link #catchExceptions(JsClosure)} - but this listener is only
+     * called when an error occurs which is caused by an operation on data not
+     * being possible.
+     */
     @Export
     @Override
     public JsDataPromise<T, R> catchImpossible(final JsClosure impossibleListener) {
