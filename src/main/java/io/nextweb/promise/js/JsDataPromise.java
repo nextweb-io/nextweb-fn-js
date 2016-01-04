@@ -32,15 +32,11 @@ import io.nextweb.promise.js.exceptions.JsExceptionManager;
  * <p>
  * The operation for the promise is guaranteed to be only performed once. If
  * {@link #get(Object...)} and {{@link #apply(JavaScriptObject)} are called
- * again,
+ * again, a cached result is returned.
  * 
  * 
  * @author Max Rohde
  * 
- * @param <T>
- *            The return type of the Wrapped result
- * @param <R>
- *            The type of the wrapped result
  */
 @Export
 public class JsDataPromise<T, R extends BasicPromise<T>>
