@@ -27,8 +27,8 @@ import io.nextweb.promise.js.JsWrapper;
  * <p>
  * To learn more about exception management see <a href=
  * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling.html'>Exception
- * Handling</a>.
- * 
+ * Handling</a>. <p>Usually the methods of this object do not need to be called
+ * directly.
  * 
  * @author <a href="http://www.mxro.de">Max Rohde</a>
  *
