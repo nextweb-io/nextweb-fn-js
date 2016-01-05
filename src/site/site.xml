@@ -8,7 +8,6 @@
 		<src>https://beta.objecthub.io/files/icons-V1/logo.svg</src>
 		<href>http://objecthub.io</href>
 	</bannerLeft>
-
 	<skin>
 		<groupId>org.apache.maven.skins</groupId>
 		<artifactId>maven-fluido-skin</artifactId>
