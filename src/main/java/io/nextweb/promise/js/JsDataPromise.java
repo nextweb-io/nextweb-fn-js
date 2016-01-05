@@ -199,6 +199,10 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return this;
     }
 
+    /**
+     * 
+     * @return A function that wraps this promise as an asynchronous operation.
+     */
     @Deprecated
     @Export
     public Object func() {
