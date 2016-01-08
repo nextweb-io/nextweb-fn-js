@@ -41,6 +41,9 @@ public final class ExceptionUtils {
                                                                            if (jsException.message) {
                                                                            throw jsException;
                                                                            }
+                                                                           if (jsException.original) {
+                                                                           throw jsException.original;
+                                                                           }
                                                                            }-*/;
 
     public static final JavaScriptObject convertToJSExceptionResult(final ExceptionResult er) {
