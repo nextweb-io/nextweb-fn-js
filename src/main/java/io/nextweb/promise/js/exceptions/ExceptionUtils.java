@@ -31,18 +31,20 @@ public final class ExceptionUtils {
             return (Throwable) obj;
         }
 
+        final UncaughtExceptionHandler oldHandler = GWT.getUncaughtExceptionHandler();
         try {
-            final UncaughtExceptionHandler oldHandler = GWT.getUncaughtExceptionHandler();
+
             Console.log("here");
             Console.log(oldHandler + "");
 
             GWT.setUncaughtExceptionHandler(null);
             triggerJsException(jsException);
-
+            GWT.setUncaughtExceptionHandler(oldHandler);
             return new Exception(
                     "Cannot convert reported exception result to Java Exception.\n" + " Exception Result Type: "
                             + obj.getClass() + "\n" + " Exception Result toString: " + obj.toString());
         } catch (final Throwable t) {
+            GWT.setUncaughtExceptionHandler(oldHandler);
             return t;
         }
 
