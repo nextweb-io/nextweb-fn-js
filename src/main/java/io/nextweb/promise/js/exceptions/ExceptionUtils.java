@@ -40,16 +40,21 @@ public final class ExceptionUtils {
                 @Override
                 public void onUncaughtException(final Throwable e) {
                     exVal.set(e);
+                    GWT.setUncaughtExceptionHandler(oldHandler);
                 }
             });
             triggerJsException(jsException);
 
-            return new Exception(
-                    "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
-                            + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
+            // return new Exception(
+            // "Cannot convert reported exception result to Java Exception.\n" +
+            // " Exception Result Type: "
+            // + obj.getClass() + "\n" + " Exception Result toString: " +
+            // obj.toString());
         } catch (final Throwable t) {
             return t;
         }
+        return exVal.get();
+
     }
 
     private static native final void triggerJsException(Object jsException)/*-{
