@@ -1,6 +1,5 @@
 package io.nextweb.promise.js.exceptions;
 
-import delight.async.Value;
 import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
@@ -32,32 +31,20 @@ public final class ExceptionUtils {
             return (Throwable) obj;
         }
 
-        final Value<Throwable> exVal = new Value<Throwable>(null);
-
         try {
             final UncaughtExceptionHandler oldHandler = GWT.getUncaughtExceptionHandler();
             Console.log("here");
             Console.log(oldHandler + "");
 
-            GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-
-                @Override
-                public void onUncaughtException(final Throwable e) {
-                    exVal.set(e);
-                    GWT.setUncaughtExceptionHandler(oldHandler);
-                }
-            });
+            GWT.setUncaughtExceptionHandler(null);
             triggerJsException(jsException);
 
-            // return new Exception(
-            // "Cannot convert reported exception result to Java Exception.\n" +
-            // " Exception Result Type: "
-            // + obj.getClass() + "\n" + " Exception Result toString: " +
-            // obj.toString());
+            return new Exception(
+                    "Cannot convert reported exception result to Java Exception.\n" + " Exception Result Type: "
+                            + obj.getClass() + "\n" + " Exception Result toString: " + obj.toString());
         } catch (final Throwable t) {
             return t;
         }
-        return exVal.get();
 
     }
 
