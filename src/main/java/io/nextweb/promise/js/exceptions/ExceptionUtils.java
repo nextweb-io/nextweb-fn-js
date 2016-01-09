@@ -1,7 +1,11 @@
 package io.nextweb.promise.js.exceptions;
 
+import delight.async.Value;
+
 import org.timepedia.exporter.client.ExporterUtil;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.GWT.UncaughtExceptionHandler;
 import com.google.gwt.core.client.JavaScriptException;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.event.shared.UmbrellaException;
@@ -27,8 +31,19 @@ public final class ExceptionUtils {
             return (Throwable) obj;
         }
 
+        final Value<Throwable> exVal = new Value<Throwable>(null);
+
         try {
+            final UncaughtExceptionHandler oldHandler = GWT.getUncaughtExceptionHandler();
+            GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
+
+                @Override
+                public void onUncaughtException(final Throwable e) {
+                    exVal.set(e);
+                }
+            });
             triggerJsException(jsException);
+
             return new Exception(
                     "Cannot convert reported exception result to Java Exception.\n" + "  Exception Result Type: "
                             + obj.getClass() + "\n" + "  Exception Result toString: " + obj.toString());
