@@ -1,6 +1,7 @@
 package io.nextweb.promise.js.exceptions;
 
 import delight.async.Value;
+import delight.gwt.console.Console;
 
 import org.timepedia.exporter.client.ExporterUtil;
 
@@ -35,6 +36,9 @@ public final class ExceptionUtils {
 
         try {
             final UncaughtExceptionHandler oldHandler = GWT.getUncaughtExceptionHandler();
+            Console.log("here");
+            Console.log(oldHandler + "");
+
             GWT.setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
 
                 @Override
