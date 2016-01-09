@@ -44,6 +44,7 @@ public final class ExceptionUtils {
                     "Cannot convert reported exception result to Java Exception.\n" + " Exception Result Type: "
                             + obj.getClass() + "\n" + " Exception Result toString: " + obj.toString());
         } catch (final Throwable t) {
+            Console.log("Caught it!");
             GWT.setUncaughtExceptionHandler(oldHandler);
             return t;
         }
