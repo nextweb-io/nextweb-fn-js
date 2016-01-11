@@ -67,13 +67,13 @@ public class JsExceptionManager
 
                     final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
 
+                    Console.log(JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
+                    Console.log(ExceptionUtils.getStacktraceAsHtml(t));
+
                     if (parentExceptionManager != null) {
                         parentExceptionManager.onFailure(r);
                         return;
                     }
-
-                    Console.log(JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
-                    Console.log(ExceptionUtils.getStacktraceAsHtml(t));
 
                 }
 
