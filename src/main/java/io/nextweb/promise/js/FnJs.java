@@ -52,8 +52,8 @@ public class FnJs {
     }
 
     public static final native void callFunctionWithArrayArg(JavaScriptObject fn, JavaScriptObject jsArray)/*-{
-                                                                                                    fn.apply(this, jsArray.getArray());
-                                                                                                    }-*/;
+                                                                                                           fn.apply(this, jsArray.getArray());
+                                                                                                           }-*/;
 
     /**
      * <p>
@@ -79,7 +79,6 @@ public class FnJs {
                     callFunction(fn, result);
                 } catch (final Throwable t) {
 
-                    // throw new RuntimeException(t);
                     listener.onFailure(Fn.exception(this, t));
 
                 }
