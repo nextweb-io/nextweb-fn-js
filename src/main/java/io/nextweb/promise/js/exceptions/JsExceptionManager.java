@@ -1,7 +1,5 @@
 package io.nextweb.promise.js.exceptions;
 
-import delight.gwt.console.Console;
-
 import org.timepedia.exporter.client.Export;
 import org.timepedia.exporter.client.Exportable;
 import org.timepedia.exporter.client.NoExport;
@@ -67,11 +65,12 @@ public class JsExceptionManager
 
                     final DataExceptionManager parentExceptionManager = em.getParentExceptionManager();
 
-                    Console.log(JsExceptionManager.this + ": Caught exception in block processing exception: " + t);
-                    Console.log(ExceptionUtils.getStacktraceAsHtml(t));
+                    // Console.log(JsExceptionManager.this + ": Caught exception
+                    // in block processing exception: " + t);
+                    // Console.log(ExceptionUtils.getStacktraceAsHtml(t));
 
                     if (parentExceptionManager != null) {
-                        parentExceptionManager.onFailure(r);
+                        parentExceptionManager.onFailure(Fn.exception(this, t));
                         return;
                     }
 
