@@ -74,6 +74,8 @@ public class JsExceptionManager
                         return;
                     }
 
+                    throw new RuntimeException(t);
+
                 }
 
             }
