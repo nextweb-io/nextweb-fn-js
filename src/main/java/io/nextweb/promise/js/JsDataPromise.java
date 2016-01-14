@@ -56,8 +56,16 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * <p>
      * A JavaScript function can be supplied as optional parameter. This
      * JavaScript function will be called with the result as the only argument
-     * when the operation was successful. If the operation was not successful,
-     * one of the defined exception interceptors will be called.
+     * when the operation was successful.
+     * 
+     * <pre>
+     * promise.get(function(result) {
+     *    ...
+     * });
+     * </pre>
+     * <p>
+     * If the operation was not successful, one of the defined exception
+     * interceptors will be called.
      * <p>
      * Note: Calling get() without any argument will ignore all defined
      * exception interceptors to assure termination of the statement.
