@@ -147,8 +147,9 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * catchExceptions(function(ex) { ... } );
      * </pre>
      * <p>
-     * To learn more about managing errors and exceptions, see 
-     * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling'.
+     * To learn more about managing errors and exceptions, see <a href=
+     * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling'>Exception
+     * Handling</a>.
      * 
      * @param exceptionListener
      *            A function with one argument <code>ex</code>.
