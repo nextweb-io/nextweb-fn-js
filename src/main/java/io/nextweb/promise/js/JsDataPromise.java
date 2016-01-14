@@ -138,7 +138,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
     /**
      * <p>
-     * Allow defining a listener function which is called when any error occurs
+     * Allows defining a listener function which is called when any error occurs
      * during executing the operation for this promise.
      * <p>
      * For instance
