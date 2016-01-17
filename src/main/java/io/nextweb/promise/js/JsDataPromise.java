@@ -125,7 +125,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     @Export
     public void apply(final JavaScriptObject callback) {
         if (!FnJs.isJsFunction(callback)) {
-            throw new IllegalArgumentException("Expected one parameter which is a function.");
+            throw new IllegalArgumentException("Expected one parameter which is a function but received: " + callback);
         }
 
         result.apply(new ValueCallback<T>() {
