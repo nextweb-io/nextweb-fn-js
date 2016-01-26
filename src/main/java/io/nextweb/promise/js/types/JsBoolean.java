@@ -8,6 +8,10 @@ import io.nextweb.promise.js.wrapping.JsWrap;
 
 public class JsBoolean {
 
+    public static Object wrap(final Boolean bool) {
+        return getWrapper().apply(bool);
+    }
+
     public static Function<Object, Object> getWrapper() {
         return new Function<Object, Object>() {
 
