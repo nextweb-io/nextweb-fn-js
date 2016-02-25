@@ -153,9 +153,11 @@ public class JsExceptionManager
 
     /**
      * <p>
-     * Allows defining a listener when any error related to insufficient
-     * authorizations occurs. p> The listener will be called with one argument
-     * which will be a JavaScript object with the property 'message'.
+     * Allows defining a listener that will be called when any error related to
+     * insufficient authorizations occurs.
+     * <p>
+     * The listener will be called with one argument which will be a JavaScript
+     * object with the property 'message'.
      * <p>
      * For instance:
      * 
@@ -168,6 +170,8 @@ public class JsExceptionManager
      * @param unauthorizedListener
      *            A JavaScript callback that will be called when operations are
      *            not authorized.
+     * 
+     * @return This exception manager object.
      */
     @Export
     @Override
@@ -183,6 +187,11 @@ public class JsExceptionManager
         return this;
     }
 
+    /**
+     * <p>
+     * Allows defining a listener that will be called when any data operation is
+     * impossible.
+     */
     @Export
     @Override
     public JsExceptionManager catchImpossible(final JsClosure impossibleListener) {
