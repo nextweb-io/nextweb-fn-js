@@ -153,8 +153,21 @@ public class JsExceptionManager
 
     /**
      * <p>
-     * Allows defining a listerner when any error related to insufficient
-     * authorizations occurs.
+     * Allows defining a listener when any error related to insufficient
+     * authorizations occurs. p> The listener will be called with one argument
+     * which will be a JavaScript object with the property 'message'.
+     * <p>
+     * For instance:
+     * 
+     * <pre>
+     * em.catchUnauthorized(function(unauthorizedResult) {
+     *    console.log('Message: '+unauthorizedResult.message);
+     * });
+     * </pre>
+     * 
+     * @param unauthorizedListener
+     *            A JavaScript callback that will be called when operations are
+     *            not authorized.
      */
     @Export
     @Override
