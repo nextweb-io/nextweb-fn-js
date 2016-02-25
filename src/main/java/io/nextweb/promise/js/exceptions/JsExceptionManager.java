@@ -55,6 +55,10 @@ public class JsExceptionManager
     /**
      * <P>
      * Allows defining a listener for all possible error situations.
+     * 
+     * @param exceptionListner
+     *            A JavaScrip callback that will be triggered if an exception
+     *            occured.
      */
     @Override
     @Export
@@ -97,6 +101,11 @@ public class JsExceptionManager
         return this;
     }
 
+    /**
+     * <p>
+     * Allows defining a listener when an error is triggerd by data not being
+     * defined.
+     */
     @Export
     @Override
     public JsExceptionManager catchUndefined(final JsClosure undefinedListener) {
