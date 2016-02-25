@@ -191,6 +191,17 @@ public class JsExceptionManager
      * <p>
      * Allows defining a listener that will be called when any data operation is
      * impossible.
+     * <p>
+     * The listener will be called with one argument which will be a JavaScript
+     * object with the property 'message'.
+     * <p>
+     * For instance:
+     * 
+     * <pre>
+     * em.catchImpossible(function(impossibleResult) {
+     *    console.log('Message: '+impossibleResult.message);
+     * });
+     * </pre>
      */
     @Export
     @Override
