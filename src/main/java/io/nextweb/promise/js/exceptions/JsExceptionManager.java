@@ -58,7 +58,9 @@ public class JsExceptionManager
      * 
      * @param exceptionListner
      *            A JavaScrip callback that will be triggered if an exception
-     *            occured.
+     *            occurred.
+     * 
+     * @return This exception manager object.
      */
     @Override
     @Export
@@ -109,6 +111,8 @@ public class JsExceptionManager
      * @param undefinedListener
      *            A JavaScript callback that will be called when data is not
      *            defined.
+     * 
+     * @return This exception manager object.
      */
     @Export
     @Override
