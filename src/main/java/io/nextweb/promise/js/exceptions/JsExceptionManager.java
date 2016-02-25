@@ -43,13 +43,19 @@ public class JsExceptionManager
      * Calling this method will trigger an exception.
      * 
      * @param origin
+     *            A context object for the exception.
      * @param errorMessage
+     *            An error message for this exception.
      */
     @Export
     public void onFailure(final JavaScriptObject origin, final String errorMessage) {
         em.onFailure(Fn.exception(origin, new Exception(errorMessage)));
     }
 
+    /**
+     * <P>
+     * Allows defining a listener for all possible error situations.
+     */
     @Override
     @Export
     public JsExceptionManager catchExceptions(final JsClosure exceptionListener) {
