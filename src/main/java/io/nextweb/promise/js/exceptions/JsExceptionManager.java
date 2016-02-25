@@ -55,6 +55,19 @@ public class JsExceptionManager
     /**
      * <P>
      * Allows defining a listener for all possible error situations.
+     * <p>
+     * The parameter will be called with one argument, which will be an object
+     * with the following properties:
+     * 
+     * <pre>
+     * em.catchExceptions(function(result) {
+     *    console.log('Message: '+result.message);
+     *    console.log('Stacktrace: '+result.stack);
+     *    console.log('Raw JavaScript exception: '+result.jsException); 
+     * });
+     * 
+     * 
+     * </pre>
      * 
      * @param exceptionListner
      *            A JavaScrip callback that will be triggered if an exception
@@ -138,6 +151,11 @@ public class JsExceptionManager
         return this;
     }
 
+    /**
+     * <p>
+     * Allows defining a listerner when any error related to insufficient
+     * authorizations occurs.
+     */
     @Export
     @Override
     public JsExceptionManager catchUnauthorized(final JsClosure unauthorizedListener) {
