@@ -38,6 +38,13 @@ public class JsExceptionManager
     @NoExport
     private DataExceptionManager em;
 
+    /**
+     * <p>
+     * Calling this method will trigger an exception.
+     * 
+     * @param origin
+     * @param errorMessage
+     */
     @Export
     public void onFailure(final JavaScriptObject origin, final String errorMessage) {
         em.onFailure(Fn.exception(origin, new Exception(errorMessage)));
