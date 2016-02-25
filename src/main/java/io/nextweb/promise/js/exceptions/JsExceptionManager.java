@@ -108,6 +108,9 @@ public class JsExceptionManager
      * Allows defining a listener when an error is triggered by data not being
      * defined.
      * <p>
+     * The listener will be called with one argument which will be a JavaScript
+     * object with the property 'message'.
+     * <p>
      * For instance:
      * 
      * <pre>
