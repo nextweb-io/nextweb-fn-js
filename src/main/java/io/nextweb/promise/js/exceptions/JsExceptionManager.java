@@ -103,8 +103,12 @@ public class JsExceptionManager
 
     /**
      * <p>
-     * Allows defining a listener when an error is triggerd by data not being
+     * Allows defining a listener when an error is triggered by data not being
      * defined.
+     * 
+     * @param undefinedListener
+     *            A JavaScript callback that will be called when data is not
+     *            defined.
      */
     @Export
     @Override
