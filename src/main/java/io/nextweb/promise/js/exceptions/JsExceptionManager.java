@@ -107,6 +107,14 @@ public class JsExceptionManager
      * <p>
      * Allows defining a listener when an error is triggered by data not being
      * defined.
+     * <p>
+     * For instance:
+     * 
+     * <pre>
+     * em.catchUndefined(function(undefinedResult) {
+     *    console.log('Message: '+undefinedResult.message);
+     * });
+     * </pre>
      * 
      * @param undefinedListener
      *            A JavaScript callback that will be called when data is not
