@@ -23,7 +23,8 @@ import io.nextweb.promise.js.JsWrapper;
  * <p>
  * A manager for listeners to exceptions.
  * <p>
- * Allows defining listeners and to trigger exceptions.
+ * Allows defining listeners and to trigger exceptions that will call these
+ * listeners.
  * 
  * <p>
  * To learn more about exception management see <a href=
