@@ -29,6 +29,13 @@ public class JsMaybe implements Exportable {
         }
     }
 
+    /**
+     * <p>
+     * The value of this object.
+     * 
+     * @return The value of the object and <code>null</code> if this object does
+     *         not have a value.
+     */
     @Export
     public Object value() {
         return value;
