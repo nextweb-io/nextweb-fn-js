@@ -99,6 +99,38 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return ExporterUtil.wrap(this);
     }
 
+    @NoExport
+    protected final Object performGet() {
+        Object node = result.get();
+
+        if (node != null) {
+            node = wrapper.apply(node);
+
+        }
+
+        return node;
+    }
+
+    @NoExport
+    protected final void performGet(final JsClosure onSuccess) {
+        result.get(new Closure<T>() {
+
+            @Override
+            public void apply(final T o) {
+
+                if (o instanceof JavaScriptObject) {
+                    onSuccess.apply(o);
+                    return;
+                }
+
+                onSuccess.apply(wrapper.apply(o));
+
+            }
+
+        });
+
+    }
+
     /**
      * <p>
      * This method will attempt to get the result for this promise.
@@ -138,7 +170,29 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onSuccess(final T value) {
-                FnJs.asClosure2(callback).apply(null, wrapper.apply(value));
+                FnJs.asClosure2(callback).apply(null, value);
+            }
+        });
+
+    }
+
+    @NoExport
+    public final void apply(final ValueCallback<Object> callback) {
+        result.apply(new ValueCallback<T>() {
+
+            @Override
+            public void onFailure(final Throwable t) {
+                callback.onFailure(t);
+            }
+
+            @Override
+            public void onSuccess(final T value) {
+                if (value instanceof JavaScriptObject) {
+                    callback.onSuccess(value);
+                    return;
+                }
+
+                callback.onSuccess(wrapper.apply(value));
             }
         });
 
@@ -156,8 +210,8 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
      * </pre>
      * <p>
      * To learn more about managing errors and exceptions, see <a href=
-     * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling'>Exception
-     * Handling</a>.
+     * 'https://beta.objecthub.io/dev/~001/users/~root/home/xplr/.n/ObjectHub_Documentation/.n/API/.n/API_Building_Blocks/.n/Exception_Handling'>
+     * Exception Handling</a>.
      * 
      * @param exceptionListener
      *            A function with one argument <code>ex</code>.
@@ -225,60 +279,6 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
     @NoExport
     public final DataExceptionManager javaExceptionManager() {
         return result.getExceptionManager();
-    }
-
-    @NoExport
-    protected final Object performGet() {
-        Object node = result.get();
-
-        if (node != null) {
-            node = wrapper.apply(node);
-
-        }
-
-        return node;
-    }
-
-    @NoExport
-    protected final void performGet(final JsClosure onSuccess) {
-        result.get(new Closure<T>() {
-
-            @Override
-            public void apply(final T o) {
-
-                if (o instanceof JavaScriptObject) {
-                    onSuccess.apply(o);
-                    return;
-                }
-
-                onSuccess.apply(wrapper.apply(o));
-
-            }
-
-        });
-
-    }
-
-    @NoExport
-    public final void apply(final ValueCallback<Object> callback) {
-        result.apply(new ValueCallback<T>() {
-
-            @Override
-            public void onFailure(final Throwable t) {
-                callback.onFailure(t);
-            }
-
-            @Override
-            public void onSuccess(final T value) {
-                if (value instanceof JavaScriptObject) {
-                    callback.onSuccess(value);
-                    return;
-                }
-
-                callback.onSuccess(wrapper.apply(value));
-            }
-        });
-
     }
 
     @NoExport
