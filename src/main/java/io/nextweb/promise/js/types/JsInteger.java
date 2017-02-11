@@ -6,7 +6,7 @@ import org.timepedia.exporter.client.ExporterUtil;
 
 import io.nextweb.promise.js.wrapping.JsWrap;
 
-public class JsLong {
+public class JsInteger {
 
     public static Function<Object, Object> getWrapper() {
 
@@ -15,10 +15,9 @@ public class JsLong {
             @Override
             public Object apply(final Object input) {
 
-                final Integer value = ((Long) input).intValue();
+                final Integer value = (Integer) input;
 
                 return JsWrap.unwrapBasicType(ExporterUtil.wrap(JsBasicType.wrap(value)));
-
             }
         };
 
