@@ -170,7 +170,7 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onSuccess(final T value) {
-                FnJs.asClosure2(callback).apply(null, value);
+                FnJs.asClosure2(callback).apply(null, wrapper.apply(value));
             }
         });
 
