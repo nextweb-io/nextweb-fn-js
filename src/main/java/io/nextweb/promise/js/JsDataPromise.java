@@ -99,13 +99,19 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
         return ExporterUtil.wrap(this);
     }
 
+    private final static native void throwError(Object error)/*-{ throw error; }-*/;
+
     @NoExport
     protected final Object performGet() {
         Object node = result.get();
 
         if (node != null) {
             node = wrapper.apply(node);
+        }
 
+        if (isError(node)) {
+            throwError(node);
+            return null;
         }
 
         return node;
@@ -123,13 +129,23 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     return;
                 }
 
-                onSuccess.apply(wrapper.apply(o));
+                final Object wrapperResult = wrapper.apply(o);
+
+                if (isError(wrapperResult)) {
+                    exceptionManager().getOriginal()
+                            .onFailure(Fn.exception(this, ExceptionUtils.convertToJavaException(wrapperResult)));
+                    return;
+                }
+
+                onSuccess.apply(wrapperResult);
 
             }
 
         });
 
     }
+
+    private final static native boolean isError(Object obj)/*-{ return obj instanceof Error; }-*/;
 
     /**
      * <p>
@@ -170,7 +186,13 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
 
             @Override
             public void onSuccess(final T value) {
-                FnJs.asClosure2(callback).apply(null, wrapper.apply(value));
+                final Object wrapperResult = wrapper.apply(value);
+                if (isError(wrapperResult)) {
+                    FnJs.asClosure2(callback).apply(wrapperResult, null);
+                    return;
+                }
+
+                FnJs.asClosure2(callback).apply(null, wrapperResult);
             }
         });
 
@@ -192,7 +214,14 @@ public class JsDataPromise<T, R extends BasicPromise<T>>
                     return;
                 }
 
-                callback.onSuccess(wrapper.apply(value));
+                final Object wrappedValue = wrapper.apply(value);
+
+                if (isError(wrappedValue)) {
+                    callback.onFailure(ExceptionUtils.convertToJavaException(wrappedValue));
+                    return;
+                }
+
+                callback.onSuccess(wrappedValue);
             }
         });
 
