@@ -115,6 +115,9 @@ public class FnJs {
                                                                                               fn(param);
                                                                                               }-*/;
 
+    public static native final JavaScriptObject getProperty(JavaScriptObject obj,
+            String property)/*-{ return obj[property]; }-*/;
+
     public static final void triggerCallback(final JavaScriptObject fn, final WrapperCollection wrappers,
             final Object[] params) {
         callFunctionWithArrayArg(fn, ExporterUtil.wrap(JsArray.wrap(JsWrap.toJsoArray(params, wrappers))));
