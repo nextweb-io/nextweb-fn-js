@@ -55,6 +55,8 @@ public final class JsWrap {
         return wrappers.unwrapValueObjectForJava(jsNode);
     }
 
+    public static native final JavaScriptObject getBoolean(boolean value)/*-{ return value; }-*/;
+
     /**
      * Will wrap all objects including Strings, Integers etc into
      * JavaScriptObjects. Basic JS types (such as String) will be placed in a
@@ -68,6 +70,10 @@ public final class JsWrap {
 
         if (node instanceof JavaScriptObject) {
             return (JavaScriptObject) node;
+        }
+
+        if (node instanceof Boolean) {
+            return getBoolean((Boolean) node);
         }
 
         if (FnJs.isBasicJsType(node)) {
